@@ -161,8 +161,7 @@
 ;;Elpy (Python)
 (use-package elpy :ensure t
   :defer t
-  :init
-  (advice-add 'python-mode :before 'elpy-enable))
+  :init (advice-add 'python-mode :before 'elpy-enable))
 
 ;;Fennel mode
 (use-package fennel-mode :ensure t)
@@ -187,9 +186,15 @@
 (use-package markdown-mode :ensure t
   :config (add-hook 'markdown-mode-hook 'flyspell-mode))
 
+;;Neotree
+(use-package neotree :ensure t
+  :bind (("<f8>" . neotree-toggle)
+         ("C-c t" . neotree-dir)))
+
 ;;Rust mode
 (use-package rust-mode :ensure t)
 
+;;Simple modeline
 (use-package simple-modeline :ensure t
   :hook (after-init . simple-modeline-mode))
 
