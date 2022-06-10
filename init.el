@@ -8,8 +8,14 @@
 
 ;;Font selection - use a smaller font on laptop.
 (if (equal "Newton" (system-name))
-    (set-frame-font "Liberation Mono 13")
-  (set-frame-font "Liberation Mono 14"))
+    (progn
+      (setq-default initial-frame-alist '((font . "Liberation Mono 13")))
+      (setq-default default-frame-alist '((font . "Liberation Mono 13")))
+      (set-frame-font "Liberation Mono 13" t))
+  (progn
+    (setq-default initial-frame-alist '((font . "Liberation Mono 14")))
+    (setq-default default-frame-alist '((font . "Liberation Mono 14")))
+    (set-frame-font "Liberation Mono 14" t)))
 
 ;;Clean up the interface a bit.
 (tool-bar-mode -1)
