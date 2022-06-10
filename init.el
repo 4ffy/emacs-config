@@ -196,9 +196,9 @@
 
 ;;Simple modeline
 (use-package simple-modeline :ensure t
-  :hook (after-init . simple-modeline-mode))
+  :init (simple-modeline-mode))
 
 ;;Vertico (completion)
 (use-package vertico :ensure t
-  :hook (after-init . vertico-mode))
+  :init (vertico-mode))
 
