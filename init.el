@@ -97,15 +97,16 @@
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 
 ;;Custom kill buffer commands
-(defun kill-current-buffer () (interactive)
+(defun my-kill-current-buffer () (interactive)
        (if (yes-or-no-p "Kill current buffer?")
            (kill-current-buffer)))
 
 (defun kill-all-buffers () (interactive)
-       (mapc 'kill-buffer (buffer-list))
-       (delete-other-windows))
+       (if (yes-or-no-p "Kill all buffers?")
+           (progn (mapc 'kill-buffer (buffer-list))
+                  (delete-other-windows))))
 
-(global-set-key (kbd "C-c k") 'kill-current-buffer)
+(global-set-key (kbd "C-c k") 'my-kill-current-buffer)
 (global-set-key (kbd "C-c K") 'kill-all-buffers)
 
 ;;Move customizations to their own file.
