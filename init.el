@@ -92,14 +92,21 @@
 ;;Use ibuffer for buffer list
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-;;Kill current buffer
-(global-set-key (kbd "C-c k") (lambda () (interactive)
-                                (if (yes-or-no-p "Kill current buffer?")
-                                    (kill-current-buffer))))
-
 ;;Regex search by default
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
+
+;;Custom kill buffer commands
+(defun kill-current-buffer () (interactive)
+       (if (yes-or-no-p "Kill current buffer?")
+           (kill-current-buffer)))
+
+(defun kill-all-buffers () (interactive)
+       (mapc 'kill-buffer (buffer-list))
+       (delete-other-windows))
+
+(global-set-key (kbd "C-c k") 'kill-current-buffer)
+(global-set-key (kbd "C-c K") 'kill-all-buffers)
 
 ;;Move customizations to their own file.
 (setq-default custom-file "~/.config/emacs/customize.el")
@@ -107,6 +114,7 @@
 
 ;;Load macros from file.
 (load "~/.config/emacs/macros.el")
+
 
 ;;;=============================================================================
 ;;; PACKAGES
