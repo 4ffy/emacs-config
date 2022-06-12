@@ -75,7 +75,7 @@
 
 ;;EWW web browser settings
 (setq-default browse-url-browser-function 'browse-web
-              eww-search-prefix "https://searx.be/?q="
+              eww-search-prefix "https://searx.be/search?q="
               shr-max-image-proportion 0.5
               shr-max-width 80
               shr-use-colors nil
