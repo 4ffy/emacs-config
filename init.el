@@ -97,16 +97,24 @@
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 
 ;;Custom kill buffer commands
-(defun my-kill-current-buffer () (interactive)
-       (if (yes-or-no-p "Kill current buffer?")
-           (kill-current-buffer)))
+(defun kill-current-buffer ()
+  "Prompt to kill current buffer."
+  (interactive)
+  (if (yes-or-no-p "Kill current buffer?")
+  (let ((frame (selected-frame)))
+    (if (and (frame-live-p frame)
+             (not (window-minibuffer-p (frame-selected-window frame))))
+        (kill-buffer (current-buffer))
+      (abort-recursive-edit)))))
 
-(defun kill-all-buffers () (interactive)
-       (if (yes-or-no-p "Kill all buffers?")
-           (progn (mapc 'kill-buffer (buffer-list))
-                  (delete-other-windows))))
+(defun kill-all-buffers ()
+  "Prompt to kill all buffers, leaving an empty *scratch* buffer."
+  (interactive)
+  (if (yes-or-no-p "Kill all buffers?")
+      (progn (mapc 'kill-buffer (buffer-list))
+             (delete-other-windows))))
 
-(global-set-key (kbd "C-c k") 'my-kill-current-buffer)
+(global-set-key (kbd "C-c k") 'kill-current-buffer)
 (global-set-key (kbd "C-c K") 'kill-all-buffers)
 
 ;;Move customizations to their own file.
