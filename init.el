@@ -225,3 +225,5 @@
 (use-package vertico :ensure t
   :init (vertico-mode))
 
+;;Vterm (improved terminal)
+(use-package vterm :ensure t)
