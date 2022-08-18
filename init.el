@@ -158,6 +158,13 @@
 
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
+;;Custom compilation command for cmake projects.
+(defun cmake-compile ()
+  "Build a cmake project from its root directory."
+  (if (file-exists-p "CMakeLists.txt")
+      (compile "cmake -B build && make -k -C build")
+    (message "CMakeLists.txt not found.")))
+
 
 ;;;=============================================================================
 ;;; PACKAGES
