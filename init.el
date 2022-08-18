@@ -6,7 +6,7 @@
 (load "~/.config/emacs/wombat-custom-theme.el")
 (load-theme 'wombat-custom t)
 
-;;Font selection - use a smaller font on laptop.
+;;Font selection - use a larger font on laptop.
 (if (equal "Newton" (system-name))
     (progn
       (setq-default initial-frame-alist '((font . "Liberation Mono 13")))
@@ -111,8 +111,8 @@
   "Prompt to kill all buffers, leaving an empty *scratch* buffer."
   (interactive)
   (if (yes-or-no-p "Kill all buffers?")
-      (progn (mapc 'kill-buffer (buffer-list))
-             (delete-other-windows))))
+        (progn (mapc 'kill-buffer (buffer-list))
+               (delete-other-windows))))
 
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
 (global-set-key (kbd "C-c K") 'kill-all-buffers)
@@ -123,6 +123,40 @@
 
 ;;Load macros from file.
 (load "~/.config/emacs/macros.el")
+
+;;Customize eshell prompt.
+(defun with-foreground (str face-name)
+  "Apply the foreground color of a face to a string."
+  (propertize str 'face `(:foreground ,(face-foreground face-name))))
+
+(defun my-eshell-prompt ()
+  "Custom shell prompt for eshell."
+  (concat
+   "\n┌ "
+   (with-foreground (concat (number-to-string eshell-last-command-status) " ")
+                    (if (zerop eshell-last-command-status)
+                        'ansi-color-green
+                      'ansi-color-red))
+   (format-time-string "%T ")
+   (with-foreground (concat (user-login-name) "@" (system-name) " ")
+                    (if (zerop (user-uid))
+                        'ansi-color-red
+                      'ansi-color-magenta))
+   (with-foreground (eshell/pwd) 'ansi-color-cyan)
+   "\n└ "
+   (with-foreground (if (zerop (user-uid)) "#" "$")
+                    'ansi-color-yellow)
+   (with-foreground " " 'ansi-color-white)))
+
+(setq-default eshell-prompt-function 'my-eshell-prompt)
+(setq-default eshell-prompt-regexp "└ [#$] ")
+
+;;Support ANSI colors in compilation buffer
+(defun colorize-compilation-buffer ()
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
+
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 
 ;;;=============================================================================
