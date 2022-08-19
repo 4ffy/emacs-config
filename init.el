@@ -2,11 +2,11 @@
 ;;; GENERAL SETTINGS
 ;;;=============================================================================
 
-;;Theme
+;; Theme
 (load "~/.config/emacs/wombat-custom-theme.el")
 (load-theme 'wombat-custom t)
 
-;;Font selection - use a larger font on laptop.
+;; Font selection - use a larger font on laptop
 (if (equal "Newton" (system-name))
     (progn
       (setq-default initial-frame-alist '((font . "Liberation Mono 13")))
@@ -17,7 +17,7 @@
     (setq-default default-frame-alist '((font . "Liberation Mono 14")))
     (set-frame-font "Liberation Mono 14" t)))
 
-;;Clean up the interface a bit.
+;; Clean up the interface a bit
 (tool-bar-mode -1)
 (tooltip-mode -1)
 (scroll-bar-mode -1)
@@ -27,38 +27,38 @@
               frame-resize-pixelwise t
               cursor-type 'bar)
 
-;;Org mode for *scratch* buffer
+;; Org mode for *scratch* buffer
 (setq-default initial-major-mode 'org-mode)
 
-;;Display clock on mode line
+;; Display clock on mode line
 (display-time-mode t)
 
-;;Global column numbering, with a visible fill column for editing modes
+;; Global column numbering, with a visible fill column for editing modes
 (setq-default fill-column 80
               column-number-mode t)
 (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
 (add-hook 'text-mode-hook 'display-fill-column-indicator-mode)
 
-;;Pair parenthesis when programming
+;; Pair parenthesis when programming
 (add-hook 'prog-mode-hook 'electric-pair-mode)
 
-;;Display line numbers when programming
+;; Display line numbers when programming
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
-;;Automatic newlines in text modes.
+;; Automatic newlines in text modes
 (add-hook 'text-mode-hook 'auto-fill-mode)
 
-;;Indentation settings
+;; Indentation settings
 (setq-default tab-width 4
               indent-tabs-mode nil
               c-default-style "linux"
               c-basic-offset 4)
 
-;;Answer questions with y/n
+;; Answer questions with y/n
 (setq-default use-short-answers t)
 
-;;Stop cluttering my directories with #autosave# files.
-;;I accept any data loss from a crash (until it actually happens, probably).
+;; Stop cluttering my directories with #autosave# files
+;; I accept any data loss from a crash (until it actually happens, probably).
 (setq-default make-backup-files nil
               auto-save-mode nil
               backup-directory-alist ;banish to /tmp if files made anyway.
@@ -66,14 +66,14 @@
               auto-save-file-name-transforms
               `((".*" ,temporary-file-directory t)))
 
-;;Guess major mode from file name
+;; Guess major mode from file name
 (setq-default major-mode
               (lambda ()
                 (unless buffer-file-name
                   (let ((buffer-file-name (buffer-name)))
                     (set-auto-mode)))))
 
-;;EWW web browser settings
+;; EWW web browser settings
 (setq-default browse-url-browser-function 'browse-web
               eww-search-prefix "https://searx.be/search?q="
               shr-max-image-proportion 0.5
@@ -85,18 +85,18 @@
               url-cookie-confirmation t
               url-cookie-file "/dev/null") ;no cookies
 
-;;List directories first in dired
+;; List directories first in dired
 (setq-default dired-listing-switches
               "-al --color=auto --group-directories-first")
 
-;;Use ibuffer for buffer list
+;; Use ibuffer for buffer list
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-;;Regex search by default
+;; Regex search by default
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 
-;;Custom kill buffer commands
+;; Custom kill buffer commands
 (defun kill-current-buffer ()
   "Prompt to kill current buffer."
   (interactive)
@@ -117,14 +117,14 @@
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
 (global-set-key (kbd "C-c K") 'kill-all-buffers)
 
-;;Move customizations to their own file.
+;; Move customizations to their own file
 (setq-default custom-file "~/.config/emacs/customize.el")
 (load custom-file)
 
-;;Load macros from file.
+;; Load macros from file
 (load "~/.config/emacs/macros.el")
 
-;;Customize eshell prompt.
+;; Customize eshell prompt
 (defun with-foreground (str face-name)
   "Apply the foreground color of a face to a string."
   (propertize str 'face `(:foreground ,(face-foreground face-name))))
@@ -144,22 +144,22 @@
                       'ansi-color-magenta))
    (with-foreground (eshell/pwd) 'ansi-color-cyan)
    "\n└ "
-   (with-foreground (if (zerop (user-uid)) "#" "$")
+   (with-foreground (if (zerop (user-uid)) "#" "λ")
                     'ansi-color-yellow)
    (with-foreground " " 'ansi-color-white)))
 
 (setq-default eshell-prompt-function 'my-eshell-prompt)
-(setq-default eshell-prompt-regexp "└ [#$] ")
+(setq-default eshell-prompt-regexp "└ [#λ] ")
 
-;;Support ANSI colors in compilation buffer
+;; Support ANSI colors in compilation buffer
 (defun colorize-compilation-buffer ()
   (let ((inhibit-read-only t))
     (ansi-color-apply-on-region (point-min) (point-max))))
 
 (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
-;;Custom compilation command for cmake projects.
-(defun cmake-compile ()
+;; Custom compilation command for cmake projects
+(defun cmake-build ()
   "Build a cmake project from its root directory."
   (if (file-exists-p "CMakeLists.txt")
       (compile "cmake -B build && make -k -C build")
@@ -170,18 +170,18 @@
 ;;; PACKAGES
 ;;;=============================================================================
 
-;;melpa
+;; melpa
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
-;;use-package
+;; use-package
 (eval-when-compile
   (add-to-list 'load-path
                "/home/cameron/.config/emacs/elpa/use-package-20210207.1926")
   (require 'use-package))
 
-;;AUCTeX (LaTeX)
+;; AUCTeX (LaTeX)
 (use-package tex
   :ensure auctex
   :config
@@ -206,65 +206,68 @@
                                  (load-theme 'adwaita t)
                                  (set-background-color "AntiqueWhite")))))
 
-;;Company (popup autocompletion)
+;; Company (popup autocompletion)
 (use-package company :ensure t
   :hook ((prog-mode . company-mode)
          (LaTeX-mode . company-mode)))
   
-;;Eglot (LSP)
+;; Eglot (LSP)
 (use-package eglot :ensure t
   :hook (prog-mode . eglot-ensure))
 
-;;Elfeed (RSS)
+;; Elfeed (RSS)
 (use-package elfeed :ensure t
   :config
   (setq-default elfeed-db-directory "~/.cache/emacs/elfeed"
                 elfeed-search-filter "@1-week-ago !\[$\] ")
   (load "~/.config/emacs/feeds.el")) ;feed list to its own file
 
-;;Elpy (Python)
+;; Elpy (Python)
 (use-package elpy :ensure t
   :defer t
   :init (advice-add 'python-mode :before 'elpy-enable))
 
-;;Fennel mode
+;; Fennel mode
 (use-package fennel-mode :ensure t)
 
-;Flycheck (Improved syntax checking)
+;; Flycheck (Improved syntax checking)
 (use-package flycheck :ensure t
   :hook ((prog-mode . flycheck-mode)
          (LaTeX-mode . flycheck-mode)
          (elpy-mode . flycheck-mode)))
 
-;;Go mode
+;; Go mode
 (use-package go-mode :ensure t)
 
-;;Lua mode
+;; Lua mode
 (use-package lua-mode :ensure t)
 
-;;Magit (git)
+;; Magit (git)
 (use-package magit :ensure t
   :bind ("C-c g" . magit-status))
 
-;;Markdown mode
+;; Markdown mode
 (use-package markdown-mode :ensure t
   :config (add-hook 'markdown-mode-hook 'flyspell-mode))
 
-;;Neotree
+;; Neotree
 (use-package neotree :ensure t
   :bind (("<f8>" . neotree-toggle)
          ("C-c t" . neotree-dir)))
 
-;;Rust mode
+;; Rust mode
 (use-package rust-mode :ensure t)
 
-;;Simple modeline
+;; Simple modeline
 (use-package simple-modeline :ensure t
   :init (simple-modeline-mode))
 
-;;Vertico (completion)
+;; Vertico (completion)
 (use-package vertico :ensure t
   :init (vertico-mode))
 
-;;Vterm (improved terminal)
+;; Vterm (improved terminal)
 (use-package vterm :ensure t)
+(use-package eshell-vterm :ensure t
+  :after eshell
+  :config (eshell-vterm-mode))
