@@ -2,9 +2,30 @@
 ;;; GENERAL SETTINGS
 ;;;=============================================================================
 
-;; Theme
+;; Load theme from file
 (load "~/.config/emacs/wombat-custom-theme.el")
 (load-theme 'wombat-custom t)
+
+;; Load customizations from file
+(setq-default custom-file "~/.config/emacs/customize.el")
+(load custom-file)
+
+;; Load macros from file
+(load "~/.config/emacs/macros.el")
+
+;; Clean up the interface a bit
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(tooltip-mode -1)
+(scroll-bar-mode -1)
+(display-time-mode t)
+(setq-default inhibit-startup-screen t
+              initial-scratch-message nil
+              window-resize-pixelwise t
+              frame-resize-pixelwise t
+              cursor-type 'bar
+              header-line-format t
+              switch-to-buffer-obey-display-actions t)
 
 ;; Font selection - use a larger font on laptop
 (if (equal "Newton" (system-name))
@@ -13,25 +34,12 @@
       (setq-default default-frame-alist '((font . "Liberation Mono 13")))
       (set-frame-font "Liberation Mono 13" t))
   (progn
-    (setq-default initial-frame-alist '((font . "Liberation Mono 14")))
-    (setq-default default-frame-alist '((font . "Liberation Mono 14")))
-    (set-frame-font "Liberation Mono 14" t)))
-
-;; Clean up the interface a bit
-(tool-bar-mode -1)
-(tooltip-mode -1)
-(scroll-bar-mode -1)
-(setq-default inhibit-startup-screen t
-              initial-scratch-message nil
-              window-resize-pixelwise t
-              frame-resize-pixelwise t
-              cursor-type 'bar)
+    (setq-default initial-frame-alist '((font . "Liberation Mono 12")))
+    (setq-default default-frame-alist '((font . "Liberation Mono 12")))
+    (set-frame-font "Liberation Mono 12" t)))
 
 ;; Org mode for *scratch* buffer
 (setq-default initial-major-mode 'org-mode)
-
-;; Display clock on mode line
-(display-time-mode t)
 
 ;; Global column numbering, with a visible fill column for editing modes
 (setq-default fill-column 80
@@ -39,7 +47,7 @@
 (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
 (add-hook 'text-mode-hook 'display-fill-column-indicator-mode)
 
-;; Pair parenthesis when programming
+;; Pair parentheses when programming
 (add-hook 'prog-mode-hook 'electric-pair-mode)
 
 ;; Display line numbers when programming
@@ -116,13 +124,6 @@
 
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
 (global-set-key (kbd "C-c K") 'kill-all-buffers)
-
-;; Move customizations to their own file
-(setq-default custom-file "~/.config/emacs/customize.el")
-(load custom-file)
-
-;; Load macros from file
-(load "~/.config/emacs/macros.el")
 
 ;; Customize eshell prompt
 (defun with-foreground (str face-name)
@@ -239,6 +240,9 @@
 ;; Go mode
 (use-package go-mode :ensure t)
 
+;; JSON mode
+(use-package json-mode :ensure t)
+
 ;; Lua mode
 (use-package lua-mode :ensure t)
 
@@ -271,3 +275,6 @@
 (use-package eshell-vterm :ensure t
   :after eshell
   :config (eshell-vterm-mode))
+
+;; YAML mode
+(use-package yaml-mode :ensure t)
