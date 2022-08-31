@@ -140,17 +140,24 @@
                       'ansi-color-red))
    (format-time-string "%T ")
    (with-foreground (concat (user-login-name) "@" (system-name) " ")
-                    (if (zerop (user-uid))
-                        'ansi-color-red
-                      'ansi-color-magenta))
+                    (if (zerop (user-uid)) 'ansi-color-red 'ansi-color-magenta))
    (with-foreground (eshell/pwd) 'ansi-color-cyan)
    "\n└ "
-   (with-foreground (if (zerop (user-uid)) "#" "λ")
-                    'ansi-color-yellow)
+   (with-foreground (if (zerop (user-uid)) "#" "λ") 'ansi-color-yellow)
    (with-foreground " " 'ansi-color-white)))
 
 (setq-default eshell-prompt-function 'my-eshell-prompt)
 (setq-default eshell-prompt-regexp "└ [#λ] ")
+
+;; Open eshell buffers in other windows.
+(defun eshell-other-window ()
+  "Create or switch to an eshell buffer in another window."
+  (interactive)
+  (with-current-buffer (get-buffer-create "*eshell*")
+    (if (not (equal major-mode 'eshell-mode)) (eshell-mode)))
+  (switch-to-buffer-other-window "*eshell*"))
+
+(global-set-key (kbd "C-x 4 s") 'eshell-other-window)
 
 ;; Support ANSI colors in compilation buffer
 (defun colorize-compilation-buffer ()
@@ -166,6 +173,18 @@
       (compile "cmake -B build && make -k -C build")
     (message "CMakeLists.txt not found.")))
 
+;; Toggle window dedication
+(defun window-dedication-toggle ()
+  "Toggles window dedication for the current window."
+  (interactive)
+  (progn
+    (set-window-dedicated-p (selected-window)
+                            (not (window-dedicated-p (selected-window))))
+    (message (format "Window dedication %s." (if (window-dedicated-p)
+                                                 "enabled"
+                                               "disabled")))))
+
+(global-set-key (kbd "C-c d") 'window-dedication-toggle)
 
 ;;;=============================================================================
 ;;; PACKAGES
