@@ -13,20 +13,6 @@
 ;; Load macros from file
 (load "~/.config/emacs/macros.el")
 
-;; Clean up the interface a bit
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(tooltip-mode -1)
-(scroll-bar-mode -1)
-(display-time-mode t)
-(setq-default inhibit-startup-screen t
-              initial-scratch-message nil
-              window-resize-pixelwise t
-              frame-resize-pixelwise t
-              cursor-type 'bar
-              header-line-format t
-              switch-to-buffer-obey-display-actions t)
-
 ;; Font selection - use a larger font on laptop
 (if (equal "Newton" (system-name))
     (progn
@@ -37,6 +23,22 @@
     (setq-default initial-frame-alist '((font . "Liberation Mono 12")))
     (setq-default default-frame-alist '((font . "Liberation Mono 12")))
     (set-frame-font "Liberation Mono 12" t)))
+
+;; Clean up the interface a bit
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(tooltip-mode -1)
+(display-time-mode t)
+(scroll-bar-mode -1)
+(add-to-list 'default-frame-alist
+             '(vertical-scroll-bars . nil))
+(setq-default inhibit-startup-screen t
+              initial-scratch-message nil
+              window-resize-pixelwise t
+              frame-resize-pixelwise t
+              cursor-type 'bar
+              header-line-format t
+              switch-to-buffer-obey-display-actions t)
 
 ;; Org mode for *scratch* buffer
 (setq-default initial-major-mode 'org-mode)
