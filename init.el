@@ -161,6 +161,16 @@
 
 (global-set-key (kbd "C-x 4 s") 'eshell-other-window)
 
+;; Open vterm buffers in other windows.
+(defun vterm-other-window ()
+  "Create or switch to a vterm buffer in another window."
+  (interactive)
+  (with-current-buffer (get-buffer-create "*vterm*")
+    (if (not (equal major-mode 'vterm-mode)) (vterm-mode)))
+  (switch-to-buffer-other-window "*vterm*"))
+
+(global-set-key (kbd "C-x 4 v") 'vterm-other-window)
+
 ;; Support ANSI colors in compilation buffer
 (defun colorize-compilation-buffer ()
   (let ((inhibit-read-only t))
