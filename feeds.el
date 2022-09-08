@@ -26,6 +26,7 @@
    ("https://reactos.org/index.xml" libre)
    ("https://www.haiku-os.org/index.xml" libre)
    ("https://archlinux.org/feeds/planet/" linux arch)
+   ("https://archlinux.org/feeds/releases/" linux arch)
    ("https://distrowatch.com/news/dww.xml" linux)
    ("https://distrowatch.com/news/news-headlines.xml" linux)
    ("https://lwn.net/headlines/rss" linux)
