@@ -132,7 +132,7 @@
 
 ;; Customize eshell prompt
 (defun with-foreground (str face-name)
-  "Apply the foreground color of a face to a string."
+  "Apply the foreground color of the face FACE-NAME to the string STR."
   (propertize str 'face `(:foreground ,(face-foreground face-name))))
 
 (defun my-eshell-prompt ()
@@ -175,11 +175,12 @@
 (global-set-key (kbd "C-x 4 v") 'vterm-other-window)
 
 ;; Support ANSI colors in compilation buffer
-(defun colorize-compilation-buffer ()
+(defun ansi-colorize-buffer ()
+  "Apply ANSI escape code colors to a buffer."
   (let ((inhibit-read-only t))
     (ansi-color-apply-on-region (point-min) (point-max))))
 
-(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+(add-hook 'compilation-filter-hook 'ansi-colorize-buffer)
 
 ;; Custom compilation command for cmake projects
 (defun cmake-build ()
@@ -190,7 +191,7 @@
 
 ;; Toggle window dedication
 (defun window-dedication-toggle ()
-  "Toggles window dedication for the current window."
+  "Toggle window dedication for the current window."
   (interactive)
   (progn
     (set-window-dedicated-p (selected-window)
