@@ -104,8 +104,26 @@
 (use-package vertico :ensure t
   :init (vertico-mode))
 
-;; Vterm (improved terminal)
-(use-package vterm :ensure t)
+;; Vterm (improved terminal, not available on Windows)
+(if (not (equal system-type "windows-nt"))
+    (use-package vterm :ensure t
+      :init
+      (defun vterm-other-window ()
+        "Create or switch to a vterm buffer in another window."
+        (interactive)
+        (with-current-buffer (get-buffer-create "*vterm*")
+          (if (not (equal major-mode 'vterm-mode)) (vterm-mode)))
+        (switch-to-buffer-other-window "*vterm*"))
+
+      (defun vterm-create-new-buffer ()
+        "Create and switch to a new vterm buffer."
+        (interactive)
+        (let ((new-buffer (generate-new-buffer "*vterm*")))
+          (with-current-buffer new-buffer (vterm-mode))
+          (switch-to-buffer new-buffer)))
+
+      (global-set-key (kbd "C-x 4 v") 'vterm-other-window)))
+
 (use-package eshell-vterm :ensure t
   :after eshell
   :config (eshell-vterm-mode))
