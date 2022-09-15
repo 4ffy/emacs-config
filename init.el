@@ -2,22 +2,25 @@
 ;;; GENERAL SETTINGS
 ;;;=============================================================================
 
+;; Add emacs config directory to load path
+(add-to-list 'load-path user-emacs-directory)
+
 ;; Load theme
-(load "~/.config/emacs/wombat-custom-theme.el")
+(load "wombat-custom-theme.el")
 (load-theme 'wombat-custom t)
 
 ;; Load customizations
-(setq-default custom-file "~/.config/emacs/customize.el")
+(setq-default custom-file "customize.el")
 (load custom-file)
 
 ;; Load macros
-(load "~/.config/emacs/macros.el")
+(load "macros.el")
 
 ;; Load packages
-(load "~/.config/emacs/packages.el")
+(load "packages.el")
 
 ;; Load eshell settings
-(load "~/.config/emacs/eshell.el")
+(load "eshell.el")
 
 ;; Font selection - use a larger font on laptop
 (if (equal "Newton" (system-name))
@@ -97,9 +100,8 @@
               shr-use-colors nil
               shr-use-fonts nil
               shr-width 80
-              url-cache-directory "~/.cache/emacs/url/cache"
               url-cookie-confirmation t
-              url-cookie-file "/dev/null") ;no cookies
+              url-cookie-file null-device) ;no cookies
 
 ;; List directories first in dired
 (setq-default dired-listing-switches

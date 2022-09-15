@@ -10,7 +10,7 @@
 ;; use-package
 (eval-when-compile
   (add-to-list 'load-path
-               "/home/cameron/.config/emacs/elpa/use-package-20210207.1926")
+               (concat user-emacs-directory "elpa/use-package-20210207.1926"))
   (require 'use-package))
 
 ;; AUCTeX (LaTeX)
@@ -50,9 +50,9 @@
 ;; Elfeed (RSS)
 (use-package elfeed :ensure t
   :config
-  (setq-default elfeed-db-directory "~/.cache/emacs/elfeed"
-                elfeed-search-filter "@1-week-ago !\[$\] ")
-  (load "~/.config/emacs/feeds.el")) ;feed list to its own file
+  (setq-default elfeed-search-filter "@1-week-ago !\[$\] "
+                elfeed-db-directory (concat user-emacs-directory "elfeed"))
+  (load "feeds.el")) ;feed list to its own file
 
 ;; Elpy (Python)
 (use-package elpy :ensure t
