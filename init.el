@@ -20,7 +20,7 @@
 (load "packages.el")
 
 ;; Load eshell settings
-(load "eshell.el")
+(load "eshell-config.el")
 
 ;; Font selection - use a larger font on laptop
 (if (equal "Newton" (system-name))
