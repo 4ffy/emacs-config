@@ -53,7 +53,7 @@
   :config
   (setq-default elfeed-search-filter "@1-week-ago !\[$\] "
                 elfeed-db-directory (concat user-emacs-directory "elfeed"))
-  (load "feeds.el")) ;feed list to its own file
+  (load (get-config-file "feeds.el"))) ;feed list to its own file
 
 ;; Elpy (Python)
 (use-package elpy :ensure t
