@@ -122,7 +122,13 @@
           (with-current-buffer new-buffer (vterm-mode))
           (switch-to-buffer new-buffer)))
 
-      (global-set-key (kbd "C-x 4 v") 'vterm-other-window)))
+      (global-set-key (kbd "C-x 4 v") 'vterm-other-window)
+
+      ; Delete frame on exit if vterm is the only window.
+      (add-hook 'vterm-exit-functions
+                (lambda (_ _)
+                  (if (and (equal major-mode 'vterm-mode) (one-window-p))
+                      (delete-frame (selected-frame) t))))))
 
 (use-package eshell-vterm :ensure t
   :after eshell
