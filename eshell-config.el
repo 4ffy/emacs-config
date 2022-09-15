@@ -1,5 +1,5 @@
 ;;;=============================================================================
-;;; eshell
+;;; ESHELL
 ;;;=============================================================================
 
 (defun with-foreground (str face-name)
@@ -25,7 +25,6 @@
 (setq-default eshell-prompt-function 'my-eshell-prompt)
 (setq-default eshell-prompt-regexp "└ [#λ] ")
 
-;; Open eshell buffers in other windows.
 (defun eshell-other-window ()
   "Create or switch to an eshell buffer in another window."
   (interactive)

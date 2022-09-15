@@ -4,3 +4,6 @@
 /games/
 /transient/
 flycheck_feeds.el
+/elfeed/
+/eshell/
+/url/

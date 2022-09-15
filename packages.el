@@ -23,7 +23,8 @@
                 TeX-master nil
                 TeX-parse-self t
                 reftex-plug-into-AUCTeX t)
-  
+
+  ;; Use a different image size on laptop.
   (if (equal "Newton" (system-name))
       (setq-default preview-scale-function 0.8))
   
@@ -122,13 +123,13 @@
           (with-current-buffer new-buffer (vterm-mode))
           (switch-to-buffer new-buffer)))
 
-      (global-set-key (kbd "C-x 4 v") 'vterm-other-window)
-
       ; Delete frame on exit if vterm is the only window.
       (add-hook 'vterm-exit-functions
                 (lambda (_ _)
                   (if (and (equal major-mode 'vterm-mode) (one-window-p))
-                      (delete-frame (selected-frame) t))))))
+                      (delete-frame (selected-frame) t))))
+
+      :bind ("C-x 4 v" . 'vterm-other-window)))
 
 (use-package eshell-vterm :ensure t
   :after eshell
