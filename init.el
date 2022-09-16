@@ -2,26 +2,26 @@
 ;;; GENERAL SETTINGS
 ;;;=============================================================================
 
-(defun get-config-file (file-name)
-  "Get the path of a file within the emacs config directory."
-  (concat user-emacs-directory file-name))
+(defun load-config-file (file-name)
+  "Load the file FILE-NAME relative to the Emacs config directory."
+  (load (concat user-emacs-directory file-name)))
 
 ;; Load theme
-(load (get-config-file "wombat-custom-theme.el"))
+(load-config-file "wombat-custom-theme.el")
 (load-theme 'wombat-custom t)
 
-;; Load customizations
-(setq-default custom-file (get-config-file "customize.el"))
-(load custom-file)
-
 ;; Load macros
-(load (get-config-file "macros.el"))
+(load-config-file "macros.el")
 
 ;; Load packages
-(load (get-config-file "packages.el"))
+(load-config-file "packages.el")
 
 ;; Load eshell settings
-(load (get-config-file "eshell-config.el"))
+(load-config-file "eshell-config.el")
+
+;; Load customizations
+(setq-default custom-file (concat user-emacs-directory "customize.el"))
+(load custom-file)
 
 ;; Font selection - use a larger font on laptop
 (if (equal "Newton" (system-name))
