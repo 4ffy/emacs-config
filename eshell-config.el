@@ -37,7 +37,7 @@
 (defun eshell-create-new-buffer ()
   "Create and switch to a new eshell buffer."
   (interactive)
-  (let ((new-buffer (generate-new-buffer "*eshell")))
+  (let ((new-buffer (generate-new-buffer "*eshell*")))
     (with-current-buffer new-buffer (eshell-mode))
     (switch-to-buffer new-buffer)))
 
