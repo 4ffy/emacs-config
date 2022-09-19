@@ -108,6 +108,9 @@
 (setq-default dired-listing-switches
               "-al --color=auto --group-directories-first")
 
+;; Add local executable directory to $PATH
+(add-to-list 'exec-path "$HOME/.local/bin")
+
 (defun kill-current-buffer ()
   "Prompt to kill current buffer."
   (interactive)

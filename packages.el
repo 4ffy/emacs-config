@@ -43,7 +43,7 @@
 (use-package company :ensure t
   :hook ((prog-mode . company-mode)
          (LaTeX-mode . company-mode)))
-  
+
 ;; Eglot (LSP)
 (use-package eglot :ensure t
   :hook (prog-mode . eglot-ensure))
@@ -59,6 +59,12 @@
 (use-package elpy :ensure t
   :defer t
   :init (advice-add 'python-mode :before 'elpy-enable))
+
+;; Exec path from shell (For eshell $PATH, not necessary on Windows)
+(use-package exec-path-from-shell :ensure t
+  :init
+  (unless (equal system-type "windows-nt")
+    (exec-path-from-shell-initialize)))
 
 ;; Fennel mode
 (use-package fennel-mode :ensure t)
@@ -106,30 +112,30 @@
   :init (vertico-mode))
 
 ;; Vterm (improved terminal, not available on Windows)
-(if (not (equal system-type "windows-nt"))
-    (use-package vterm :ensure t
-      :init
-      (defun vterm-other-window ()
-        "Create or switch to a vterm buffer in another window."
-        (interactive)
-        (with-current-buffer (get-buffer-create "*vterm*")
-          (if (not (equal major-mode 'vterm-mode)) (vterm-mode)))
-        (switch-to-buffer-other-window "*vterm*"))
+(unless (equal system-type "windows-nt")
+  (use-package vterm :ensure t
+    :init
+    (defun vterm-other-window ()
+      "Create or switch to a vterm buffer in another window."
+      (interactive)
+      (with-current-buffer (get-buffer-create "*vterm*")
+        (if (not (equal major-mode 'vterm-mode)) (vterm-mode)))
+      (switch-to-buffer-other-window "*vterm*"))
 
-      (defun vterm-create-new-buffer ()
-        "Create and switch to a new vterm buffer."
-        (interactive)
-        (let ((new-buffer (generate-new-buffer "*vterm*")))
-          (with-current-buffer new-buffer (vterm-mode))
-          (switch-to-buffer new-buffer)))
+    (defun vterm-create-new-buffer ()
+      "Create and switch to a new vterm buffer."
+      (interactive)
+      (let ((new-buffer (generate-new-buffer "*vterm*")))
+        (with-current-buffer new-buffer (vterm-mode))
+        (switch-to-buffer new-buffer)))
 
-      ; Delete frame on exit if vterm is the only window.
-      (add-hook 'vterm-exit-functions
-                (lambda (_ _)
-                  (if (and (equal major-mode 'vterm-mode) (one-window-p))
-                      (delete-frame (selected-frame) t))))
+                                        ; Delete frame on exit if vterm is the only window.
+    (add-hook 'vterm-exit-functions
+              (lambda (_ _)
+                (if (and (equal major-mode 'vterm-mode) (one-window-p))
+                    (delete-frame (selected-frame) t))))
 
-      :bind ("C-x 4 v" . 'vterm-other-window)))
+    :bind ("C-x 4 v" . 'vterm-other-window)))
 
 (use-package eshell-vterm :ensure t
   :after eshell
