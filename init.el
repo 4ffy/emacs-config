@@ -166,3 +166,12 @@
 
 ;; Window dedication toggle
 (global-set-key (kbd "C-c d") 'window-dedication-toggle)
+
+;; Make window resizing more coarse
+;; There is no shrink window vertically command bound by default
+(global-set-key (kbd "C-x ^") (lambda () (interactive)
+                                (enlarge-window 10)))
+(global-set-key (kbd "C-x {") (lambda () (interactive)
+                                (shrink-window-horizontally 10)))
+(global-set-key (kbd "C-x }") (lambda () (interactive)
+                                (enlarge-window-horizontally 10)))
