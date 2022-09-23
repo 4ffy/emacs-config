@@ -27,8 +27,9 @@
 (setq-default custom-file (concat user-emacs-directory "customize.el"))
 (load custom-file)
 
-;; Load mu4e maybe
-(unless (equal system-type "windows-nt")
+;; Load mu4e if offlineimap is set up
+;; mu also needs to be set up but that's harder to test for
+(when (file-exists-p (concat (getenv "HOME") "/.offlineimaprc"))
   (load-config-file "mu4e-config.el"))
 
 ;; Font selection - use a larger font on laptop
