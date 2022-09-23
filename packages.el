@@ -39,6 +39,9 @@
                                  (load-theme 'adwaita t)
                                  (set-background-color "AntiqueWhite")))))
 
+;; CIDER (Clojure)
+(use-package cider :ensure t)
+
 ;; Company (popup autocompletion)
 (use-package company :ensure t
   :hook ((prog-mode . company-mode)
@@ -99,9 +102,6 @@
 
 ;; Restart Emacs
 (use-package restart-emacs :ensure t)
-
-;; Rust mode
-(use-package rust-mode :ensure t)
 
 ;; Simple modeline
 (use-package simple-modeline :ensure t
