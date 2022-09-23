@@ -2,6 +2,10 @@
 ;;; GENERAL SETTINGS
 ;;;=============================================================================
 
+;; Me
+(setq-default user-full-name "Cameron Norton"
+              user-mail-address "cameron.norton@gmail.com")
+
 (defun load-config-file (file-name)
   "Load the file FILE-NAME relative to the Emacs config directory."
   (load (concat user-emacs-directory file-name)))
@@ -10,18 +14,22 @@
 (load-config-file "wombat-custom-theme.el")
 (load-theme 'wombat-custom t)
 
+;; Load eshell settings
+(load-config-file "eshell-config.el")
+
 ;; Load macros
 (load-config-file "macros.el")
 
 ;; Load packages
 (load-config-file "packages.el")
 
-;; Load eshell settings
-(load-config-file "eshell-config.el")
-
 ;; Load customizations
 (setq-default custom-file (concat user-emacs-directory "customize.el"))
 (load custom-file)
+
+;; Load mu4e maybe
+(unless (equal system-type "windows-nt")
+  (load-config-file "mu4e-config.el"))
 
 ;; Font selection - use a larger font on laptop
 (if (equal "Newton" (system-name))
