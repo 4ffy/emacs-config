@@ -19,6 +19,7 @@
 ;; Quick shocuts to mail folders
 (setq-default mu4e-maildir-shortcuts
               '((:maildir "/INBOX"             :key ?i)
+                (:maildir "/[Gmail].Drafts"    :key ?d)
                 (:maildir "/[Gmail].Sent Mail" :key ?s)
                 (:maildir "/[Gmail].Trash"     :key ?t)))
 
