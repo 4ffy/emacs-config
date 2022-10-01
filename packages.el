@@ -40,7 +40,8 @@
                                  (set-background-color "AntiqueWhite")))))
 
 ;; CIDER (Clojure)
-(use-package cider :ensure t)
+(use-package cider :ensure t
+  :hook (clojure-mode . cider-mode))
 
 ;; Company (popup autocompletion)
 (use-package company :ensure t
