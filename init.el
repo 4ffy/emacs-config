@@ -32,6 +32,10 @@
 (when (file-exists-p (concat (getenv "HOME") "/.offlineimaprc"))
   (load-config-file "mu4e-config.el"))
 
+;; Set authentication info file
+(setq-default auth-sources
+              `((:source ,(concat (getenv "HOME") "/.authinfo.gpg"))))
+
 ;; Font selection - use a larger font on laptop
 (if (equal "Newton" (system-name))
     (progn
