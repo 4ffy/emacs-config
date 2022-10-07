@@ -33,11 +33,13 @@
   (add-hook 'LaTeX-mode-hook 'flyspell-mode)
   (add-hook 'LaTeX-mode-hook 'line-number-mode)
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-  (add-hook 'LaTeX-mode-hook 'visual-line-mode)
-  (add-hook 'LaTeX-mode-hook (lambda ()
-                               (progn
-                                 (load-theme 'adwaita t)
-                                 (set-background-color "AntiqueWhite")))))
+  (add-hook 'LaTeX-mode-hook 'visual-line-mode))
+
+;; LaTeX preview pane
+(use-package latex-preview-pane :ensure t
+  :config
+  (add-hook 'LaTeX-mode-hook 'latex-preview-pane-mode)
+  (setq-default pdf-latex-command "xelatex"))
 
 ;; CIDER (Clojure)
 (use-package cider :ensure t

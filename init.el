@@ -124,6 +124,9 @@
 ;; Add local executable directory to $PATH
 (add-to-list 'exec-path "$HOME/.local/bin")
 
+;; Scroll PDF views continuously
+(setq-default doc-view-continuous t)
+
 (defun kill-current-buffer ()
   "Prompt to kill current buffer."
   (interactive)
