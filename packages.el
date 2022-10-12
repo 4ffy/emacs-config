@@ -10,7 +10,7 @@
 ;; use-package
 (eval-when-compile
   (add-to-list 'load-path
-               (concat user-emacs-directory "elpa/use-package-20210207.1926"))
+               (concat user-emacs-directory "elpa/use-package-20221012.1743"))
   (require 'use-package))
 
 ;; AUCTeX (LaTeX)
@@ -114,6 +114,10 @@
 (use-package vertico :ensure t
   :init (vertico-mode))
 
+;; Undo tree
+(use-package undo-tree :ensure t
+  :init (global-undo-tree-mode))
+
 ;; Vterm (improved terminal, not available on Windows)
 (unless (equal system-type "windows-nt")
   (use-package vterm :ensure t
@@ -132,7 +136,6 @@
         (with-current-buffer new-buffer (vterm-mode))
         (switch-to-buffer new-buffer)))
 
-                                        ; Delete frame on exit if vterm is the only window.
     (add-hook 'vterm-exit-functions
               (lambda (_ _)
                 (if (and (equal major-mode 'vterm-mode) (one-window-p))
