@@ -116,7 +116,9 @@
 
 ;; Undo tree
 (use-package undo-tree :ensure t
-  :init (global-undo-tree-mode))
+  :init
+  (setq-default undo-tree-auto-save-history nil)
+  (global-undo-tree-mode))
 
 ;; Vterm (improved terminal, not available on Windows)
 (unless (equal system-type "windows-nt")
