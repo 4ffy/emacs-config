@@ -37,7 +37,7 @@
               `((:source ,(concat (getenv "HOME") "/.authinfo.gpg"))))
 
 ;; Font selection - use a larger font on laptop
-(if (equal "Newton" (system-name))
+(if (equal "Renda" (system-name))
     (progn
       (setq-default initial-frame-alist '((font . "Liberation Mono 13")))
       (setq-default default-frame-alist '((font . "Liberation Mono 13")))
