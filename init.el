@@ -127,6 +127,13 @@
 ;; Scroll PDF views continuously
 (setq-default doc-view-continuous t)
 
+;; add newlines when scrolling past end of buffer
+(setq-default next-line-add-newlines t)
+
+;; Strip unnecessary whitespace when saving files
+(add-hook 'before-save-hook 'delete-trailing-lines)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 (defun kill-current-buffer ()
   "Prompt to kill current buffer."
   (interactive)
