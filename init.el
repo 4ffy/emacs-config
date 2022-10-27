@@ -117,9 +117,12 @@
               url-cookie-confirmation t
               url-cookie-file null-device) ;no cookies
 
-;; List directories first in dired
-(setq-default dired-listing-switches
-              "-al --color=auto --group-directories-first")
+;; Dired settings
+(setq-default dired-do-revert-buffer t
+              dired-auto-revert-buffer 'dired-directory-changed-p
+              dired-listing-switches
+              "-ahl --color=auto --group-directories-first")
+(add-hook 'dired-mode-hook 'auto-revert-mode)
 
 ;; Add local executable directory to $PATH
 (add-to-list 'exec-path "$HOME/.local/bin")
