@@ -47,8 +47,15 @@
 
 ;; Company (popup autocompletion)
 (use-package company :ensure t
+  :diminish company-mode
   :hook ((prog-mode . company-mode)
          (LaTeX-mode . company-mode)))
+
+;; Diminish (Hide modeline clutter)
+(use-package diminish :ensure t
+  :init
+  (diminish 'abbrev-mode)
+  (diminish 'eldoc-mode))
 
 ;; Eglot (LSP)
 (use-package eglot :ensure t
@@ -78,6 +85,7 @@
 
 ;; Flycheck (Improved syntax checking)
 (use-package flycheck :ensure t
+  :diminish flycheck-mode
   :hook ((prog-mode . flycheck-mode)
          (LaTeX-mode . flycheck-mode)
          (elpy-mode . flycheck-mode)))
@@ -117,6 +125,7 @@
 
 ;; Undo tree
 (use-package undo-tree :ensure t
+  :diminish undo-tree-mode
   :init
   (setq-default undo-tree-auto-save-history nil)
   (global-undo-tree-mode))
