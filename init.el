@@ -137,6 +137,9 @@
 (add-hook 'before-save-hook 'delete-trailing-lines)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+;; Extra generic modes
+(require 'generic-x)
+
 (defun kill-current-buffer ()
   "Prompt to kill current buffer."
   (interactive)
