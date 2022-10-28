@@ -10,7 +10,7 @@
 ;; use-package
 (eval-when-compile
   (add-to-list 'load-path
-               (concat user-emacs-directory "elpa/use-package-20221012.1743"))
+               (concat user-emacs-directory "elpa/use-package-20221028.1858"))
   (require 'use-package))
 
 ;; AUCTeX (LaTeX)
@@ -52,6 +52,7 @@
 
 ;; Eglot (LSP)
 (use-package eglot :ensure t
+  :config (setq-default eglot-autoreconnect nil)
   :hook (prog-mode . eglot-ensure))
 
 ;; Elfeed (RSS)
