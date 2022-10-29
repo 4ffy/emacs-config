@@ -128,7 +128,8 @@
 (use-package undo-tree :ensure t
   :diminish undo-tree-mode
   :init
-  (setq-default undo-tree-auto-save-history nil)
+  (setq-default undo-tree-auto-save-history nil
+                undo-tree-enable-undo-in-region t)
   (global-undo-tree-mode))
 
 ;; Vterm (improved terminal, not available on Windows)
