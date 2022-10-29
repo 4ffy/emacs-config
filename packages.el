@@ -55,7 +55,8 @@
 (use-package diminish :ensure t
   :init
   (diminish 'abbrev-mode)
-  (diminish 'eldoc-mode))
+  (diminish 'eldoc-mode)
+  (diminish 'auto-revert-mode))
 
 ;; Eglot (LSP)
 (use-package eglot :ensure t
