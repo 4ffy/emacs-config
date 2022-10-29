@@ -32,6 +32,9 @@
 (when (file-exists-p (concat (getenv "HOME") "/.offlineimaprc"))
   (load-config-file "mu4e-config.el"))
 
+;; Add local executable directory to $PATH
+(add-to-list 'exec-path "$HOME/.local/bin")
+
 ;; Set authentication info file
 (setq-default auth-sources
               `((:source ,(concat (getenv "HOME") "/.authinfo.gpg"))))
@@ -48,52 +51,65 @@
     (set-frame-font "Liberation Mono 12" t)))
 
 ;; Clean up the interface a bit
+(display-time-mode t)
 (menu-bar-mode -1)
+(scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
-(display-time-mode t)
-(scroll-bar-mode -1)
 (add-to-list 'default-frame-alist
              '(vertical-scroll-bars . nil))
-(setq-default inhibit-startup-screen t
-              initial-scratch-message nil
-              window-resize-pixelwise t
+(setq-default cursor-type 'bar
               frame-resize-pixelwise t
-              cursor-type 'bar
               header-line-format t
-              switch-to-buffer-obey-display-actions t)
+              inhibit-startup-screen t
+              initial-scratch-message nil
+              mode-line-compact 'long
+              next-line-add-newlines t
+              switch-to-buffer-obey-display-actions t
+              use-short-answers t
+              window-resize-pixelwise t)
 
 ;; Org mode for *scratch* buffer
 (setq-default initial-major-mode 'org-mode)
 
+;; Prog mode hooks
+(add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
+(add-hook 'prog-mode-hook 'electric-pair-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
+;; Text mode hooks
+(add-hook 'text-mode-hook 'display-fill-column-indicator-mode)
+(add-hook 'text-mode-hook 'auto-fill-mode)
+
+;; Strip unnecessary whitespace when saving files
+(add-hook 'before-save-hook 'delete-trailing-lines)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Make scripts executable when saving.
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+
 ;; Global column numbering, with a visible fill column for editing modes
 (setq-default fill-column 80
               column-number-mode t)
-(add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
-(add-hook 'text-mode-hook 'display-fill-column-indicator-mode)
-
-;; Pair parentheses when programming
-(add-hook 'prog-mode-hook 'electric-pair-mode)
-
-;; Display line numbers when programming
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-
-;; Automatic newlines in text modes
-(add-hook 'text-mode-hook 'auto-fill-mode)
 
 ;; Indentation settings
 (setq-default tab-width 4
-              indent-tabs-mode nil
-              c-default-style "linux"
-              c-basic-offset 4)
+              indent-tabs-mode nil)
 
-;; Answer questions with y/n
-(setq-default use-short-answers t)
+;; Settings for C and friends
+(setq-default c-basic-offset 4
+              c-default-style '((java-mode . "java")
+                                (awk-mode . "awk")
+                                (other . "linux"))
+              c-doc-comment-style '((java-mode . javadoc)
+                                    (c-mode . doxygen)
+                                    (c++-mode . doxygen)))
 
 ;; Stop cluttering my directories with #autosave# files
 ;; I accept any data loss from a crash (until it actually happens, probably).
-(setq-default make-backup-files nil
-              auto-save-mode nil
+(setq-default auto-save-mode nil
+              auto-save-no-message t
+              make-backup-files nil
               backup-directory-alist ;banish to /tmp if files made anyway.
               `((".*" . ,temporary-file-directory))
               auto-save-file-name-transforms
@@ -120,22 +136,14 @@
 ;; Dired settings
 (setq-default dired-do-revert-buffer t
               dired-auto-revert-buffer 'dired-directory-changed-p
+              dired-kill-when-opening-new-dired-buffer t
               dired-listing-switches
-              "-ahl --color=auto --group-directories-first")
+              "-Dahl --color=auto --group-directories-first")
 (add-hook 'dired-mode-hook 'auto-revert-mode)
 
-;; Add local executable directory to $PATH
-(add-to-list 'exec-path "$HOME/.local/bin")
-
-;; Scroll PDF views continuously
-(setq-default doc-view-continuous t)
-
-;; add newlines when scrolling past end of buffer
-(setq-default next-line-add-newlines t)
-
-;; Strip unnecessary whitespace when saving files
-(add-hook 'before-save-hook 'delete-trailing-lines)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; Doc view Settings
+(setq-default doc-view-continuous t
+              doc-view-resolution 250)
 
 ;; Extra generic modes
 (require 'generic-x)
@@ -180,7 +188,7 @@
                                                "disabled")))))
 
 ;; Support ANSI colors in compilation buffer
-(add-hook 'compilation-filter-hook 'ansi-colorize-buffer)
+(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 
 ;; Custom kill buffer commands
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
