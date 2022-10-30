@@ -139,6 +139,7 @@
               dired-kill-when-opening-new-dired-buffer t
               dired-listing-switches
               "-Dahl --color=auto --group-directories-first")
+(define-key dired-mode-map (kbd "N") 'dired-create-directory)
 (add-hook 'dired-mode-hook 'auto-revert-mode)
 
 ;; Doc view Settings
