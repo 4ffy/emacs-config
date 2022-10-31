@@ -50,7 +50,7 @@
     (setq-default default-frame-alist '((font . "Liberation Mono 12")))
     (set-frame-font "Liberation Mono 12" t)))
 
-;; Clean up the interface a bit
+;; Interface settings
 (display-time-mode t)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
@@ -58,11 +58,14 @@
 (tooltip-mode -1)
 (add-to-list 'default-frame-alist
              '(vertical-scroll-bars . nil))
-(setq-default cursor-type 'bar
+(setq-default completions-detailed t
+              cursor-type 'bar
+              describe-bindings-outline t
               frame-resize-pixelwise t
               header-line-format t
               inhibit-startup-screen t
               initial-scratch-message nil
+              minibuffer-beginning-of-buffer-movement t
               mode-line-compact 'long
               next-line-add-newlines t
               switch-to-buffer-obey-display-actions t
