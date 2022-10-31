@@ -10,7 +10,7 @@
 ;; use-package
 (eval-when-compile
   (add-to-list 'load-path
-               (concat user-emacs-directory "elpa/use-package-20221028.1858"))
+               (concat user-emacs-directory "elpa/use-package-20221029.1857"))
   (require 'use-package))
 
 ;; AUCTeX (LaTeX)
@@ -61,7 +61,9 @@
 ;; Eglot (LSP)
 (use-package eglot :ensure t
   :config (setq-default eglot-autoreconnect nil)
-  :hook (prog-mode . eglot-ensure))
+  :hook
+  (prog-mode . eglot-ensure)
+  (elpy-mode . eglot-ensure))
 
 ;; Elfeed (RSS)
 (use-package elfeed :ensure t
@@ -113,9 +115,6 @@
   :bind (("<f8>" . neotree-toggle)
          ("C-c t" . neotree-dir)))
 
-;; Restart Emacs
-(use-package restart-emacs :ensure t)
-
 ;; Simple modeline
 (use-package simple-modeline :ensure t
   :init (simple-modeline-mode))
@@ -160,6 +159,3 @@
 (use-package eshell-vterm :ensure t
   :after eshell
   :config (eshell-vterm-mode))
-
-;; YAML mode
-(use-package yaml-mode :ensure t)
