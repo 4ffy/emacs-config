@@ -9,8 +9,9 @@
 
 ;; use-package
 (eval-when-compile
-  (add-to-list 'load-path
-               (concat user-emacs-directory "elpa/use-package-20221029.1857"))
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
   (require 'use-package))
 
 ;; AUCTeX (LaTeX)
