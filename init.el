@@ -147,10 +147,17 @@
 
 ;; Doc view Settings
 (setq-default doc-view-continuous t
-              doc-view-resolution 250)
+              doc-view-resolution 200)
+
+;; Org mode settings
+(setq-default org-export-with-smart-quotes t
+              org-latex-compiler "xelatex")
 
 ;; Extra generic modes
 (require 'generic-x)
+
+;; Extra dired goodies
+(require 'dired-x)
 
 (defun kill-current-buffer ()
   "Prompt to kill current buffer."
