@@ -15,8 +15,8 @@
   (require 'use-package))
 
 ;; AUCTeX (LaTeX)
-(use-package tex
-  :ensure auctex
+(use-package tex :ensure auctex
+  :diminish reftex-mode
   :config
   (setq-default TeX-PDF-mode t
                 TeX-auto-save t
@@ -38,6 +38,7 @@
 
 ;; LaTeX preview pane
 (use-package latex-preview-pane :ensure t
+  :diminish latex-preview-pane-mode
   :config
   (add-hook 'LaTeX-mode-hook 'latex-preview-pane-mode)
   (setq-default pdf-latex-command "xelatex"))
@@ -56,8 +57,11 @@
 (use-package diminish :ensure t
   :init
   (diminish 'abbrev-mode)
+  (diminish 'auto-fill-function)
+  (diminish 'auto-revert-mode)
+  (diminish 'auto-revert-mode-text)
   (diminish 'eldoc-mode)
-  (diminish 'auto-revert-mode))
+  (diminish 'visual-line-mode))
 
 ;; Eglot (LSP)
 (use-package eglot :ensure t
