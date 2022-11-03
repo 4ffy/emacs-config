@@ -137,6 +137,7 @@
               url-cookie-file null-device) ;no cookies
 
 ;; Dired settings
+(require 'dired-x)
 (setq-default dired-do-revert-buffer t
               dired-auto-revert-buffer 'dired-directory-changed-p
               dired-kill-when-opening-new-dired-buffer t
@@ -150,14 +151,12 @@
               doc-view-resolution 200)
 
 ;; Org mode settings
-(setq-default org-export-with-smart-quotes t
+(setq-default org-enforce-todo-dependencies t
+              org-export-with-smart-quotes t
               org-latex-compiler "xelatex")
 
 ;; Extra generic modes
 (require 'generic-x)
-
-;; Extra dired goodies
-(require 'dired-x)
 
 (defun kill-current-buffer ()
   "Prompt to kill current buffer."
