@@ -58,7 +58,8 @@
 (tooltip-mode -1)
 (add-to-list 'default-frame-alist
              '(vertical-scroll-bars . nil))
-(setq-default completions-detailed t
+(setq-default auto-revert-verbose nil
+              completions-detailed t
               cursor-type 'bar
               describe-bindings-outline t
               frame-resize-pixelwise t
