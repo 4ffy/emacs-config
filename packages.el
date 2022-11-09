@@ -63,6 +63,9 @@
   (diminish 'eldoc-mode)
   (diminish 'visual-line-mode))
 
+;; D mode
+(use-package d-mode :ensure t)
+
 ;; Eglot (LSP)
 (use-package eglot :ensure t
   :config (setq-default eglot-autoreconnect nil)
