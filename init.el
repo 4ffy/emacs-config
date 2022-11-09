@@ -70,6 +70,7 @@
               next-line-add-newlines t
               switch-to-buffer-obey-display-actions t
               use-short-answers t
+              view-read-only t
               window-resize-pixelwise t)
 
 ;; Org mode for *scratch* buffer
