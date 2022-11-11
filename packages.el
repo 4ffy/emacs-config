@@ -107,6 +107,12 @@
 ;; JSON mode
 (use-package json-mode :ensure t)
 
+;; Link hints
+(use-package link-hint :ensure t
+  :bind
+  ("C-c l o" . link-hint-open-link)
+  ("C-c l c" . link-hint-copy-link))
+
 ;; Lua mode
 (use-package lua-mode :ensure t)
 
