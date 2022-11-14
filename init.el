@@ -87,7 +87,7 @@
 (add-hook 'text-mode-hook 'auto-fill-mode)
 
 ;; Strip unnecessary whitespace when saving files
-(add-hook 'before-save-hook 'delete-trailing-lines)
+(setq-default delete-trailing-lines t)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Make scripts executable when saving.
