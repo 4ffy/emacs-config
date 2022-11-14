@@ -104,9 +104,6 @@
 ;; Go mode
 (use-package go-mode :ensure t)
 
-;; JSON mode
-(use-package json-mode :ensure t)
-
 ;; Link hints
 (use-package link-hint :ensure t
   :bind
