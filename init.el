@@ -199,6 +199,16 @@
                                                  "enabled"
                                                "disabled")))))
 
+(defun unfill-paragraph (&optional region)
+  "Take a multi-line paragraph and turn it into a single line of text.
+This function is the opposite of `fill-paragraph'.
+
+If REGION is non-nil, unfill all paragraphs in the active region."
+  (interactive (progn (barf-if-buffer-read-only) '(t)))
+  (let ((fill-column (point-max))
+        (emacs-lisp-docstring-fill-column t))
+    (fill-paragraph nil region)))
+
 ;; Support ANSI colors in compilation buffer
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 
@@ -224,3 +234,6 @@
                                 (shrink-window-horizontally 10)))
 (global-set-key (kbd "C-x }") (lambda () (interactive)
                                 (enlarge-window-horizontally 10)))
+
+;; Unfill paragraph
+(global-set-key (kbd "M-Q") 'unfill-paragraph)
