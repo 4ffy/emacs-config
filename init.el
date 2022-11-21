@@ -166,6 +166,8 @@
   (kbd "<tab>") 'icomplete-force-complete)
 (define-key icomplete-vertical-mode-minibuffer-map
   (kbd "<return>") 'icomplete-force-complete-and-exit)
+(define-key icomplete-vertical-mode-minibuffer-map
+  (kbd "M-RET") 'icomplete-ret)
 
 ;; Extra generic modes
 (require 'generic-x)
