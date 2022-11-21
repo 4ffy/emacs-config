@@ -59,6 +59,7 @@
 (add-to-list 'default-frame-alist
              '(vertical-scroll-bars . nil))
 (setq-default auto-revert-verbose nil
+              completion-ignore-case t
               completions-detailed t
               cursor-type 'bar
               describe-bindings-outline t
@@ -69,6 +70,8 @@
               minibuffer-beginning-of-buffer-movement t
               mode-line-compact 'long
               next-line-add-newlines t
+              read-buffer-completion-ignore-case t
+              read-file-name-completion-ignore-case t
               switch-to-buffer-obey-display-actions t
               use-short-answers t
               view-read-only t
