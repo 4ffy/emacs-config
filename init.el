@@ -160,6 +160,13 @@
               org-export-with-smart-quotes t
               org-latex-compiler "xelatex")
 
+;; icomplete vertical settings
+(icomplete-vertical-mode)
+(define-key icomplete-vertical-mode-minibuffer-map
+  (kbd "<tab>") 'icomplete-force-complete)
+(define-key icomplete-vertical-mode-minibuffer-map
+  (kbd "<return>") 'icomplete-force-complete-and-exit)
+
 ;; Extra generic modes
 (require 'generic-x)
 

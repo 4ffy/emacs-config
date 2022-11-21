@@ -130,10 +130,6 @@
 (use-package simple-modeline :ensure t
   :init (simple-modeline-mode))
 
-;; Vertico (completion)
-(use-package vertico :ensure t
-  :init (vertico-mode))
-
 ;; Undo tree
 (use-package undo-tree :ensure t
   :diminish undo-tree-mode
