@@ -117,6 +117,10 @@
 (use-package magit :ensure t
   :bind ("C-c g" . magit-status))
 
+;; Marginalia (completion annotations)
+(use-package marginalia :ensure t
+  :init (marginalia-mode))
+
 ;; Markdown mode
 (use-package markdown-mode :ensure t
   :config (add-hook 'markdown-mode-hook 'flyspell-mode))
