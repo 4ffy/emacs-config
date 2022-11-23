@@ -27,9 +27,10 @@
 (setq-default custom-file (concat user-emacs-directory "customize.el"))
 (load custom-file)
 
-;; Load mu4e if offlineimap is set up
+;; Load mu4e if present and offlineimap is configured
 ;; mu also needs to be set up but that's harder to test for
-(when (file-exists-p (concat (getenv "HOME") "/.offlineimaprc"))
+(when (and (locate-library "mu4e")
+           (file-exists-p (concat (getenv "HOME") "/.offlineimaprc")))
   (load-config-file "mu4e-config.el"))
 
 ;; Add local executable directory to $PATH
