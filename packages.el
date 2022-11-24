@@ -125,11 +125,6 @@
 (use-package markdown-mode :ensure t
   :config (add-hook 'markdown-mode-hook 'flyspell-mode))
 
-;; Neotree
-(use-package neotree :ensure t
-  :bind (("<f8>" . neotree-toggle)
-         ("C-c t" . neotree-dir)))
-
 ;; Simple modeline
 (use-package simple-modeline :ensure t
   :init (simple-modeline-mode))
