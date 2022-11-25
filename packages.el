@@ -36,6 +36,10 @@
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
   (add-hook 'LaTeX-mode-hook 'visual-line-mode))
 
+;; Avy (fast navigation)
+(use-package avy :ensure t
+  :bind ("C-;" . avy-goto-char-2))
+
 ;; LaTeX preview pane
 (use-package latex-preview-pane :ensure t
   :diminish latex-preview-pane-mode
