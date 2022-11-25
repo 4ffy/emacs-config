@@ -115,11 +115,14 @@
                                     (c++-mode . doxygen)))
 
 ;; Stop cluttering my directories with #autosave# files
-;; I accept any data loss from a crash (until it actually happens, probably).
-(setq-default auto-save-mode nil
+;; I accept any data loss from a crash or unwise `kill-all-buffers'
+;; (until it actually happens, probably).
+(setq-default auto-save-default nil
+              auto-save-mode nil
               auto-save-no-message t
               make-backup-files nil
-              backup-directory-alist ;banish to /tmp if files made anyway.
+              ;banish to /tmp if files made anyway.
+              backup-directory-alist
               `((".*" . ,temporary-file-directory))
               auto-save-file-name-transforms
               `((".*" ,temporary-file-directory t)))
