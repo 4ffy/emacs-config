@@ -97,6 +97,9 @@
 ;; Make scripts executable when saving.
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
+;; Support ANSI colors in compilation buffer
+(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+
 ;; Global column numbering, with a visible fill column for editing modes
 (setq-default fill-column 80
               column-number-mode t)
@@ -225,9 +228,6 @@ If REGION is non-nil, unfill all paragraphs in the active region."
   (let ((fill-column (point-max))
         (emacs-lisp-docstring-fill-column t))
     (fill-paragraph nil region)))
-
-;; Support ANSI colors in compilation buffer
-(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 
 ;; Custom kill buffer commands
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
