@@ -138,30 +138,33 @@
   (global-undo-tree-mode))
 
 ;; Vterm (improved terminal, not available on Windows)
-(unless (equal system-type "windows-nt")
-  (use-package vterm :ensure t
-    :init
-    (defun vterm-other-window ()
-      "Create or switch to a vterm buffer in another window."
-      (interactive)
-      (with-current-buffer (get-buffer-create "*vterm*")
-        (if (not (equal major-mode 'vterm-mode)) (vterm-mode)))
-      (switch-to-buffer-other-window "*vterm*"))
+(use-package vterm
+  :unless (equal system-type "windows-nt")
+  :ensure t
+  :init
+  (defun vterm-other-window ()
+    "Create or switch to a vterm buffer in another window."
+    (interactive)
+    (with-current-buffer (get-buffer-create "*vterm*")
+      (if (not (equal major-mode 'vterm-mode)) (vterm-mode)))
+    (switch-to-buffer-other-window "*vterm*"))
 
-    (defun vterm-create-new-buffer ()
-      "Create and switch to a new vterm buffer."
-      (interactive)
-      (let ((new-buffer (generate-new-buffer "*vterm*")))
-        (with-current-buffer new-buffer (vterm-mode))
-        (switch-to-buffer new-buffer)))
+  (defun vterm-create-new-buffer ()
+    "Create and switch to a new vterm buffer."
+    (interactive)
+    (let ((new-buffer (generate-new-buffer "*vterm*")))
+      (with-current-buffer new-buffer (vterm-mode))
+      (switch-to-buffer new-buffer)))
 
-    (add-hook 'vterm-exit-functions
-              (lambda (_ _)
-                (if (and (equal major-mode 'vterm-mode) (one-window-p))
-                    (delete-frame (selected-frame) t))))
+  (add-hook 'vterm-exit-functions
+            (lambda (_ _)
+              (if (and (equal major-mode 'vterm-mode) (one-window-p))
+                  (delete-frame (selected-frame) t))))
 
-    :bind ("C-x 4 v" . 'vterm-other-window)))
+  :bind ("C-x 4 v" . 'vterm-other-window))
 
-(use-package eshell-vterm :ensure t
+(use-package eshell-vterm
+  :unless (equal system-type "windows-nt")
+  :ensure t
   :after eshell
   :config (eshell-vterm-mode))
