@@ -139,7 +139,7 @@
               shr-use-colors nil
               shr-use-fonts nil
               shr-width 80
-              url-cookie-confirmation t
+              url-cookie-confirmation nil
               url-cookie-file null-device) ;no cookies
 
 ;; Dired settings
