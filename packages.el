@@ -85,11 +85,11 @@
   :defer t
   :init (advice-add 'python-mode :before 'elpy-enable))
 
-;; Exec path from shell (For eshell $PATH, not necessary on Windows)
-(use-package exec-path-from-shell :ensure t
-  :init
-  (unless (equal system-type "windows-nt")
-    (exec-path-from-shell-initialize)))
+;; Exec path from shell (For eshell $PATH)
+(use-package exec-path-from-shell
+  :unless (equal system-type "windows-nt")
+  :ensure t
+  :init (exec-path-from-shell-initialize))
 
 ;; Fennel mode
 (use-package fennel-mode :ensure t)
