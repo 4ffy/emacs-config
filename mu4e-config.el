@@ -41,3 +41,6 @@
 
 ;; Don't use ido
 (setq-default mu4e-completing-read-function nil)
+
+;; Update index when starting.
+(add-hook 'mu4e-main-mode-hook 'mu4e-update-index)
