@@ -14,7 +14,7 @@
               mu4e-trash-folder  "/[Gmail].Trash")
 
 ;; Don't save messages to "Sent Mail" as Gmail already does this
-(setq-default mu4e-sent-messages-begavior 'delete)
+(setq-default mu4e-sent-messages-behavior 'delete)
 
 ;; Quick shocuts to mail folders
 (setq-default mu4e-maildir-shortcuts
