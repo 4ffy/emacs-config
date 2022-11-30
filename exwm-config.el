@@ -17,13 +17,15 @@
                                    "librewolf" nil "librewolf")))
                 (,(kbd "s-f") . exwm-layout-toggle-fullscreen)
                 (,(kbd "s-&") . (lambda (command)
-                                  (interactive (list (read-shell-command "$ ")))))
+                                  (interactive (list (read-shell-command "$ ")))
+                                  (start-process-shell-command
+                                   command nil command)))
                 ,@(mapcar (lambda (i)
-                            `(,(kbd (format "s-%d" i)) .
+                            `(,(kbd (format "s-%d" (% i 10))) .
                               (lambda ()
                                 (interactive)
-                                (exwm-workspace-switch-create ,(% (1- i) 10)))))
-                          (number-sequence 0 9))
+                                (exwm-workspace-switch-create ,(1- i)))))
+                          (number-sequence 1 10))
                 ))
 
 (setq-default exwm-input-simulation-keys
