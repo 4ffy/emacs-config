@@ -141,6 +141,10 @@
                 undo-tree-enable-undo-in-region t)
   (global-undo-tree-mode))
 
+;; Vertico (icomplete-vertical but better)
+(use-package vertico :ensure t
+  :init (vertico-mode))
+
 ;; Vterm (improved terminal, not available on Windows)
 (use-package vterm
   :unless (equal system-type "windows-nt")

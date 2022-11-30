@@ -168,14 +168,14 @@
               org-latex-compiler "xelatex")
 
 ;; icomplete vertical settings
-(icomplete-vertical-mode)
-(setq-default icomplete-show-matches-on-no-input t)
-(define-key icomplete-vertical-mode-minibuffer-map
-  (kbd "<tab>") 'icomplete-force-complete)
-(define-key icomplete-vertical-mode-minibuffer-map
-  (kbd "<return>") 'icomplete-force-complete-and-exit)
-(define-key icomplete-vertical-mode-minibuffer-map
-  (kbd "M-RET") 'icomplete-ret)
+;; (icomplete-vertical-mode)
+;; (setq-default icomplete-show-matches-on-no-input t)
+;; (define-key icomplete-vertical-mode-minibuffer-map
+;;   (kbd "<tab>") 'icomplete-force-complete)
+;; (define-key icomplete-vertical-mode-minibuffer-map
+;;   (kbd "<return>") 'icomplete-force-complete-and-exit)
+;; (define-key icomplete-vertical-mode-minibuffer-map
+;;   (kbd "M-RET") 'icomplete-ret)
 
 ;; Extra generic modes
 (require 'generic-x)
