@@ -68,7 +68,8 @@
   (diminish 'visual-line-mode))
 
 ;; D mode
-(use-package d-mode :ensure t)
+(use-package d-mode :ensure t
+  :mode "\\.d[i]?\\'")
 
 ;; Eglot (LSP)
 (use-package eglot :ensure t
@@ -96,7 +97,9 @@
   :init (exec-path-from-shell-initialize))
 
 ;; Fennel mode
-(use-package fennel-mode :ensure t)
+(use-package fennel-mode :ensure t
+  :mode "\\.fnl\\'"
+  :interpreter "fennel")
 
 ;; Flycheck (Improved syntax checking)
 (use-package flycheck :ensure t
@@ -106,7 +109,8 @@
          (elpy-mode . flycheck-mode)))
 
 ;; Go mode
-(use-package go-mode :ensure t)
+(use-package go-mode :ensure t
+  :mode "\\.go\\'")
 
 ;; Link hints
 (use-package link-hint :ensure t
@@ -115,7 +119,8 @@
   ("C-c l c" . link-hint-copy-link))
 
 ;; Lua mode
-(use-package lua-mode :ensure t)
+(use-package lua-mode :ensure t
+  :mode "\\.lua\\'")
 
 ;; Magit (git)
 (use-package magit :ensure t
@@ -127,6 +132,7 @@
 
 ;; Markdown mode
 (use-package markdown-mode :ensure t
+  :mode "\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'"
   :config (add-hook 'markdown-mode-hook 'flyspell-mode))
 
 ;; Simple modeline
