@@ -123,7 +123,7 @@
 (use-package exec-path-from-shell
   :ensure t
   :pin melpa-stable
-  :unless (equal system-type "windows-nt")
+  :unless (equal system-type 'windows-nt)
   :init (exec-path-from-shell-initialize))
 
 ;; Fennel mode
@@ -221,7 +221,7 @@
 (use-package vterm
   :ensure t
   :pin melpa
-  :unless (equal system-type "windows-nt")
+  :unless (equal system-type 'windows-nt)
   :init
   (defun vterm-other-window ()
     "Create or switch to a vterm buffer in another window."
@@ -247,6 +247,6 @@
 (use-package eshell-vterm
   :ensure t
   :pin melpa
-  :unless (equal system-type "windows-nt")
+  :unless (equal system-type 'windows-nt)
   :after eshell
   :config (eshell-vterm-mode))
