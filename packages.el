@@ -4,7 +4,10 @@
 
 ;; melpa
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
 ;; use-package
@@ -15,7 +18,9 @@
   (require 'use-package))
 
 ;; AUCTeX (LaTeX)
-(use-package tex :ensure auctex
+(use-package tex
+  :ensure auctex
+  :pin gnu
   :diminish reftex-mode
   :config
   (setq-default TeX-PDF-mode t
@@ -37,32 +42,44 @@
   (add-hook 'LaTeX-mode-hook 'visual-line-mode))
 
 ;; Avy (fast navigation)
-(use-package avy :ensure t
+(use-package avy
+  :ensure t
+  :pin gnu
   :bind ("C-;" . avy-goto-char-2))
 
 ;; LaTeX preview pane
-(use-package latex-preview-pane :ensure t
+(use-package latex-preview-pane
+  :ensure t
+  :pin melpa
   :diminish latex-preview-pane-mode
   :config
   (add-hook 'LaTeX-mode-hook 'latex-preview-pane-mode)
   (setq-default pdf-latex-command "xelatex"))
 
 ;; CIDER (Clojure)
-(use-package cider :ensure t
+(use-package cider
+  :ensure t
+  :pin nongnu
   :hook (clojure-mode . cider-mode))
 
 ;; clojure mode
-(use-package clojure-mode :ensure t
+(use-package clojure-mode
+  :ensure t
+  :pin nongnu
   :mode "\\.\\(clj\\|cljd\\|dtm\\|edn\\)\\'")
 
 ;; Company (popup autocompletion)
-(use-package company :ensure t
+(use-package company
+  :ensure t
+  :pin gnu
   :diminish company-mode
   :hook ((prog-mode . company-mode)
          (LaTeX-mode . company-mode)))
 
 ;; Diminish (Hide modeline clutter)
-(use-package diminish :ensure t
+(use-package diminish
+  :ensure t
+  :pin gnu
   :init
   (diminish 'abbrev-mode)
   (diminish 'auto-fill-function)
@@ -72,88 +89,122 @@
   (diminish 'visual-line-mode))
 
 ;; D mode
-(use-package d-mode :ensure t
+(use-package d-mode
+  :ensure t
+  :pin nongnu
   :mode "\\.d[i]?\\'")
 
 ;; Eglot (LSP)
-(use-package eglot :ensure t
+(use-package eglot
+  :ensure t
+  :pin gnu
   :config (setq-default eglot-autoreconnect nil)
   :hook
   (prog-mode . eglot-ensure)
   (elpy-mode . eglot-ensure))
 
 ;; Elfeed (RSS)
-(use-package elfeed :ensure t
+(use-package elfeed
+  :ensure t
+  :pin melpa-stable
   :config
   (setq-default elfeed-search-filter "@1-week-ago !\[$\] "
                 elfeed-db-directory (concat user-emacs-directory "elfeed"))
   (load-config-file "feeds.el")) ;feed list to its own file
 
 ;; Elpy (Python)
-(use-package elpy :ensure t
+(use-package elpy
+  :ensure t
+  :pin melpa-stable
   :defer t
   :init (advice-add 'python-mode :before 'elpy-enable))
 
 ;; Exec path from shell (For eshell $PATH)
 (use-package exec-path-from-shell
-  :unless (equal system-type "windows-nt")
   :ensure t
+  :pin melpa-stable
+  :unless (equal system-type "windows-nt")
   :init (exec-path-from-shell-initialize))
 
 ;; Fennel mode
-(use-package fennel-mode :ensure t
+(use-package fennel-mode
+  :ensure t
+  :pin melpa-stable
   :mode "\\.fnl\\'"
   :interpreter "fennel")
 
 ;; Flycheck (Improved syntax checking)
-(use-package flycheck :ensure t
+(use-package flycheck
+  :ensure t
+  :pin melpa-stable
   :diminish flycheck-mode
   :hook ((prog-mode . flycheck-mode)
          (LaTeX-mode . flycheck-mode)
          (elpy-mode . flycheck-mode)))
 
 ;; Go mode
-(use-package go-mode :ensure t
+(use-package go-mode
+  :ensure t
+  :pin nongnu
   :mode "\\.go\\'")
 
 ;; Link hints
-(use-package link-hint :ensure t
+(use-package link-hint
+  :ensure t
+  :pin melpa
   :bind
   ("C-c l o" . link-hint-open-link)
   ("C-c l c" . link-hint-copy-link))
 
 ;; Lua mode
-(use-package lua-mode :ensure t
-  :mode "\\.lua\\'")
+(use-package lua-mode
+  :ensure t
+  :pin nongnu
+  :mode "\\.lua\\'"
+  :interpreter "lua")
 
 ;; Magit (git)
-(use-package magit :ensure t
+(use-package magit
+  :ensure t
+  :pin nongnu
   :bind ("C-c g" . magit-status))
 
 ;; Marginalia (completion annotations)
-(use-package marginalia :ensure t
+(use-package marginalia
+  :ensure t
+  :pin gnu
   :init (marginalia-mode))
 
 ;; Markdown mode
-(use-package markdown-mode :ensure t
+(use-package markdown-mode
+  :ensure t
+  :pin nongnu
   :mode "\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'"
   :config (add-hook 'markdown-mode-hook 'flyspell-mode))
 
 ;; Racket mode
-(use-package racket-mode :ensure t
+(use-package racket-mode
+  :ensure t
+  :pin nongnu
   :mode "\\.rkt[dl]?\\'"
   :interpreter "racket")
 
 ;; Rust mode
-(use-package rust-mode :ensure t
+(use-package rust-mode
+  :ensure t
+  :pin nongnu
   :mode "\\.rs\\'")
 
 ;; Simple modeline
-(use-package simple-modeline :ensure t
+(use-package simple-modeline
+  :ensure t
+  :pin melpa-stable
   :init (simple-modeline-mode))
 
 ;; Undo tree
-(use-package undo-tree :ensure t
+(use-package undo-tree
+  :ensure t
+  :pin gnu
   :diminish undo-tree-mode
   :init
   (setq-default undo-tree-auto-save-history nil
@@ -161,13 +212,16 @@
   (global-undo-tree-mode))
 
 ;; Vertico (icomplete-vertical but better)
-(use-package vertico :ensure t
+(use-package vertico
+  :ensure t
+  :pin gnu
   :init (vertico-mode))
 
 ;; Vterm (improved terminal, not available on Windows)
 (use-package vterm
-  :unless (equal system-type "windows-nt")
   :ensure t
+  :pin melpa
+  :unless (equal system-type "windows-nt")
   :init
   (defun vterm-other-window ()
     "Create or switch to a vterm buffer in another window."
@@ -191,7 +245,8 @@
   :bind ("C-x 4 v" . 'vterm-other-window))
 
 (use-package eshell-vterm
-  :unless (equal system-type "windows-nt")
   :ensure t
+  :pin melpa
+  :unless (equal system-type "windows-nt")
   :after eshell
   :config (eshell-vterm-mode))
