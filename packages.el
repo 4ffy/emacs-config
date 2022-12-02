@@ -51,6 +51,10 @@
 (use-package cider :ensure t
   :hook (clojure-mode . cider-mode))
 
+;; clojure mode
+(use-package clojure-mode :ensure t
+  :mode "\\.\\(clj\\|cljd\\|dtm\\|edn\\)\\'")
+
 ;; Company (popup autocompletion)
 (use-package company :ensure t
   :diminish company-mode
