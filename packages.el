@@ -139,6 +139,15 @@
   :mode "\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'"
   :config (add-hook 'markdown-mode-hook 'flyspell-mode))
 
+;; Racket mode
+(use-package racket-mode :ensure t
+  :mode "\\.rkt[dl]?\\'"
+  :interpreter "racket")
+
+;; Rust mode
+(use-package rust-mode :ensure t
+  :mode "\\.rs\\'")
+
 ;; Simple modeline
 (use-package simple-modeline :ensure t
   :init (simple-modeline-mode))
