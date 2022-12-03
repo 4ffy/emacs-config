@@ -12,6 +12,7 @@
 
 ;; use-package
 (eval-when-compile
+  (add-to-list 'package-pinned-packages '(use-package . "gnu"))
   (unless (package-installed-p 'use-package)
     (package-refresh-contents)
     (package-install 'use-package))
