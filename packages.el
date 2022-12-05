@@ -108,6 +108,7 @@
 (use-package elfeed
   :ensure t
   :pin melpa-stable
+  :defer t
   :config
   (setq-default elfeed-search-filter "@1-week-ago !\[$\] "
                 elfeed-db-directory (concat user-emacs-directory "elfeed"))
