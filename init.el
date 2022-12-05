@@ -243,6 +243,12 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 ;; Window dedication toggle
 (global-set-key (kbd "C-c d") 'window-dedication-toggle)
 
+;; Unfill paragraph
+(global-set-key (kbd "M-Q") 'unfill-paragraph)
+
+;; Toggle menu bar
+(global-set-key (kbd "<f12>") (lambda () (interactive) (menu-bar-mode 'toggle)))
+
 ;; Make window resizing more coarse
 ;; There is no shrink window vertically command bound by default
 (global-set-key (kbd "C-x ^") (lambda () (interactive)
@@ -251,6 +257,3 @@ If REGION is non-nil, unfill all paragraphs in the active region."
                                 (shrink-window-horizontally 10)))
 (global-set-key (kbd "C-x }") (lambda () (interactive)
                                 (enlarge-window-horizontally 10)))
-
-;; Unfill paragraph
-(global-set-key (kbd "M-Q") 'unfill-paragraph)
