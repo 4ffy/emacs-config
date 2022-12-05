@@ -42,20 +42,21 @@
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
   (add-hook 'LaTeX-mode-hook 'visual-line-mode))
 
+;; LaTeX preview pane
+(use-package latex-preview-pane
+  :ensure t
+  :pin melpa
+  :after tex
+  :diminish latex-preview-pane-mode
+  :hook ((LaTeX-mode . latex-preview-pane-mode))
+  :config
+  (setq-default pdf-latex-command "xelatex"))
+
 ;; Avy (fast navigation)
 (use-package avy
   :ensure t
   :pin gnu
   :bind ("C-;" . avy-goto-char-2))
-
-;; LaTeX preview pane
-(use-package latex-preview-pane
-  :ensure t
-  :pin melpa
-  :diminish latex-preview-pane-mode
-  :config
-  (add-hook 'LaTeX-mode-hook 'latex-preview-pane-mode)
-  (setq-default pdf-latex-command "xelatex"))
 
 ;; CIDER (Clojure)
 (use-package cider
