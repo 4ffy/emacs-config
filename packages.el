@@ -142,8 +142,7 @@
   :pin melpa-stable
   :diminish flycheck-mode
   :hook ((prog-mode . flycheck-mode)
-         (LaTeX-mode . flycheck-mode)
-         (elpy-mode . flycheck-mode)))
+         (LaTeX-mode . flycheck-mode)))
 
 ;; Go mode
 (use-package go-mode
