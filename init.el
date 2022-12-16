@@ -180,15 +180,16 @@
 ;; Extra generic modes
 (require 'generic-x)
 
+(setq-default compile-command "make -k -j$(nproc) ")
+
 (defun kill-current-buffer ()
-  "Prompt to kill current buffer."
+  "Prompt to kill the current buffer.
+If there are multiple windows open, also delete the window
+formerly containing the killed buffer."
   (interactive)
-  (if (yes-or-no-p "Kill current buffer?")
-  (let ((frame (selected-frame)))
-    (if (and (frame-live-p frame)
-             (not (window-minibuffer-p (frame-selected-window frame))))
-        (kill-buffer (current-buffer))
-      (abort-recursive-edit)))))
+  (when (yes-or-no-p "Kill current buffer?")
+    (kill-buffer (current-buffer))
+    (when (not (one-window-p)) (delete-window))))
 
 (defun kill-all-buffers ()
   "Prompt to kill all buffers, leaving an empty *scratch* buffer."
@@ -196,6 +197,14 @@
   (if (yes-or-no-p "Kill all buffers?")
         (progn (mapc 'kill-buffer (buffer-list))
                (delete-other-windows))))
+
+(defun kill-all-other-buffers ()
+  "Prompt to kill all buffers except for the active buffer."
+  (interactive)
+  (when (yes-or-no-p "Kill all other buffers?")
+    (dolist (buffer (buffer-list))
+      (unless (equal buffer (current-buffer))
+        (kill-buffer buffer)))))
 
 (defun ansi-colorize-buffer ()
   "Apply ANSI escape code colors to a buffer."
