@@ -56,7 +56,7 @@
 (use-package avy
   :ensure t
   :pin gnu
-  :bind ("C-;" . avy-goto-char-2))
+  :bind ("C-c j" . avy-goto-word-1))
 
 ;; CIDER (Clojure)
 (use-package cider
