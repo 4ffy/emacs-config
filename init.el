@@ -51,7 +51,7 @@
     (setq-default default-frame-alist '((font . "Liberation Mono 12")))
     (set-frame-font "Liberation Mono 12" t)))
 
-;; Interface settings
+;; Various interface settings
 (display-time-mode t)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
@@ -74,6 +74,8 @@
               next-line-add-newlines t
               read-buffer-completion-ignore-case t
               read-file-name-completion-ignore-case t
+              require-final-newline t
+              save-interprogram-paste-before-kill t
               switch-to-buffer-obey-display-actions t
               use-short-answers t
               view-read-only t
