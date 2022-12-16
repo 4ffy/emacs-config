@@ -64,6 +64,7 @@
               completions-detailed t
               cursor-type 'bar
               describe-bindings-outline t
+              frame-inhibit-implied-resize t
               frame-resize-pixelwise t
               header-line-format t
               inhibit-startup-screen t
