@@ -45,12 +45,12 @@
 ;; Font selection - use a larger font on laptop
 (if (equal "Renda" (system-name))
     (progn
-      (setq-default initial-frame-alist '((font . "Liberation Mono 13")))
-      (setq-default default-frame-alist '((font . "Liberation Mono 13")))
+      (add-to-list 'initial-frame-alist '(font . "Liberation Mono 13"))
+      (add-to-list 'default-frame-alist '(font . "Liberation Mono 13"))
       (set-frame-font "Liberation Mono 13" t))
   (progn
-    (setq-default initial-frame-alist '((font . "Liberation Mono 12")))
-    (setq-default default-frame-alist '((font . "Liberation Mono 12")))
+    (add-to-list 'initial-frame-alist '(font . "Liberation Mono 12"))
+    (add-to-list 'default-frame-alist '(font . "Liberation Mono 12"))
     (set-frame-font "Liberation Mono 12" t)))
 
 ;; Various interface settings
