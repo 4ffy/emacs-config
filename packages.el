@@ -122,6 +122,11 @@
   :defer t
   :init (advice-add 'python-mode :before 'elpy-enable))
 
+;; Emacs start up profiler
+(use-package esup
+  :ensure t
+  :pin melpa-stable)
+
 ;; Exec path from shell (For eshell $PATH)
 (use-package exec-path-from-shell
   :ensure t
