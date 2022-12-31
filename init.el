@@ -2,6 +2,8 @@
 ;;; GENERAL SETTINGS
 ;;;=============================================================================
 
+(setq gc-cons-threshold most-positive-fixnum)
+
 ;; Me
 (setq-default user-full-name "Cameron Norton"
               user-mail-address "cameron.norton@gmail.com")
@@ -268,3 +270,6 @@ If REGION is non-nil, unfill all paragraphs in the active region."
                                 (shrink-window-horizontally 10)))
 (global-set-key (kbd "C-x }") (lambda () (interactive)
                                 (enlarge-window-horizontally 10)))
+
+(setq gc-cons-threshold 800000) ; Default value
+(garbage-collect)
