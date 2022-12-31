@@ -2,8 +2,8 @@
 ;;; MU4E CONFIG
 ;;;=============================================================================
 
-(require 'mu4e)
 (require 'smtpmail)
+(autoload 'mu4e "mu4e" "Start mu4e." t)
 
 ;; User agent
 (setq-default mail-user-agent 'mu4e-user-agent)
