@@ -23,14 +23,14 @@
   :ensure auctex
   :pin gnu
   :diminish reftex-mode
+  :custom
+  (TeX-PDF-mode t)
+  (TeX-auto-save t)
+  (TeX-engine 'xetex)
+  (TeX-master nil)
+  (TeX-parse-self t)
+  (reftex-plug-into-AUCTeX t)
   :config
-  (setq-default TeX-PDF-mode t
-                TeX-auto-save t
-                TeX-engine 'xetex
-                TeX-master nil
-                TeX-parse-self t
-                reftex-plug-into-AUCTeX t)
-
   ;; Use a different image size on laptop.
   (if (equal "Renda" (system-name))
       (setq-default preview-scale-function 0.8))
@@ -48,9 +48,8 @@
   :pin melpa
   :after tex
   :diminish latex-preview-pane-mode
-  :hook ((LaTeX-mode . latex-preview-pane-mode))
-  :config
-  (setq-default pdf-latex-command "xelatex"))
+  :custom (pdf-latex-command "xelatex")
+  :hook ((LaTeX-mode . latex-preview-pane-mode)))
 
 ;; Avy (fast navigation)
 (use-package avy
@@ -100,7 +99,7 @@
 (use-package eglot
   :ensure t
   :pin gnu
-  :config (setq-default eglot-autoreconnect nil)
+  :custom (eglot-autoreconnect nil)
   :hook
   (prog-mode . eglot-ensure)
   (elpy-mode . eglot-ensure))
@@ -110,9 +109,10 @@
   :ensure t
   :pin melpa-stable
   :defer t
+  :custom
+  (elfeed-search-filter "@1-week-ago !\[$\] ")
+  (elfeed-db-directory (concat user-emacs-directory "elfeed"))
   :config
-  (setq-default elfeed-search-filter "@1-week-ago !\[$\] "
-                elfeed-db-directory (concat user-emacs-directory "elfeed"))
   (load-config-file "feeds.el")) ;feed list to its own file
 
 ;; Elpy (Python)
@@ -231,10 +231,10 @@
   :ensure t
   :pin gnu
   :diminish undo-tree-mode
-  :init
-  (setq-default undo-tree-auto-save-history nil
-                undo-tree-enable-undo-in-region t)
-  (global-undo-tree-mode))
+  :custom
+  (undo-tree-auto-save-history nil)
+  (undo-tree-enable-undo-in-region t)
+  :init (global-undo-tree-mode))
 
 ;; Vertico (icomplete-vertical but better)
 (use-package vertico
