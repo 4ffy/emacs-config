@@ -189,6 +189,24 @@
   :mode "\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'"
   :config (add-hook 'markdown-mode-hook 'flyspell-mode))
 
+(use-package org-roam
+  :ensure t
+  :pin melpa-stable
+  :custom
+  (org-roam-directory (concat (getenv "HOME") "/Roam"))
+  (org-roam-completion-everywhere t)
+  :bind
+  (("C-c n l" . org-roam-buffer-toggle)
+   ("C-c n f" . org-roam-node-find)
+   ("C-c n i" . org-roam-node-insert)
+   :map org-mode-map
+   ("C-M-i" . completion-at-point))
+  :bind-keymap
+  ("C-c n d" . org-roam-dailies-map)
+  :config
+  (require 'org-roam-dailies)
+  (org-roam-db-autosync-mode))
+
 ;; Racket mode
 (use-package racket-mode
   :ensure t
