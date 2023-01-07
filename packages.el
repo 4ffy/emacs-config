@@ -192,13 +192,19 @@
 (use-package org-roam
   :ensure t
   :pin melpa-stable
+  ;; A compiler must be availabie to compile emacsql. Make also needs to be
+  ;; present and clang exists, but this will do.
+  :when (executable-find "gcc")
   :custom
   (org-roam-directory (file-name-concat (getenv "HOME") "Roam"))
+  (org-roam-dailies-directory "daily/")
   (org-roam-completion-everywhere t)
   :bind
-  (("C-c n l" . org-roam-buffer-toggle)
+  (("C-c n c" . org-roam-capture)
    ("C-c n f" . org-roam-node-find)
+   ("C-c n g" . org-roam-graph)
    ("C-c n i" . org-roam-node-insert)
+   ("C-c n l" . org-roam-buffer-toggle)
    :map org-mode-map
    ("C-M-i" . completion-at-point))
   :bind-keymap
