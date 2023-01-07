@@ -111,7 +111,7 @@
   :defer t
   :custom
   (elfeed-search-filter "@1-week-ago !\[$\] ")
-  (elfeed-db-directory (concat user-emacs-directory "elfeed"))
+  (elfeed-db-directory (file-name-concat user-emacs-directory "elfeed"))
   :config
   (load-config-file "feeds.el")) ;feed list to its own file
 
@@ -193,7 +193,7 @@
   :ensure t
   :pin melpa-stable
   :custom
-  (org-roam-directory (concat (getenv "HOME") "/Roam"))
+  (org-roam-directory (file-name-concat (getenv "HOME") "Roam"))
   (org-roam-completion-everywhere t)
   :bind
   (("C-c n l" . org-roam-buffer-toggle)

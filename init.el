@@ -10,7 +10,7 @@
 
 (defun load-config-file (file-name)
   "Load the file FILE-NAME relative to the Emacs config directory."
-  (load (concat user-emacs-directory file-name)))
+  (load (file-name-concat user-emacs-directory file-name)))
 
 ;; Load theme
 (load-config-file "wombat-custom-theme.el")
@@ -26,13 +26,13 @@
 (load-config-file "packages.el")
 
 ;; Load customizations
-(setq-default custom-file (concat user-emacs-directory "customize.el"))
+(setq-default custom-file (file-name-concat user-emacs-directory "customize.el"))
 (load custom-file)
 
 ;; Load mu4e if present and offlineimap is configured
 ;; mu also needs to be set up but that's harder to test for
 (when (and (locate-library "mu4e")
-           (file-exists-p (concat (getenv "HOME") "/.offlineimaprc")))
+           (file-exists-p (file-name-concat (getenv "HOME") ".offlineimaprc")))
   (load-config-file "mu4e-config.el"))
 
 ;; Add local executable directory to $PATH
@@ -40,7 +40,7 @@
 
 ;; Set authentication info file
 (setq-default auth-sources
-              `((:source ,(concat (getenv "HOME") "/.authinfo.gpg"))))
+              `((:source ,(file-name-concat (getenv "HOME") ".authinfo.gpg"))))
 
 ;; Font selection - use a larger font on laptop
 (if (equal "Renda" (system-name))
