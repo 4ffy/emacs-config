@@ -22,6 +22,7 @@
 (use-package tex
   :ensure auctex
   :pin gnu
+  :mode "\\.[tT]e[xX]\\'"
   :diminish reftex-mode
   :custom
   (TeX-PDF-mode t)
