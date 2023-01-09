@@ -190,6 +190,14 @@
   :mode "\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'"
   :config (add-hook 'markdown-mode-hook 'flyspell-mode))
 
+;; Orderless
+(use-package orderless
+  :ensure t
+  :pin gnu
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
 (use-package org-roam
   :ensure t
   :pin melpa-stable
