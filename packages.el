@@ -222,6 +222,12 @@
   (require 'org-roam-dailies)
   (org-roam-db-autosync-mode))
 
+(use-package php-mode
+  :ensure t
+  :pin nongnu
+  :mode "\\.\\(?:php\\.inc\\|stub\\)\\'"
+  :interpreter "php -a")
+
 ;; Racket mode
 (use-package racket-mode
   :ensure t
