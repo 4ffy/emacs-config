@@ -169,7 +169,8 @@
 ;; Org mode settings
 (setq-default org-enforce-todo-dependencies t
               org-export-with-smart-quotes t
-              org-latex-compiler "xelatex")
+              org-latex-compiler "xelatex"
+              org-return-follows-link t)
 
 ;; Extra generic modes
 (require 'generic-x)
