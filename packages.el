@@ -175,6 +175,7 @@
 (use-package magit
   :ensure t
   :pin nongnu
+  :custom (magit-diff-refine-hunk t)
   :bind ("C-c g" . magit-status))
 
 ;; Marginalia (completion annotations)
