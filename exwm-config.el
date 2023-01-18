@@ -45,7 +45,7 @@
                 (,(kbd "M->") . ,(kbd "<end>"))
                 ; region, killing, and yanking
                 (,(kbd "C-d") . ,(kbd "<delete>"))
-                (,(kbd "C-k") . ,(kbd "S-<end> <delete>"))
+                (,(kbd "C-k") . ,(kbd "S-<end> C-x"))
                 (,(kbd "C-w") . ,(kbd "C-x"))
                 (,(kbd "M-w") . ,(kbd "C-c"))
                 (,(kbd "C-y") . ,(kbd "C-v"))
