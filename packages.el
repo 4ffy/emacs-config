@@ -128,6 +128,12 @@
   :ensure t
   :pin melpa-stable)
 
+;; ESS
+(use-package ess
+  :ensure t
+  :pin melpa
+  :defer t)
+
 ;; Exec path from shell (For eshell $PATH)
 (use-package exec-path-from-shell
   :ensure t
