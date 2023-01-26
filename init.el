@@ -13,8 +13,11 @@
   (load (file-name-concat user-emacs-directory file-name)))
 
 ;; Load theme
-(load-config-file "wombat-custom-theme.el")
-(load-theme 'wombat-custom t)
+(load-theme 'wombat t)
+; Darken the background, lighten the cursor. For some reason,
+; `set-face-background' does not work on the cursor face at startup.
+(set-face-background 'default "#1b1b1b")
+(custom-set-faces `(cursor ((t (:background "#f6f3e8")))))
 
 ;; Load eshell settings
 (load-config-file "eshell-config.el")
