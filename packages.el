@@ -77,6 +77,12 @@
   :diminish company-mode
   :init (global-company-mode))
 
+;; CUDA Mode
+(use-package cuda-mode
+  :ensure t
+  :pin melpa-stable
+  :mode "\\.cuh?\\'")
+
 ;; Diminish (Hide modeline clutter)
 (use-package diminish
   :ensure t
