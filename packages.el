@@ -102,8 +102,7 @@
   :pin gnu
   :custom (eglot-autoreconnect nil)
   :hook
-  (prog-mode . eglot-ensure)
-  (elpy-mode . eglot-ensure))
+  (prog-mode . eglot-ensure))
 
 ;; Elfeed (RSS)
 (use-package elfeed
