@@ -75,8 +75,7 @@
   :ensure t
   :pin gnu
   :diminish company-mode
-  :hook ((prog-mode . company-mode)
-         (LaTeX-mode . company-mode)))
+  :init (global-company-mode))
 
 ;; Diminish (Hide modeline clutter)
 (use-package diminish
@@ -152,8 +151,7 @@
   :ensure t
   :pin melpa-stable
   :diminish flycheck-mode
-  :hook ((prog-mode . flycheck-mode)
-         (LaTeX-mode . flycheck-mode)))
+  :init (global-flycheck-mode))
 
 ;; Go mode
 (use-package go-mode
