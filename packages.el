@@ -22,7 +22,7 @@
 (use-package tex
   :ensure auctex
   :pin gnu
-  :mode "\\.[tT]e[xX]\\'"
+  :mode ("\\.[tT]e[xX]\\'" . LaTeX-mode)
   :diminish reftex-mode
   :custom
   (TeX-PDF-mode t)
@@ -35,11 +35,11 @@
   ;; Use a different image size on laptop.
   (if (equal "Renda" (system-name))
       (setq-default preview-scale-function 0.8))
-
   (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
   (add-hook 'LaTeX-mode-hook 'electric-pair-mode)
   (add-hook 'LaTeX-mode-hook 'flyspell-mode)
   (add-hook 'LaTeX-mode-hook 'line-number-mode)
+  (add-hook 'LaTeX-mode-hook 'prettify-symbols-mode)
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
   (add-hook 'LaTeX-mode-hook 'visual-line-mode))
 
