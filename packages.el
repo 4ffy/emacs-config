@@ -165,6 +165,12 @@
   :pin nongnu
   :mode "\\.go\\'")
 
+;; Keepass mode
+(use-package keepass-mode
+  :ensure t
+  :pin melpa-stable
+  :mode "\\.kdbx?\\'")
+
 ;; Link hints
 (use-package link-hint
   :ensure t
@@ -232,6 +238,7 @@
   (require 'org-roam-dailies)
   (org-roam-db-autosync-mode))
 
+;; PHP mode
 (use-package php-mode
   :ensure t
   :pin nongnu
