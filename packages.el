@@ -11,12 +11,11 @@
 (package-initialize)
 
 ;; use-package
-(eval-when-compile
-  (add-to-list 'package-pinned-packages '(use-package . "gnu"))
-  (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package))
-  (require 'use-package))
+(add-to-list 'package-pinned-packages '(use-package . "gnu"))
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
 
 ;; AUCTeX (LaTeX)
 (use-package tex
