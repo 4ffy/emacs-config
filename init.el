@@ -14,8 +14,8 @@
 
 ;; Load theme
 (load-theme 'wombat t)
-; Darken the background, lighten the cursor. For some reason,
-; `set-face-background' does not work on the cursor face at startup.
+;; Darken the background, lighten the cursor. For some reason,
+;; `set-face-background' does not work on the cursor face at startup.
 (set-face-background 'default "#1b1b1b")
 (custom-set-faces `(cursor ((t (:background "#f6f3e8")))))
 
@@ -59,9 +59,10 @@
 ;; Various interface settings
 (display-time-mode t)
 (menu-bar-mode -1)
-(scroll-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
+(when (fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
 (add-to-list 'default-frame-alist
              '(vertical-scroll-bars . nil))
 (setq-default auto-revert-verbose nil
