@@ -216,9 +216,7 @@
 (use-package org-roam
   :ensure t
   :pin melpa-stable
-  ;; A compiler must be availabie to compile emacsql. Make also needs to be
-  ;; present and clang exists, but this will do.
-  :when (executable-find "gcc")
+  :when (make-build-available-p)
   :custom
   (org-roam-directory (file-name-concat (getenv "HOME") "Roam"))
   (org-roam-dailies-directory "daily/")
@@ -283,6 +281,7 @@
 (use-package vterm
   :ensure t
   :pin melpa
+  :when (cmake-build-available-p)
   :unless (equal system-type 'windows-nt)
   :init
   (defun vterm-other-window ()

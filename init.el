@@ -12,9 +12,27 @@
   "Load the file FILE-NAME relative to the Emacs config directory."
   (load (file-name-concat user-emacs-directory file-name)))
 
+
+;; Helpful predicates for conditional loading.
 (defun my-laptop-p ()
   "Determine if the current system is my laptop."
   (equal "Renda" (system-name)))
+
+(defun compiler-available-p ()
+  "Determine whether the variable `exec-path' has a compiler.
+gcc and cmake are valid compilers."
+  (or (not (null (executable-find "gcc")))
+      (not (null (executable-find "clang")))))
+
+(defun make-build-available-p ()
+  "Determine whether the variable `exec-path' has a compiler and make."
+  (and (compiler-available-p)
+       (not (null (executable-find "make")))))
+
+(defun cmake-build-available-p ()
+  "Determine whether the variable `exec-path' has a compiler, make, and cmake."
+  (and (make-build-available-p)
+       (not (null (executable-find "cmake")))))
 
 ;; Load theme
 (load-theme 'wombat t)
