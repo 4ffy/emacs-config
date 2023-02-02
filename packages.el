@@ -32,8 +32,8 @@
   (reftex-plug-into-AUCTeX t)
   :config
   ;; Use a different image size on laptop.
-  (if (equal "Renda" (system-name))
-      (setq-default preview-scale-function 0.8))
+  (when (my-laptop-p)
+    (setq-default preview-scale-function 0.8))
   (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
   (add-hook 'LaTeX-mode-hook 'electric-pair-mode)
   (add-hook 'LaTeX-mode-hook 'flyspell-mode)

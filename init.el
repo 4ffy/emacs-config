@@ -12,6 +12,10 @@
   "Load the file FILE-NAME relative to the Emacs config directory."
   (load (file-name-concat user-emacs-directory file-name)))
 
+(defun my-laptop-p ()
+  "Determine if the current system is my laptop."
+  (equal "Renda" (system-name)))
+
 ;; Load theme
 (load-theme 'wombat t)
 ;; Darken the background, lighten the cursor. For some reason,
@@ -46,7 +50,7 @@
               `((:source ,(file-name-concat (getenv "HOME") ".authinfo.gpg"))))
 
 ;; Font selection - use a larger font on laptop
-(if (equal "Renda" (system-name))
+(if (my-laptop-p)
     (progn
       (add-to-list 'initial-frame-alist '(font . "Liberation Mono 13"))
       (add-to-list 'default-frame-alist '(font . "Liberation Mono 13"))
