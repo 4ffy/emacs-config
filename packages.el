@@ -132,7 +132,8 @@
 ;; Emacs start up profiler
 (use-package esup
   :ensure t
-  :pin melpa-stable)
+  :pin melpa-stable
+  :defer t)
 
 ;; ESS
 (use-package ess
