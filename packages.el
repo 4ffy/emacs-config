@@ -22,6 +22,7 @@
   :ensure auctex
   :pin gnu
   :mode ("\\.[tT]e[xX]\\'" . LaTeX-mode)
+  :mode ("\\.bib\\'" . bibtex-mode)
   :diminish reftex-mode
   :custom
   (TeX-PDF-mode t)
