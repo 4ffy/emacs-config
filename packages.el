@@ -309,5 +309,5 @@
   :ensure t
   :pin melpa
   :unless (equal system-type 'windows-nt)
-  :after eshell
+  :requires vterm
   :config (eshell-vterm-mode))
