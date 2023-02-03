@@ -315,3 +315,9 @@
   :unless (equal system-type 'windows-nt)
   :requires vterm
   :config (eshell-vterm-mode))
+
+;; YAML mode
+(use-package yaml-mode
+  :ensure t
+  :pin nongnu
+  :mode "\\.\\(e?ya?\\|ra\\)ml\\'")
