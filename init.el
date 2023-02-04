@@ -12,7 +12,6 @@
   "Load the file FILE-NAME relative to the Emacs config directory."
   (load (file-name-concat user-emacs-directory file-name)))
 
-
 ;; Helpful predicates for conditional loading.
 (defun my-laptop-p ()
   "Determine if the current system is my laptop."
@@ -127,9 +126,6 @@ gcc and cmake are valid compilers."
 ;; Make scripts executable when saving.
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
-;; Support ANSI colors in compilation buffer
-(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
-
 ;; Global column numbering, with a visible fill column for editing modes
 (setq-default fill-column 80
               column-number-mode t)
@@ -137,15 +133,6 @@ gcc and cmake are valid compilers."
 ;; Indentation settings
 (setq-default tab-width 4
               indent-tabs-mode nil)
-
-;; Settings for C and friends
-(setq-default c-basic-offset 4
-              c-default-style '((java-mode . "java")
-                                (awk-mode . "awk")
-                                (other . "linux"))
-              c-doc-comment-style '((java-mode . javadoc)
-                                    (c-mode . doxygen)
-                                    (c++-mode . doxygen)))
 
 ;; Stop cluttering my directories with #autosave# files
 ;; I accept any data loss from a crash or unwise `kill-all-buffers'
@@ -168,40 +155,74 @@ gcc and cmake are valid compilers."
                     (set-auto-mode)))))
 
 ;; EWW web browser settings
-(setq-default browse-url-browser-function 'browse-web
-              eww-search-prefix "https://searx.be/search?q="
-              shr-max-image-proportion 0.5
-              shr-max-width 80
-              shr-use-colors nil
-              shr-use-fonts nil
-              shr-width 80
-              url-cookie-confirmation nil
-              url-cookie-file null-device) ;no cookies
+(setq-default browse-url-browser-function 'browse-web)
+
+;; C-style language settings
+(use-package cc-mode
+  :custom
+  (c-basic-offset 4)
+  (c-default-style '((java-mode . "java")
+                     (other . "linux")))
+  (c-doc-comment-style '((java-mode . javadoc)
+                         (other . doxygen))))
+
+;; Compilation settings
+(use-package compile
+  :custom (compile-command "make -k -j$(nproc)")
+  :hook (compilation-filter . ansi-color-compilation-filter))
 
 ;; Dired settings
-(require 'dired-x)
-(setq-default dired-do-revert-buffer t
-              dired-auto-revert-buffer 'dired-directory-changed-p
-              dired-kill-when-opening-new-dired-buffer t
-              dired-listing-switches
-              "-Dahl --color=auto --group-directories-first")
-(define-key dired-mode-map (kbd "N") 'dired-create-empty-file)
-(add-hook 'dired-mode-hook 'auto-revert-mode)
+(use-package dired
+  :custom
+  (dired-do-revert-buffer t)
+  (dired-auto-revert-buffer 'dired-directory-changed-p)
+  (dired-kill-when-opening-new-dired-buffer t)
+  (dired-listing-switches "-Dahl --color=auto --group-directories-first")
+  :bind (:map dired-mode-map ("N" . dired-create-empty-file))
+  :hook (dired-mode . auto-revert-mode))
+
+;; Extra Dired goodies
+(use-package dired-x)
 
 ;; Doc view Settings
-(setq-default doc-view-continuous t
-              doc-view-resolution 200)
+(use-package doc-view
+  :custom
+  (doc-view-continuous t)
+  (doc-view-resolution 200))
 
-;; Org mode settings
-(setq-default org-enforce-todo-dependencies t
-              org-export-with-smart-quotes t
-              org-latex-compiler "xelatex"
-              org-return-follows-link t)
+;;; EWW web browser settings
+(use-package eww
+  :custom (eww-search-prefix "https://searx.be/search?q="))
 
 ;; Extra generic modes
-(require 'generic-x)
+(use-package generic-x)
 
-(setq-default compile-command "make -k -j$(nproc)")
+;; Debugger settings
+(use-package gud
+  :custom (gdb-show-main t))
+
+;; Org mode settings
+(use-package org
+  :custom
+  (org-enforce-todo-dependencies t)
+  (org-export-with-smart-quotes t)
+  (org-latex-compiler "xelatex")
+  (org-return-follows-link t))
+
+;; HTML renderer settings
+(use-package shr
+  :custom
+  (shr-max-image-proportion 0.5)
+  (shr-max-width 80)
+  (shr-use-colors nil)
+  (shr-use-fonts nil)
+  (shr-width 80))
+
+;; URL settings
+(use-package url
+  :custom
+  (url-cookie-confirmation nil)
+  (url-cookie-file null-device "no cookies"))
 
 (defun kill-current-buffer ()
   "Prompt to kill the current buffer.
