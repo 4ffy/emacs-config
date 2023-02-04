@@ -35,15 +35,12 @@
 (custom-set-faces `(cursor ((t (:background "#f6f3e8")))))
 
 ;; Font selection - use a larger font on laptop
-(if (my-laptop-p)
-    (progn
-      (add-to-list 'initial-frame-alist '(font . "Liberation Mono 13"))
-      (add-to-list 'default-frame-alist '(font . "Liberation Mono 13"))
-      (set-frame-font "Liberation Mono 13" t))
-  (progn
-    (add-to-list 'initial-frame-alist '(font . "Liberation Mono 12"))
-    (add-to-list 'default-frame-alist '(font . "Liberation Mono 12"))
-    (set-frame-font "Liberation Mono 12" t)))
+(let* ((font-family "Liberation Mono")
+       (font-size (if (my-laptop-p) 13 12))
+       (font-string (format "%s %d" font-family font-size)))
+  (add-to-list 'initial-frame-alist `(font . ,font-string))
+  (add-to-list 'default-frame-alist `(font . ,font-string))
+  (set-frame-font font-string t))
 
 ;; Various interface modes
 (display-time-mode t)
