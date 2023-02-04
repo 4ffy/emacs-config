@@ -148,7 +148,7 @@ formerly containing the killed buffer."
   (interactive)
   (when (yes-or-no-p "Kill all other buffers?")
     (dolist (buffer (buffer-list))
-      (unless (equal buffer (cnnurrent-buffer))
+      (unless (equal buffer (current-buffer))
         (kill-buffer buffer)))))
 
 (defun ansi-colorize-buffer ()
