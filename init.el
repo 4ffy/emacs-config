@@ -2,11 +2,51 @@
 ;;; GENERAL SETTINGS
 ;;;=============================================================================
 
+;; Inhibit garbage collection during startup.
 (setq gc-cons-threshold most-positive-fixnum)
 
-;; Me
-(setq-default user-full-name "Cameron Norton"
-              user-mail-address "cameron.norton@gmail.com")
+;; Basic settings.
+(setq-default
+ auto-revert-verbose nil
+ auto-save-default nil
+ auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
+ auto-save-mode nil
+ auto-save-no-message t
+ backup-directory-alist `((".*" . ,temporary-file-directory))
+ browse-url-browser-function 'browse-web
+ column-number-mode t
+ completion-ignore-case t
+ completions-detailed t
+ cursor-type 'bar
+ custom-file (file-name-concat user-emacs-directory "customize.el")
+ describe-bindings-outline t
+ fill-column 80
+ frame-inhibit-implied-resize t
+ frame-resize-pixelwise t
+ header-line-format t
+ indent-tabs-mode nil
+ inhibit-startup-screen t
+ initial-major-mode 'org-mode
+ initial-scratch-message nil
+ major-mode (lambda ()
+              (unless buffer-file-name
+                (let ((buffer-file-name (buffer-name)))
+                  (set-auto-mode))))
+ make-backup-files nil
+ minibuffer-beginning-of-buffer-movement t
+ mode-line-compact 'long
+ next-line-add-newlines t
+ read-buffer-completion-ignore-case t
+ read-file-name-completion-ignore-case t
+ require-final-newline t
+ save-interprogram-paste-before-kill t
+ switch-to-buffer-obey-display-actions t
+ tab-width 4
+ use-short-answers t
+ user-full-name "Cameron Norton"
+ user-mail-address "cameron.norton@gmail.com"
+ view-read-only t
+ window-resize-pixelwise t)
 
 (defun load-config-file (file-name)
   "Load the file FILE-NAME relative to the Emacs config directory."
@@ -88,16 +128,6 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (set-face-background 'default "#1b1b1b")
 (custom-set-faces `(cursor ((t (:background "#f6f3e8")))))
 
-;; Load customizations
-(setq-default custom-file (file-name-concat user-emacs-directory "customize.el"))
-
-;; Add local executable directory to $PATH
-(add-to-list 'exec-path "$HOME/.local/bin")
-
-;; Set authentication info file
-(setq-default auth-sources
-              `((:source ,(file-name-concat (getenv "HOME") ".authinfo.gpg"))))
-
 ;; Font selection - use a larger font on laptop
 (if (my-laptop-p)
     (progn
@@ -118,76 +148,15 @@ If REGION is non-nil, unfill all paragraphs in the active region."
   (scroll-bar-mode -1))
 (add-to-list 'default-frame-alist
              '(vertical-scroll-bars . nil))
-(setq-default auto-revert-verbose nil
-              completion-ignore-case t
-              completions-detailed t
-              cursor-type 'bar
-              describe-bindings-outline t
-              frame-inhibit-implied-resize t
-              frame-resize-pixelwise t
-              header-line-format t
-              inhibit-startup-screen t
-              initial-scratch-message nil
-              minibuffer-beginning-of-buffer-movement t
-              mode-line-compact 'long
-              next-line-add-newlines t
-              read-buffer-completion-ignore-case t
-              read-file-name-completion-ignore-case t
-              require-final-newline t
-              save-interprogram-paste-before-kill t
-              switch-to-buffer-obey-display-actions t
-              use-short-answers t
-              view-read-only t
-              window-resize-pixelwise t)
 
-;; Org mode for *scratch* buffer
-(setq-default initial-major-mode 'org-mode)
-
-;; Prog mode hooks
+;; Various hooks
 (add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
 (add-hook 'prog-mode-hook 'electric-pair-mode)
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
-
-;; Text mode hooks
 (add-hook 'text-mode-hook 'display-fill-column-indicator-mode)
 (add-hook 'text-mode-hook 'auto-fill-mode)
-
-;; Strip unnecessary whitespace when saving files
 (add-hook 'before-save-hook 'whitespace-cleanup)
-
-;; Make scripts executable when saving.
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-
-;; Global column numbering, with a visible fill column for editing modes
-(setq-default fill-column 80
-              column-number-mode t)
-
-;; Indentation settings
-(setq-default tab-width 4
-              indent-tabs-mode nil)
-
-;; Stop cluttering my directories with #autosave# files
-;; I accept any data loss from a crash or unwise `kill-all-buffers'
-;; (until it actually happens, probably).
-(setq-default auto-save-default nil
-              auto-save-mode nil
-              auto-save-no-message t
-              make-backup-files nil
-              ;banish to /tmp if files made anyway.
-              backup-directory-alist
-              `((".*" . ,temporary-file-directory))
-              auto-save-file-name-transforms
-              `((".*" ,temporary-file-directory t)))
-
-;; Guess major mode from file name
-(setq-default major-mode
-              (lambda ()
-                (unless buffer-file-name
-                  (let ((buffer-file-name (buffer-name)))
-                    (set-auto-mode)))))
-
-;; EWW web browser settings
-(setq-default browse-url-browser-function 'browse-web)
 
 ;; C-style language settings
 (use-package cc-mode
