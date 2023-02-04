@@ -21,6 +21,8 @@
   "Determine if the current system is my laptop."
   (equal "Renda" (system-name)))
 
+
+
 ;;;;;;;;;;;;;;;;;;;;
 ;; BASIC SETTINGS ;;
 ;;;;;;;;;;;;;;;;;;;;
