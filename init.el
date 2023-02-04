@@ -1,60 +1,101 @@
-;;;=============================================================================
-;;; GENERAL SETTINGS
-;;;=============================================================================
-
 ;; Inhibit garbage collection during startup.
 (setq gc-cons-threshold most-positive-fixnum)
 
+;; This function has to be at the top.
+(defun my-laptop-p ()
+  "Determine if the current system is my laptop."
+  (equal "Renda" (system-name)))
+
+;;;;;;;;;;;;;;;;;;;;
+;; BASIC SETTINGS ;;
+;;;;;;;;;;;;;;;;;;;;
+
+;; Load theme, then darken the background and lighten the cursor. For some
+;; reason, `set-face-background' does not work on the cursor face at startup,
+;; but we can use the function `custom-set-faces' instead.
+(load-theme 'wombat t)
+(set-face-background 'default "#1b1b1b")
+(custom-set-faces `(cursor ((t (:background "#f6f3e8")))))
+
+;; Font selection - use a larger font on laptop
+(if (my-laptop-p)
+    (progn
+      (add-to-list 'initial-frame-alist '(font . "Liberation Mono 13"))
+      (add-to-list 'default-frame-alist '(font . "Liberation Mono 13"))
+      (set-frame-font "Liberation Mono 13" t))
+  (progn
+    (add-to-list 'initial-frame-alist '(font . "Liberation Mono 12"))
+    (add-to-list 'default-frame-alist '(font . "Liberation Mono 12"))
+    (set-frame-font "Liberation Mono 12" t)))
+
+;; Various interface modes
+(display-time-mode t)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(tooltip-mode -1)
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(add-to-list 'default-frame-alist '(vertical-scroll-bars . nil))
+
+;; Various hooks
+(add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
+(add-hook 'prog-mode-hook 'electric-pair-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(add-hook 'text-mode-hook 'display-fill-column-indicator-mode)
+(add-hook 'text-mode-hook 'auto-fill-mode)
+(add-hook 'before-save-hook 'whitespace-cleanup)
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+
 ;; Basic settings.
-(setq-default
- auto-revert-verbose nil
- auto-save-default nil
- auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
- auto-save-mode nil
- auto-save-no-message t
- backup-directory-alist `((".*" . ,temporary-file-directory))
- browse-url-browser-function 'browse-web
- column-number-mode t
- completion-ignore-case t
- completions-detailed t
- cursor-type 'bar
- custom-file (file-name-concat user-emacs-directory "customize.el")
- describe-bindings-outline t
- fill-column 80
- frame-inhibit-implied-resize t
- frame-resize-pixelwise t
- header-line-format t
- indent-tabs-mode nil
- inhibit-startup-screen t
- initial-major-mode 'org-mode
- initial-scratch-message nil
- major-mode (lambda ()
-              (unless buffer-file-name
-                (let ((buffer-file-name (buffer-name)))
-                  (set-auto-mode))))
- make-backup-files nil
- minibuffer-beginning-of-buffer-movement t
- mode-line-compact 'long
- next-line-add-newlines t
- read-buffer-completion-ignore-case t
- read-file-name-completion-ignore-case t
- require-final-newline t
- save-interprogram-paste-before-kill t
- switch-to-buffer-obey-display-actions t
- tab-width 4
- use-short-answers t
- user-full-name "Cameron Norton"
- user-mail-address "cameron.norton@gmail.com"
- view-read-only t
- window-resize-pixelwise t)
+(setq-default auto-revert-verbose nil
+              auto-save-default nil
+              auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
+              auto-save-mode nil
+              auto-save-no-message t
+              backup-directory-alist `((".*" . ,temporary-file-directory))
+              browse-url-browser-function 'browse-web
+              column-number-mode t
+              completion-ignore-case t
+              completions-detailed t
+              cursor-type 'bar
+              custom-file (file-name-concat user-emacs-directory "customize.el")
+              describe-bindings-outline t
+              fill-column 80
+              frame-inhibit-implied-resize t
+              frame-resize-pixelwise t
+              header-line-format t
+              indent-tabs-mode nil
+              inhibit-startup-screen t
+              initial-major-mode 'org-mode
+              initial-scratch-message nil
+              major-mode (lambda ()
+                           (unless buffer-file-name
+                             (let ((buffer-file-name (buffer-name)))
+                               (set-auto-mode))))
+              make-backup-files nil
+              minibuffer-beginning-of-buffer-movement t
+              mode-line-compact 'long
+              next-line-add-newlines t
+              read-buffer-completion-ignore-case t
+              read-file-name-completion-ignore-case t
+              require-final-newline t
+              save-interprogram-paste-before-kill t
+              switch-to-buffer-obey-display-actions t
+              tab-width 4
+              use-short-answers t
+              user-full-name "Cameron Norton"
+              user-mail-address "cameron.norton@gmail.com"
+              view-read-only t
+              window-resize-pixelwise t)
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; FUNCTION DECLARATIONS ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun load-config-file (file-name)
   "Load the file FILE-NAME relative to the Emacs config directory."
   (load (file-name-concat user-emacs-directory file-name)))
-
-(defun my-laptop-p ()
-  "Determine if the current system is my laptop."
-  (equal "Renda" (system-name)))
 
 (defun compiler-available-p ()
   "Determine whether the variable `exec-path' has a compiler.
@@ -121,42 +162,46 @@ If REGION is non-nil, unfill all paragraphs in the active region."
         (emacs-lisp-docstring-fill-column t))
     (fill-paragraph nil region)))
 
-;; Load theme
-(load-theme 'wombat t)
-;; Darken the background, lighten the cursor. For some reason,
-;; `set-face-background' does not work on the cursor face at startup.
-(set-face-background 'default "#1b1b1b")
-(custom-set-faces `(cursor ((t (:background "#f6f3e8")))))
 
-;; Font selection - use a larger font on laptop
-(if (my-laptop-p)
-    (progn
-      (add-to-list 'initial-frame-alist '(font . "Liberation Mono 13"))
-      (add-to-list 'default-frame-alist '(font . "Liberation Mono 13"))
-      (set-frame-font "Liberation Mono 13" t))
-  (progn
-    (add-to-list 'initial-frame-alist '(font . "Liberation Mono 12"))
-    (add-to-list 'default-frame-alist '(font . "Liberation Mono 12"))
-    (set-frame-font "Liberation Mono 12" t)))
 
-;; Various interface settings
-(display-time-mode t)
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(tooltip-mode -1)
-(when (fboundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
-(add-to-list 'default-frame-alist
-             '(vertical-scroll-bars . nil))
+;;;;;;;;;;;;;;;;;;
+;; KEY BINDINGS ;;
+;;;;;;;;;;;;;;;;;;
 
-;; Various hooks
-(add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
-(add-hook 'prog-mode-hook 'electric-pair-mode)
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-(add-hook 'text-mode-hook 'display-fill-column-indicator-mode)
-(add-hook 'text-mode-hook 'auto-fill-mode)
-(add-hook 'before-save-hook 'whitespace-cleanup)
-(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+;; Custom kill buffer commands
+(global-set-key (kbd "C-c k") 'kill-current-buffer)
+(global-set-key (kbd "C-c K") 'kill-all-buffers)
+
+;; Use ibuffer for buffer list
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+;; Regex search by default
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+
+;; Window dedication toggle
+(global-set-key (kbd "C-c d") 'window-dedication-toggle)
+
+;; Unfill paragraph
+(global-set-key (kbd "M-Q") 'unfill-paragraph)
+
+;; Toggle menu bar
+(global-set-key (kbd "<f12>") (lambda () (interactive) (menu-bar-mode 'toggle)))
+
+;; Make window resizing more coarse
+;; There is no shrink window vertically command bound by default
+(global-set-key (kbd "C-x ^") (lambda () (interactive)
+                                (enlarge-window 10)))
+(global-set-key (kbd "C-x {") (lambda () (interactive)
+                                (shrink-window-horizontally 10)))
+(global-set-key (kbd "C-x }") (lambda () (interactive)
+                                (enlarge-window-horizontally 10)))
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; SETTINGS FOR MAJOR BUILTIN PACKAGES ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; C-style language settings
 (use-package cc-mode
@@ -225,34 +270,11 @@ If REGION is non-nil, unfill all paragraphs in the active region."
   (url-cookie-confirmation nil)
   (url-cookie-file null-device "no cookies"))
 
-;; Custom kill buffer commands
-(global-set-key (kbd "C-c k") 'kill-current-buffer)
-(global-set-key (kbd "C-c K") 'kill-all-buffers)
 
-;; Use ibuffer for buffer list
-(global-set-key (kbd "C-x C-b") 'ibuffer)
 
-;; Regex search by default
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-
-;; Window dedication toggle
-(global-set-key (kbd "C-c d") 'window-dedication-toggle)
-
-;; Unfill paragraph
-(global-set-key (kbd "M-Q") 'unfill-paragraph)
-
-;; Toggle menu bar
-(global-set-key (kbd "<f12>") (lambda () (interactive) (menu-bar-mode 'toggle)))
-
-;; Make window resizing more coarse
-;; There is no shrink window vertically command bound by default
-(global-set-key (kbd "C-x ^") (lambda () (interactive)
-                                (enlarge-window 10)))
-(global-set-key (kbd "C-x {") (lambda () (interactive)
-                                (shrink-window-horizontally 10)))
-(global-set-key (kbd "C-x }") (lambda () (interactive)
-                                (enlarge-window-horizontally 10)))
+;;;;;;;;;;;;;;;;;;;;;;
+;; LOAD OTHER FILES ;;
+;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Load customizations
 (load custom-file)
@@ -271,6 +293,8 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (when (and (locate-library "mu4e")
            (file-exists-p (file-name-concat (getenv "HOME") ".offlineimaprc")))
   (load-config-file "mu4e-config.el"))
+
+
 
 ;; Reset garbage collection.
 (setq gc-cons-threshold 800000)
