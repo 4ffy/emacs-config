@@ -88,24 +88,8 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (set-face-background 'default "#1b1b1b")
 (custom-set-faces `(cursor ((t (:background "#f6f3e8")))))
 
-;; Load eshell settings
-(load-config-file "eshell-config.el")
-
-;; Load macros
-(load-config-file "macros.el")
-
-;; Load packages
-(load-config-file "packages.el")
-
 ;; Load customizations
 (setq-default custom-file (file-name-concat user-emacs-directory "customize.el"))
-(load custom-file)
-
-;; Load mu4e if present and offlineimap is configured
-;; mu also needs to be set up but that's harder to test for
-(when (and (locate-library "mu4e")
-           (file-exists-p (file-name-concat (getenv "HOME") ".offlineimaprc")))
-  (load-config-file "mu4e-config.el"))
 
 ;; Add local executable directory to $PATH
 (add-to-list 'exec-path "$HOME/.local/bin")
@@ -301,5 +285,24 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (global-set-key (kbd "C-x }") (lambda () (interactive)
                                 (enlarge-window-horizontally 10)))
 
-(setq gc-cons-threshold 800000) ; Default value
+;; Load customizations
+(load custom-file)
+
+;; Load packages
+(load-config-file "packages.el")
+
+;; Load eshell settings
+(load-config-file "eshell-config.el")
+
+;; Load macros
+(load-config-file "macros.el")
+
+;; Load mu4e if present and offlineimap is configured
+;; mu also needs to be set up but that's harder to test for
+(when (and (locate-library "mu4e")
+           (file-exists-p (file-name-concat (getenv "HOME") ".offlineimaprc")))
+  (load-config-file "mu4e-config.el"))
+
+;; Reset garbage collection.
+(setq gc-cons-threshold 800000)
 (garbage-collect)
