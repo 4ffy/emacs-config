@@ -12,7 +12,6 @@
   "Load the file FILE-NAME relative to the Emacs config directory."
   (load (file-name-concat user-emacs-directory file-name)))
 
-;; Helpful predicates for conditional loading.
 (defun my-laptop-p ()
   "Determine if the current system is my laptop."
   (equal "Renda" (system-name)))
@@ -32,6 +31,55 @@ gcc and cmake are valid compilers."
   "Determine whether the variable `exec-path' has a compiler, make, and cmake."
   (and (make-build-available-p)
        (not (null (executable-find "cmake")))))
+
+(defun kill-current-buffer ()
+  "Prompt to kill the current buffer.
+If there are multiple windows open, also delete the window
+formerly containing the killed buffer."
+  (interactive)
+  (when (yes-or-no-p "Kill current buffer?")
+    (kill-buffer (current-buffer))
+    (when (not (one-window-p)) (delete-window))))
+
+(defun kill-all-buffers ()
+  "Prompt to kill all buffers, leaving an empty *scratch* buffer."
+  (interactive)
+  (if (yes-or-no-p "Kill all buffers?")
+        (progn (mapc 'kill-buffer (buffer-list))
+               (delete-other-windows))))
+
+(defun kill-all-other-buffers ()
+  "Prompt to kill all buffers except for the active buffer."
+  (interactive)
+  (when (yes-or-no-p "Kill all other buffers?")
+    (dolist (buffer (buffer-list))
+      (unless (equal buffer (cnnurrent-buffer))
+        (kill-buffer buffer)))))
+
+(defun ansi-colorize-buffer ()
+  "Apply ANSI escape code colors to a buffer."
+  (interactive)
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
+
+(defun window-dedication-toggle ()
+  "Toggle window dedication for the current window."
+  (interactive)
+  (progn
+    (set-window-dedicated-p (selected-window)
+                            (not (window-dedicated-p (selected-window))))
+    (message (format "Window dedication %s."
+                     (if (window-dedicated-p) "enabled" "disabled")))))
+
+(defun unfill-paragraph (&optional region)
+  "Take a multi-line paragraph and turn it into a single line of text.
+This function is the opposite of `fill-paragraph'.
+
+If REGION is non-nil, unfill all paragraphs in the active region."
+  (interactive (progn (barf-if-buffer-read-only) '(t)))
+  (let ((fill-column (point-max))
+        (emacs-lisp-docstring-fill-column t))
+    (fill-paragraph nil region)))
 
 ;; Load theme
 (load-theme 'wombat t)
@@ -223,62 +271,6 @@ gcc and cmake are valid compilers."
   :custom
   (url-cookie-confirmation nil)
   (url-cookie-file null-device "no cookies"))
-
-(defun kill-current-buffer ()
-  "Prompt to kill the current buffer.
-If there are multiple windows open, also delete the window
-formerly containing the killed buffer."
-  (interactive)
-  (when (yes-or-no-p "Kill current buffer?")
-    (kill-buffer (current-buffer))
-    (when (not (one-window-p)) (delete-window))))
-
-(defun kill-all-buffers ()
-  "Prompt to kill all buffers, leaving an empty *scratch* buffer."
-  (interactive)
-  (if (yes-or-no-p "Kill all buffers?")
-        (progn (mapc 'kill-buffer (buffer-list))
-               (delete-other-windows))))
-
-(defun kill-all-other-buffers ()
-  "Prompt to kill all buffers except for the active buffer."
-  (interactive)
-  (when (yes-or-no-p "Kill all other buffers?")
-    (dolist (buffer (buffer-list))
-      (unless (equal buffer (current-buffer))
-        (kill-buffer buffer)))))
-
-(defun ansi-colorize-buffer ()
-  "Apply ANSI escape code colors to a buffer."
-  (interactive)
-  (let ((inhibit-read-only t))
-    (ansi-color-apply-on-region (point-min) (point-max))))
-
-(defun cmake-build ()
-  "Build a cmake project from its root directory."
-  (if (file-exists-p "CMakeLists.txt")
-      (compile "cmake -B build && make -k -C build")
-    (message "CMakeLists.txt not found.")))
-
-(defun window-dedication-toggle ()
-  "Toggle window dedication for the current window."
-  (interactive)
-  (progn
-    (set-window-dedicated-p (selected-window)
-                            (not (window-dedicated-p (selected-window))))
-    (message (format "Window dedication %s." (if (window-dedicated-p)
-                                                 "enabled"
-                                               "disabled")))))
-
-(defun unfill-paragraph (&optional region)
-  "Take a multi-line paragraph and turn it into a single line of text.
-This function is the opposite of `fill-paragraph'.
-
-If REGION is non-nil, unfill all paragraphs in the active region."
-  (interactive (progn (barf-if-buffer-read-only) '(t)))
-  (let ((fill-column (point-max))
-        (emacs-lisp-docstring-fill-column t))
-    (fill-paragraph nil region)))
 
 ;; Custom kill buffer commands
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
