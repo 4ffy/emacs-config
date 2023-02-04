@@ -2,21 +2,6 @@
 ;;; PACKAGES
 ;;;=============================================================================
 
-;; melpa
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
-
-;; use-package
-(add-to-list 'package-pinned-packages '(use-package . "gnu"))
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(require 'use-package)
-
 ;; AUCTeX (LaTeX)
 (use-package tex
   :ensure auctex
