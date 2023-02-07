@@ -306,3 +306,15 @@
   :ensure t
   :pin nongnu
   :mode "\\.\\(e?ya?\\|ra\\)ml\\'")
+
+;; Yasnippet
+(use-package yasnippet
+  :ensure t
+  :pin gnu
+  :diminish yas-minor-mode
+  :init (yas-global-mode))
+
+(use-package yasnippet-snippets
+  :ensure t
+  :pin nongnu
+  :after yasnippet)
