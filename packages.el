@@ -153,6 +153,13 @@
   :pin nongnu
   :mode "\\.go\\'")
 
+;; Improved Javascript mode.
+(use-package js2-mode
+  :ensure t
+  :pin gnu
+  :mode "\\.js[mx]?\\'"
+  :interpreter "node")
+
 ;; Keepass mode
 (use-package keepass-mode
   :ensure t
