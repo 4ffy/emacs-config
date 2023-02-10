@@ -42,23 +42,6 @@
   (add-to-list 'default-frame-alist `(font . ,font-string))
   (set-frame-font font-string t))
 
-;; Various interface modes
-(display-time-mode t)
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(tooltip-mode -1)
-(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-(add-to-list 'default-frame-alist '(vertical-scroll-bars . nil))
-
-;; Various hooks
-(add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
-(add-hook 'prog-mode-hook 'electric-pair-mode)
-(add-hook 'prog-mode-hook 'display-line-numbers-mode)
-(add-hook 'text-mode-hook 'display-fill-column-indicator-mode)
-(add-hook 'text-mode-hook 'auto-fill-mode)
-(add-hook 'before-save-hook 'whitespace-cleanup)
-(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-
 ;; Basic settings.
 (setq-default auto-revert-verbose nil
               auto-save-default nil
@@ -101,6 +84,23 @@
               user-mail-address "cameron.norton@gmail.com"
               view-read-only t
               window-resize-pixelwise t)
+
+;; Various interface modes
+(display-time-mode t)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(tooltip-mode -1)
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(add-to-list 'default-frame-alist '(vertical-scroll-bars . nil))
+
+;; Various hooks
+(add-hook 'prog-mode-hook 'display-fill-column-indicator-mode)
+(add-hook 'prog-mode-hook 'electric-pair-mode)
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(add-hook 'text-mode-hook 'display-fill-column-indicator-mode)
+(add-hook 'text-mode-hook 'auto-fill-mode)
+(add-hook 'before-save-hook 'whitespace-cleanup)
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
 
 
