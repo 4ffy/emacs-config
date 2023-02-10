@@ -72,6 +72,7 @@
               completions-detailed t
               cursor-type 'bar
               custom-file (file-name-concat user-emacs-directory "customize.el")
+              display-time-24hr-format t
               describe-bindings-outline t
               fill-column 80
               frame-inhibit-implied-resize t
