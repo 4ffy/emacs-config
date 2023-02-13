@@ -57,11 +57,13 @@
                 (,(kbd "C-x C-s") . ,(kbd "C-s"))
                 ))
 
+(when (equal "Renda" (system-name)) (display-battery-mode 1))
 (menu-bar-mode 1)
 (exwm-systemtray-enable)
 (exwm-enable)
 
-(when (equal "Renda" (system-name)) (display-battery-mode 1))
+(when (shell-command "systemctl --user is-active xremap.service")
+  (shell-command "systemctl --user stop xremap.service"))
 
 (shell-command "setxkbmap -option 'ctrl:nocaps'")
 (shell-command "setxkbmap -option 'shift:both_capslock'")
