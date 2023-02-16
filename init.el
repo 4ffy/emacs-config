@@ -125,8 +125,7 @@ gcc and cmake are valid compilers."
 
 (defun cmake-build-available-p ()
   "Determine whether the variable `exec-path' has a compiler, make, and cmake."
-  (and (make-build-available-p)
-       (not (null (executable-find "cmake")))))
+  (and (make-build-available-p) (not (null (executable-find "cmake")))))
 
 (defun kill-current-buffer ()
   "Prompt to kill the current buffer.
@@ -135,14 +134,16 @@ formerly containing the killed buffer."
   (interactive)
   (when (yes-or-no-p "Kill current buffer?")
     (kill-buffer (current-buffer))
-    (when (not (one-window-p)) (delete-window))))
+    (when (not (one-window-p))
+      (delete-window))))
 
 (defun kill-all-buffers ()
   "Prompt to kill all buffers, leaving an empty *scratch* buffer."
   (interactive)
-  (if (yes-or-no-p "Kill all buffers?")
-        (progn (mapc 'kill-buffer (buffer-list))
-               (delete-other-windows))))
+  (when (yes-or-no-p "Kill all buffers?")
+    (progn
+      (mapc 'kill-buffer (buffer-list))
+      (delete-other-windows))))
 
 (defun kill-all-other-buffers ()
   "Prompt to kill all buffers except for the active buffer."
@@ -162,17 +163,22 @@ formerly containing the killed buffer."
   "Toggle window dedication for the current window."
   (interactive)
   (progn
-    (set-window-dedicated-p (selected-window)
-                            (not (window-dedicated-p (selected-window))))
-    (message (format "Window dedication %s."
-                     (if (window-dedicated-p) "enabled" "disabled")))))
+    (set-window-dedicated-p
+     (selected-window) (not (window-dedicated-p (selected-window))))
+    (message
+     (format "Window dedication %s."
+             (if (window-dedicated-p)
+                 "enabled"
+               "disabled")))))
 
 (defun unfill-paragraph (&optional region)
   "Take a multi-line paragraph and turn it into a single line of text.
 This function is the opposite of `fill-paragraph'.
 
 If REGION is non-nil, unfill all paragraphs in the active region."
-  (interactive (progn (barf-if-buffer-read-only) '(t)))
+  (interactive (progn
+                 (barf-if-buffer-read-only)
+                 '(t)))
   (let ((fill-column (point-max))
         (emacs-lisp-docstring-fill-column t))
     (fill-paragraph nil region)))
