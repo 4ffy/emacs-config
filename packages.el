@@ -107,6 +107,11 @@
   :config
   (load-config-file "feeds.el")) ;feed list to its own file
 
+;; Elisp auto formatting
+(use-package elisp-autofmt
+  :ensure t
+  :pin melpa)
+
 ;; Elpy (Python)
 (use-package elpy
   :ensure t
