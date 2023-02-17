@@ -62,7 +62,14 @@
 (exwm-systemtray-enable)
 (exwm-enable)
 
-(when (shell-command "systemctl --user is-active xremap.service")
+(when (equal
+       "enabled\n"
+       (shell-command-to-string "systemctl --user is-enabled emacs.service"))
+  (shell-command "systemctl --user stop emacs.service"))
+
+(when (equal
+       "enabled\n"
+       (shell-command-to-string "systemctl --user is-enabled xremap.service"))
   (shell-command "systemctl --user stop xremap.service"))
 
 (shell-command "setxkbmap -option 'ctrl:nocaps'")
