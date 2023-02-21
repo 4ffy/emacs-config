@@ -262,16 +262,6 @@
   :pin melpa-stable
   :init (simple-modeline-mode))
 
-;; Undo tree
-(use-package undo-tree
-  :ensure t
-  :pin gnu
-  :diminish undo-tree-mode
-  :custom
-  (undo-tree-auto-save-history nil)
-  (undo-tree-enable-undo-in-region t)
-  :init (global-undo-tree-mode))
-
 ;; Vertico (icomplete-vertical but better)
 (use-package vertico
   :ensure t
