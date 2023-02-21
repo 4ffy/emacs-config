@@ -274,11 +274,13 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 
 ;; Org mode settings
 (use-package org
-  :custom
-  (org-enforce-todo-dependencies t)
-  (org-export-with-smart-quotes t)
-  (org-latex-compiler "xelatex")
-  (org-return-follows-link t))
+ :custom
+ (org-babel-load-languages '((emacs-lisp . t) (python . t) (R . t)))
+ (org-confirm-babel-evaluate nil)
+ (org-enforce-todo-dependencies t)
+ (org-export-with-smart-quotes t)
+ (org-latex-compiler "xelatex")
+ (org-return-follows-link t))
 
 ;; HTML renderer settings
 (use-package shr
