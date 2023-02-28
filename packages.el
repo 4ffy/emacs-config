@@ -67,7 +67,7 @@
 ;; CUDA Mode
 (use-package cuda-mode
   :ensure t
-  :pin melpa-stable
+  :pin melpa
   :mode "\\.cuh?\\'")
 
 ;; Diminish (Hide modeline clutter)
@@ -99,7 +99,7 @@
 ;; Elfeed (RSS)
 (use-package elfeed
   :ensure t
-  :pin melpa-stable
+  :pin melpa
   :defer t
   :custom
   (elfeed-search-filter "@1-week-ago !\[$\] ")
@@ -115,14 +115,14 @@
 ;; Elpy (Python)
 (use-package elpy
   :ensure t
-  :pin melpa-stable
+  :pin melpa
   :defer t
   :init (advice-add 'python-mode :before 'elpy-enable))
 
 ;; Emacs start up profiler
 (use-package esup
   :ensure t
-  :pin melpa-stable
+  :pin melpa
   :defer t)
 
 ;; ESS
@@ -134,21 +134,21 @@
 ;; Exec path from shell (For eshell $PATH)
 (use-package exec-path-from-shell
   :ensure t
-  :pin melpa-stable
+  :pin melpa
   :unless (equal system-type 'windows-nt)
   :init (exec-path-from-shell-initialize))
 
 ;; Fennel mode
 (use-package fennel-mode
   :ensure t
-  :pin melpa-stable
+  :pin melpa
   :mode "\\.fnl\\'"
   :interpreter "fennel")
 
 ;; Flycheck (Improved syntax checking)
 (use-package flycheck
   :ensure t
-  :pin melpa-stable
+  :pin melpa
   :diminish flycheck-mode
   :init (global-flycheck-mode))
 
@@ -168,7 +168,7 @@
 ;; Keepass mode
 (use-package keepass-mode
   :ensure t
-  :pin melpa-stable
+  :pin melpa
   :mode "\\.kdbx?\\'")
 
 ;; Link hints
@@ -216,7 +216,7 @@
 
 (use-package org-roam
   :ensure t
-  :pin melpa-stable
+  :pin melpa
   :when (make-build-available-p)
   :custom
   (org-roam-directory (file-name-concat (getenv "HOME") "Roam"))
@@ -259,7 +259,7 @@
 ;; Simple modeline
 (use-package simple-modeline
   :ensure t
-  :pin melpa-stable
+  :pin melpa
   :init (simple-modeline-mode))
 
 ;; Vertico (icomplete-vertical but better)
