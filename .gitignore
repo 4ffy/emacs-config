@@ -7,3 +7,9 @@ flycheck_feeds.el
 /elfeed/
 /eshell/
 /url/
+/dmenu-items
+/elisp-autofmt-cache/
+/eln-cache/
+/org-roam.db
+/racket-mode/
+/tramp
