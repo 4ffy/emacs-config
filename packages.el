@@ -165,6 +165,12 @@
   :mode "\\.js[mx]?\\'"
   :interpreter "node")
 
+;; JSON Mode
+(use-package json-mode
+  :ensure t
+  :pin gnu
+  :mode "\\.json\\'")
+
 ;; Keepass mode
 (use-package keepass-mode
   :ensure t
