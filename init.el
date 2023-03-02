@@ -240,6 +240,7 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (use-package dired
   :custom
   (dired-do-revert-buffer t)
+  (dired-dwim-target t)
   (dired-auto-revert-buffer 'dired-directory-changed-p)
   (dired-kill-when-opening-new-dired-buffer t)
   :bind (:map dired-mode-map ("N" . dired-create-empty-file))
