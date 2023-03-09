@@ -28,15 +28,6 @@
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
   (add-hook 'LaTeX-mode-hook 'visual-line-mode))
 
-;; LaTeX preview pane
-(use-package latex-preview-pane
-  :ensure t
-  :pin melpa
-  :after tex
-  :diminish latex-preview-pane-mode
-  :custom (pdf-latex-command "xelatex")
-  :hook ((LaTeX-mode . latex-preview-pane-mode)))
-
 ;; Avy (fast navigation)
 (use-package avy
   :ensure t
