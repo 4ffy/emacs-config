@@ -42,9 +42,9 @@
 
 ;; Basic settings.
 (setq-default auto-revert-verbose nil
-              auto-save-default nil
-              auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
-              auto-save-mode nil
+              auto-save-default t
+              auto-save-file-name-transforms
+              `((".*" ,(file-name-concat user-emacs-directory "auto-save/") t))
               auto-save-no-message t
               backup-directory-alist `((".*" . ,temporary-file-directory))
               browse-url-browser-function 'browse-web
