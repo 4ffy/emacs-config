@@ -149,6 +149,13 @@
   :pin nongnu
   :mode "\\.go\\'")
 
+;; Hyperbole mode
+(use-package hyperbole
+  :ensure t
+  :pin gnu
+  :diminish hyperbole-mode
+  :init (hyperbole-mode))
+
 ;; Improved Javascript mode.
 (use-package js2-mode
   :ensure t
