@@ -110,6 +110,12 @@
   :defer t
   :init (advice-add 'python-mode :before 'elpy-enable))
 
+;; ERC nick highlighing
+(use-package erc-hl-nicks
+  :ensure t
+  :pin melpa
+  :after erc)
+
 ;; Emacs start up profiler
 (use-package esup
   :ensure t
