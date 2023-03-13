@@ -29,7 +29,7 @@
 ;; reason, `set-face-background' does not work on the cursor face at startup,
 ;; but we can use the function `custom-set-faces' instead.
 (load-theme 'wombat t)
-(set-face-background 'default "#1b1b1b")
+(set-face-background 'default "#181818")
 (custom-set-faces `(cursor ((t (:background "#f6f3e8")))))
 
 ;; Font selection - use a larger font on laptop
