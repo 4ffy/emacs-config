@@ -260,6 +260,13 @@ If REGION is non-nil, unfill all paragraphs in the active region."
   (doc-view-continuous t)
   (doc-view-resolution 200))
 
+;; ERC
+(use-package erc
+  :custom
+  (erc-fill-function 'erc-fill-static)
+  (erc-fill-static-center 15)
+  (erc-hide-list '("JOIN" "PART" "QUIT")))
+
 ;;; EWW web browser settings
 (use-package eww
   :custom (eww-search-prefix "https://searx.be/search?q="))
