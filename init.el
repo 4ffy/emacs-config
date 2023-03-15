@@ -73,6 +73,7 @@
               next-line-add-newlines t
               read-buffer-completion-ignore-case t
               read-file-name-completion-ignore-case t
+              repeat-exit-timeout 1
               require-final-newline t
               save-interprogram-paste-before-kill t
               switch-to-buffer-obey-display-actions t
@@ -86,6 +87,7 @@
 ;; Various interface modes
 (display-time-mode t)
 (menu-bar-mode -1)
+(repeat-mode 1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
