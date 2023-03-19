@@ -246,6 +246,13 @@
   (require 'org-roam-dailies)
   (org-roam-db-autosync-mode))
 
+;; Paredit
+(use-package paredit
+ :ensure t
+ :pin nongnu
+ :hook
+ (clojure-mode fennel-mode lisp-data-mode racket-mode scheme-mode))
+
 ;; Racket mode
 (use-package racket-mode
   :ensure t
