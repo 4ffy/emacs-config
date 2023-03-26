@@ -41,7 +41,8 @@
   (set-frame-font font-string t))
 
 ;; Basic settings.
-(setq-default auto-revert-verbose nil
+(setq-default apropos-do-all t
+              auto-revert-verbose nil
               auto-save-default t
               auto-save-file-name-transforms
               `((".*" ,(file-name-concat user-emacs-directory "auto-save/") t))
