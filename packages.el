@@ -40,7 +40,7 @@
 (use-package cider
   :ensure t
   :pin nongnu
-  :hook (clojure-mode . cider-mode))
+  :hook clojure-mode)
 
 ;; clojure mode
 (use-package clojure-mode
@@ -84,8 +84,7 @@
   :ensure t
   :pin gnu
   :custom (eglot-autoreconnect nil)
-  :hook
-  (prog-mode . eglot-ensure))
+  :hook (prog-mode . eglot-ensure))
 
 ;; Elfeed (RSS)
 (use-package elfeed
