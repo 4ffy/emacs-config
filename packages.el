@@ -55,12 +55,6 @@
   :diminish company-mode
   :init (global-company-mode))
 
-;; CUDA Mode
-(use-package cuda-mode
-  :ensure t
-  :pin melpa
-  :mode "\\.cuh?\\'")
-
 ;; Diminish (Hide modeline clutter)
 (use-package diminish
   :ensure t
@@ -72,12 +66,6 @@
   (diminish 'auto-revert-mode-text)
   (diminish 'eldoc-mode)
   (diminish 'visual-line-mode))
-
-;; D mode
-(use-package d-mode
-  :ensure t
-  :pin nongnu
-  :mode "\\.d[i]?\\'")
 
 ;; Eglot (LSP)
 (use-package eglot
