@@ -142,12 +142,19 @@
   :pin nongnu
   :mode "\\.go\\'")
 
-;; Hyperbole mode
+;; Hyperbole
 (use-package hyperbole
   :ensure t
   :pin gnu
   :diminish hyperbole-mode
   :init (hyperbole-mode))
+
+;; Hy mode
+(use-package hy-mode
+  :ensure t
+  :pin melpa
+  :mode "\\.hy\\'"
+  :interpreter "hy")
 
 ;; Improved Javascript mode.
 (use-package js2-mode
@@ -211,6 +218,7 @@
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
+;; Org Roam
 (use-package org-roam
   :ensure t
   :pin melpa
@@ -238,7 +246,7 @@
  :ensure t
  :pin nongnu
  :hook
- (clojure-mode fennel-mode lisp-data-mode racket-mode scheme-mode))
+ (clojure-mode fennel-mode hy-mode lisp-data-mode racket-mode scheme-mode))
 
 ;; Racket mode
 (use-package racket-mode
