@@ -156,13 +156,6 @@
   :mode "\\.hy\\'"
   :interpreter "hy")
 
-;; Improved Javascript mode.
-(use-package js2-mode
-  :ensure t
-  :pin gnu
-  :mode "\\.js[mx]?\\'"
-  :interpreter "node")
-
 ;; JSON Mode
 (use-package json-mode
   :ensure t
