@@ -88,7 +88,8 @@
 ;; Elisp auto formatting
 (use-package elisp-autofmt
   :ensure t
-  :pin melpa)
+  :pin melpa
+  :defer t)
 
 ;; Elpy (Python)
 (use-package elpy
