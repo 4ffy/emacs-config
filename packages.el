@@ -261,6 +261,13 @@
   :pin melpa
   :init (simple-modeline-mode))
 
+;; SLIME
+(use-package slime
+  :ensure t
+  :pin melpa
+  :hook lisp-mode
+  :init (setq-default inferior-lisp-program "sbcl"))
+
 ;; Vertico (icomplete-vertical but better)
 (use-package vertico
   :ensure t
