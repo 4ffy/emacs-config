@@ -98,6 +98,14 @@
   :defer t
   :init (advice-add 'python-mode :before 'elpy-enable))
 
+;; Emacs Everywhere
+;; Note that xclip, xdotool, xprop, and xwininfo must be installed.
+(use-package emacs-everywhere
+  :ensure t
+  :pin melpa
+  :when (equal system-type 'gnu/linux)
+  :defer t)
+
 ;; ERC nick highlighing
 (use-package erc-hl-nicks
   :ensure t
