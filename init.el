@@ -242,17 +242,16 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 ;; Dired settings
 (use-package dired
   :custom
+  (dired-auto-revert-buffer 'dired-directory-changed-p)
   (dired-do-revert-buffer t)
   (dired-dwim-target t)
-  (dired-auto-revert-buffer 'dired-directory-changed-p)
+  (dired-listing-switches (if (string-match
+                               "GNU coreutils"
+                               (shell-command-to-string "ls --version"))
+                              "-Dahl --color=auto --group-directories-first"
+                            "-ahl --group-directories-first"))
   (dired-kill-when-opening-new-dired-buffer t)
-  :bind (:map dired-mode-map ("N" . dired-create-empty-file))
-  :hook (dired-mode . auto-revert-mode)
-  :init
-  (setq-default dired-listing-switches
-                (if (equal system-type 'gnu/linux)
-                    "-Dahl --color=auto --group-directories-first"
-                  "-ahl --group-directories-first")))
+  :bind (:map dired-mode-map ("N" . dired-create-empty-file)))
 
 ;; Extra Dired goodies
 (use-package dired-x)
