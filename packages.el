@@ -331,6 +331,10 @@
   :ensure t
   :pin gnu
   :diminish yas-minor-mode
+  :bind (:map yas-minor-mode-map
+         ("<tab>" . nil)
+         ("TAB" . nil)
+         ("C-c y" . yas-expand))
   :init (yas-global-mode))
 
 (use-package yasnippet-snippets
