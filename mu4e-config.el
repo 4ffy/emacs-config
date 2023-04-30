@@ -41,3 +41,8 @@
 
 ;; Don't use ido
 (setq-default mu4e-completing-read-function nil)
+
+;; Prevent mu4e from opening full-frame.
+(add-to-list 'display-buffer-alist
+             `(,(regexp-quote mu4e-main-buffer-name)
+               display-buffer-same-window))
