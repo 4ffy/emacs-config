@@ -323,10 +323,9 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 ;; Load macros
 (load-config-file "macros.el")
 
-;; Load mu4e if present and offlineimap is configured
+;; Load mu4e if present
 ;; mu also needs to be set up but that's harder to test for
-(when (and (locate-library "mu4e")
-           (file-exists-p (file-name-concat (getenv "HOME") ".offlineimaprc")))
+(when (locate-library "mu4e")
   (load-config-file "mu4e-config.el"))
 
 
