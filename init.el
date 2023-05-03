@@ -17,7 +17,7 @@
 ;; This function has to be at the top.
 (defun my-laptop-p ()
   "Determine if the current system is my laptop."
-  (equal "Renda" (system-name)))
+  (string-equal "Renda" (system-name)))
 
 
 
