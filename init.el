@@ -239,6 +239,9 @@ If REGION is non-nil, unfill all paragraphs in the active region."
   :custom (compile-command "make -k -j$(nproc)")
   :hook (compilation-filter . ansi-color-compilation-filter))
 
+;; Extra Dired goodies.
+(use-package dired-x)
+
 ;; Dired settings
 (use-package dired
   :custom
@@ -250,11 +253,7 @@ If REGION is non-nil, unfill all paragraphs in the active region."
                                (shell-command-to-string "ls --version"))
                               "-Dahl --color=auto --group-directories-first"
                             "-ahl --group-directories-first"))
-  (dired-kill-when-opening-new-dired-buffer t)
   :bind (:map dired-mode-map ("N" . dired-create-empty-file)))
-
-;; Extra Dired goodies
-(use-package dired-x)
 
 ;; Doc view Settings
 (use-package doc-view
