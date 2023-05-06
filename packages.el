@@ -318,7 +318,9 @@
   :pin melpa
   :unless (equal system-type 'windows-nt)
   :requires vterm
-  :config (eshell-vterm-mode))
+  :hook eshell-mode
+  :config
+  (add-to-list 'eshell-visual-commands "vim"))
 
 ;; YAML mode
 (use-package yaml-mode
