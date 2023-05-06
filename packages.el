@@ -20,13 +20,15 @@
   ;; Use a different image size on laptop.
   (when (my-laptop-p)
     (setq-default preview-scale-function 0.8))
-  (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-  (add-hook 'LaTeX-mode-hook 'electric-pair-mode)
-  (add-hook 'LaTeX-mode-hook 'flyspell-mode)
-  (add-hook 'LaTeX-mode-hook 'line-number-mode)
-  (add-hook 'LaTeX-mode-hook 'prettify-symbols-mode)
-  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-  (add-hook 'LaTeX-mode-hook 'visual-line-mode))
+  ;; Add prog-mode hooks to LaTeX-mode.
+  (dolist (hook prog-mode-hook)
+    (add-hook 'LaTeX-mode-hook hook))
+  :hook
+  ;; LaTeX-specific hooks go here.
+  ((LaTeX-mode . LaTeX-math-mode)
+   (LaTeX-mode . flyspell-mode)
+   (LaTeX-mode . prettify-symbols-mode)
+   (LaTeX-mode . turn-on-reftex)))
 
 ;; Avy (fast navigation)
 (use-package avy
