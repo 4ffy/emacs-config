@@ -114,12 +114,6 @@
   :pin melpa
   :after erc)
 
-;; Emacs start up profiler
-(use-package esup
-  :ensure t
-  :pin melpa
-  :defer t)
-
 ;; ESS
 (use-package ess
   :ensure t
