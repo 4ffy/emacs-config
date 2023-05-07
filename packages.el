@@ -65,7 +65,6 @@
   (diminish 'abbrev-mode)
   (diminish 'auto-fill-function)
   (diminish 'auto-revert-mode)
-  (diminish 'auto-revert-mode-text)
   (diminish 'eldoc-mode)
   (diminish 'visual-line-mode))
 
