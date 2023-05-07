@@ -55,7 +55,7 @@
   :ensure t
   :pin gnu
   :diminish company-mode
-  :init (global-company-mode))
+  :hook prog-mode)
 
 ;; Diminish (Hide modeline clutter)
 (use-package diminish
