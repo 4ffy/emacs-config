@@ -138,8 +138,14 @@
 (use-package flycheck
   :ensure t
   :pin melpa
-  :diminish flycheck-mode
-  :init (global-flycheck-mode))
+  :hook prog-mode)
+
+;; Make Flycheck work with Eglot.
+(use-package flycheck-eglot
+  :ensure t
+  :pin melpa
+  :after (flycheck eglot)
+  :config (global-flycheck-eglot-mode 1))
 
 ;; Go mode
 (use-package go-mode
