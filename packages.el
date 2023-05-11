@@ -72,7 +72,7 @@
 (use-package eglot
   :ensure t
   :pin gnu
-  :custom (eglot-autoreconnect nil)
+  :custom (eglot-autoshutdown t)
   :hook (prog-mode . eglot-ensure))
 
 ;; Elfeed (RSS)
