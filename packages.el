@@ -321,7 +321,8 @@
   :requires vterm
   :hook eshell-mode
   :config
-  (add-to-list 'eshell-visual-commands "vim"))
+  (dolist (command '("emacs" "emacsclient" "nvim" "vim"))
+    (add-to-list 'eshell-visual-commands command)))
 
 ;; YAML mode
 (use-package yaml-mode
