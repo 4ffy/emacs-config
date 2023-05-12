@@ -1,6 +1,9 @@
 ;; Inhibit garbage collection during startup.
 (setq gc-cons-threshold most-positive-fixnum)
 
+;; Add local lisp directory to `load-path'
+(add-to-list 'load-path (file-name-concat user-emacs-directory "lisp"))
+
 ;; Prepare package system.
 (require 'package)
 (add-to-list 'package-archives

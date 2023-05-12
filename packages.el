@@ -72,8 +72,12 @@
 (use-package eglot
   :ensure t
   :pin gnu
-  :custom (eglot-autoshutdown t)
-  :hook (prog-mode . eglot-ensure))
+  :defer t
+  :custom (eglot-autoshutdown t))
+
+;; Local eglot-auto package.
+(use-package eglot-auto
+  :hook (prog-mode . eglot-auto-start-eglot-maybe))
 
 ;; Elfeed (RSS)
 (use-package elfeed
