@@ -187,8 +187,8 @@
   :ensure t
   :pin melpa
   :bind
-  ("C-c l f" . link-hint-open-link)
-  ("C-c l c" . link-hint-copy-link))
+  (("C-c l f" . link-hint-open-link)
+   ("C-c l c" . link-hint-copy-link)))
 
 ;; Lua mode
 (use-package lua-mode
