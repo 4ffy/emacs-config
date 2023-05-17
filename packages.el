@@ -249,12 +249,17 @@
   (require 'org-roam-dailies)
   (org-roam-db-autosync-mode))
 
+;; ox-extra (local package)
+(use-package ox-extra
+  :after org
+  :config (ox-extras-activate '(ignore-headlines)))
+
 ;; Paredit
 (use-package paredit
- :ensure t
- :pin nongnu
- :hook
- (clojure-mode fennel-mode hy-mode lisp-data-mode racket-mode scheme-mode))
+  :ensure t
+  :pin nongnu
+  :hook
+  (clojure-mode fennel-mode hy-mode lisp-data-mode racket-mode scheme-mode))
 
 ;; Racket mode
 (use-package racket-mode
