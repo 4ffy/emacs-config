@@ -193,6 +193,11 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 ;; KEY BINDINGS ;;
 ;;;;;;;;;;;;;;;;;;
 
+;; Improved DWIM commands.
+(global-set-key (kbd "M-c") 'capitalize-dwim)
+(global-set-key (kbd "M-l") 'downcase-dwim)
+(global-set-key (kbd "M-u") 'upcase-dwim)
+
 ;; Custom kill buffer commands
 (global-set-key (kbd "C-c k") 'kill-current-buffer)
 (global-set-key (kbd "C-c K") 'kill-all-buffers)
