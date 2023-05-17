@@ -4,17 +4,19 @@
 
 (setq-default
  elfeed-feeds
- '(("http://www.precociouscomic.com/rss.php" comic)
-   ("http://www.qwantz.com/rssfeed.php" comic)
+ '(("https://www.precociouscomic.com/rss.php" comic)
+   ("https://www.qwantz.com/rssfeed.php" comic)
    ("https://existentialcomics.com/rss.xml" comic)
    ("https://www.smbc-comics.com/comic/rss" comic)
    ("https://xkcd.com/atom.xml" comic)
    ("https://batsov.com/atom.xml" emacs)
    ("https://emacsredux.com/atom.xml" emacs)
    ("https://irreal.org/blog/?feed=rss2" emacs)
+   ("https://karthinks.com/index.xml" emacs)
+   ("https://protesilaos.com/codelog.xml" emacs)
    ("https://sachachua.com/blog/feed" emacs)
    ("https://www.masteringemacs.org/feed" emacs)
-   ("http://www.hardcoregaming101.net/feed" games)
+   ("https://www.hardcoregaming101.net/feed" games)
    ("https://bay12games.com/dwarves/dev_now.rss" games)
    ("https://blog.minetest.net/feed.rss" games)
    ("https://crpgaddict.blogspot.com/feeds/posts/default" games)
@@ -42,4 +44,8 @@
    ("https://www.accursedfarms.com/rss/3-accursed-farms.xml/" misc)
    ("https://www.dsausa.org/statements/feed" misc)
    ("https://medium.com/feed/@butchanarchy" misc)
-   ("https://morss.it/https://bulletins.hexbear.net/index.xml" news)))
+   ("https://morss.it/https://bulletins.hexbear.net/index.xml" news)
+   ("https://mars.nasa.gov/rss/api/?feed=blogs&category=mars2020&feedtype=rss"
+    space perseverance)
+   ("https://mars.nasa.gov/rss/api/?feed=blogs&category=msl&feedtype=rss"
+    space curiosity)))
