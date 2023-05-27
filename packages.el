@@ -111,6 +111,12 @@
   :when (equal system-type 'gnu/linux)
   :defer t)
 
+;; Engrave faces (for org latex export)
+(use-package engrave-faces
+  :ensure t
+  :pin gnu
+  :defer t)
+
 ;; ERC nick highlighing
 (use-package erc-hl-nicks
   :ensure t
