@@ -340,6 +340,12 @@
   (dolist (command '("emacs" "emacsclient" "nvim" "vim"))
     (add-to-list 'eshell-visual-commands command)))
 
+;; Writeable grep buffer
+(use-package wgrep
+  :ensure t
+  :pin nongnu
+  :defer t)
+
 ;; YAML mode
 (use-package yaml-mode
   :ensure t
