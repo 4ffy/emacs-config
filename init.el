@@ -43,6 +43,12 @@
   (add-to-list 'default-frame-alist `(font . ,font-string))
   (set-frame-font font-string t))
 
+;; Japanese Fallback font. "(emacs) Modifying Fontsets" claims that han script
+;; covers all CJK characters, but I still have to set kana for this to work in
+;; Emacs 29.
+(set-fontset-font t 'han "Noto Serif CJK JP")
+(set-fontset-font t 'kana "Noto Serif CJK JP")
+
 ;; Basic settings.
 (setq-default apropos-do-all t
               auto-revert-verbose nil
