@@ -55,7 +55,26 @@
   :ensure t
   :pin gnu
   :diminish company-mode
-  :hook prog-mode)
+  :hook (prog-mode comint-mode))
+
+(use-package consult
+  :ensure t
+  :pin gnu
+  :bind
+  (("C-x b" . consult-buffer)
+   ("C-x 4 b" . consult-buffer-other-window)
+   ("C-x 5 b" . consult-buffer-other-frame)
+   ("C-x p b" . consult-project-buffer)
+   ("C-x r b" . consult-bookmark)
+   ("M-y" . consult-yank-pop)
+   ("M-g g" . consult-goto-line)
+   ("C-c o" . consult-outline)))
+
+(use-package devil
+  :ensure t
+  :pin nongnu
+  :diminish devil-mode
+  :init (global-devil-mode))
 
 ;; Diminish (Hide modeline clutter)
 (use-package diminish
