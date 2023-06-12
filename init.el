@@ -71,6 +71,9 @@
               inhibit-startup-screen t
               initial-major-mode 'org-mode
               initial-scratch-message nil
+              isearch-lazy-count t
+              lazy-count-prefix-format "(%s/%s) "
+              lazy-count-suffix-format nil
               major-mode (lambda ()
                            (unless buffer-file-name
                              (let ((buffer-file-name (buffer-name)))
