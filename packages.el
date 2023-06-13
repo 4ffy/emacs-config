@@ -68,6 +68,7 @@
    ("C-x r b" . consult-bookmark)
    ("M-y" . consult-yank-pop)
    ("M-g g" . consult-goto-line)
+   ("C-c r" . consult-grep)  ; C-c r because C-c g is for magit
    ("C-c o" . consult-outline)))
 
 (use-package devil
@@ -362,8 +363,7 @@
 ;; Writeable grep buffer
 (use-package wgrep
   :ensure t
-  :pin nongnu
-  :defer t)
+  :pin nongnu)
 
 ;; YAML mode
 (use-package yaml-mode
