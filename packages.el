@@ -75,7 +75,10 @@
   :ensure t
   :pin nongnu
   :diminish devil-mode
-  :init (global-devil-mode))
+  :bind ("C-;" . devil-mode)
+  :init
+  (global-devil-mode)
+  (devil-set-key (kbd ";")))
 
 ;; Diminish (Hide modeline clutter)
 (use-package diminish
