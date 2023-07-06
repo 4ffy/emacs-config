@@ -55,6 +55,7 @@
               `((".*" ,(file-name-concat user-emacs-directory "auto-save/") t))
               auto-save-no-message t
               backup-directory-alist `((".*" . ,temporary-file-directory))
+              bookmark-save-flag 1
               browse-url-browser-function 'browse-web
               column-number-mode t
               completion-ignore-case t
