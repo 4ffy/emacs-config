@@ -111,7 +111,7 @@
   (elfeed-search-filter "@1-week-ago !\[$\] ")
   (elfeed-db-directory (file-name-concat user-emacs-directory "elfeed"))
   :config
-  (load-config-file "feeds.el")) ;feed list to its own file
+  (load-config-file "feeds.el"))  ; feed list to its own file
 
 ;; Elisp auto formatting
 (use-package elisp-autofmt

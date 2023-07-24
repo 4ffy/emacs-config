@@ -44,7 +44,6 @@
    ("https://www.accursedfarms.com/rss/3-accursed-farms.xml/" misc)
    ("https://www.dsausa.org/statements/feed" misc)
    ("https://medium.com/feed/@butchanarchy" misc)
-   ("https://morss.it/https://bulletins.hexbear.net/index.xml" news)
    ("https://mars.nasa.gov/rss/api/?feed=blogs&category=mars2020&feedtype=rss"
     space perseverance)
    ("https://mars.nasa.gov/rss/api/?feed=blogs&category=msl&feedtype=rss"
