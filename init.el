@@ -8,13 +8,6 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 
-;; Prepare use-package.
-(add-to-list 'package-pinned-packages '(use-package . "gnu"))
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(require 'use-package)
-
 ;; This function has to be at the top.
 (defun my-laptop-p ()
   "Determine if the current system is my laptop."
