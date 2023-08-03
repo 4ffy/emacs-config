@@ -44,7 +44,7 @@
   :pin nongnu
   :hook clojure-mode)
 
-;; clojure mode
+;; Clojure mode
 (use-package clojure-mode
   :ensure t
   :pin nongnu
@@ -57,6 +57,7 @@
   :diminish company-mode
   :hook (prog-mode comint-mode))
 
+;; Consult (improved completing-read functions)
 (use-package consult
   :ensure t
   :pin gnu
@@ -68,9 +69,10 @@
    ("C-x r b" . consult-bookmark)
    ("M-y" . consult-yank-pop)
    ("M-g g" . consult-goto-line)
-   ("C-c r" . consult-grep)  ; C-c r because C-c g is for magit
+   ("C-c r" . consult-grep)             ; C-c r because C-c g is for magit
    ("C-c o" . consult-outline)))
 
+;; Devil (prefix-less editing)
 (use-package devil
   :ensure t
   :pin nongnu
