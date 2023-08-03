@@ -187,13 +187,6 @@
   :pin nongnu
   :mode "\\.go\\'")
 
-;; Hyperbole
-(use-package hyperbole
-  :ensure t
-  :pin gnu
-  :diminish hyperbole-mode
-  :init (hyperbole-mode))
-
 ;; Hy mode
 (use-package hy-mode
   :ensure t
