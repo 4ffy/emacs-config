@@ -3,8 +3,10 @@
 ;;;=============================================================================
 
 ;; Prepare package archives.
+(require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
 
 ;; Add local lisp directory to `load-path'
 (add-to-list 'load-path (file-name-concat user-emacs-directory "lisp"))
