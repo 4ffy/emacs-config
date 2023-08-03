@@ -1,13 +1,6 @@
 ;; Inhibit garbage collection during startup.
 (setq gc-cons-threshold most-positive-fixnum)
 
-;; Add local lisp directory to `load-path'
-(add-to-list 'load-path (file-name-concat user-emacs-directory "lisp"))
-
-;; Prepare package archives.
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-
 ;; This function has to be at the top.
 (defun my-laptop-p ()
   "Determine if the current system is my laptop."
