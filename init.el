@@ -30,8 +30,9 @@
 ;; Japanese Fallback font. "(emacs) Modifying Fontsets" claims that han script
 ;; covers all CJK characters, but I still have to set kana for this to work in
 ;; Emacs 29.
-(set-fontset-font t 'han "Noto Serif CJK JP")
-(set-fontset-font t 'kana "Noto Serif CJK JP")
+(dolist (script '(han kana cjk-misc))
+  (set-fontset-font t script "Noto Sans CJK JP"))
+(set-fontset-font t 'hangul "Noto Sans CJK KR")  ; Also Korean because why not.
 
 ;; Basic settings.
 (setq-default apropos-do-all t
