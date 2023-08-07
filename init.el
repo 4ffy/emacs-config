@@ -42,7 +42,6 @@
               auto-save-no-message t
               backup-directory-alist `((".*" . ,temporary-file-directory))
               bookmark-save-flag 1
-              browse-url-browser-function 'browse-web
               column-number-mode t
               completion-ignore-case t
               completions-detailed t
@@ -302,6 +301,7 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 ;; URL settings
 (use-package url
   :custom
+  (browse-url-browser-function 'browse-web)
   (url-cookie-confirmation nil)
   (url-cookie-file null-device "no cookies"))
 
