@@ -264,6 +264,10 @@ If REGION is non-nil, unfill all paragraphs in the active region."
   (doc-view-continuous t)
   (doc-view-resolution 200))
 
+;; Ediff
+(use-package ediff
+  :custom (ediff-window-setup-function 'ediff-setup-windows-plain))
+
 ;; ERC
 (use-package erc
   :custom
