@@ -34,7 +34,9 @@
   (set-fontset-font t script "Noto Sans CJK JP"))
 (set-fontset-font t 'hangul "Noto Sans CJK KR")  ; Also Korean because why not.
 
-;; Basic settings.
+;; Basic settings. These should all be "Emacs settings." That is, customizations
+;; for builtin packages and standalone components should go in separate
+;; use-package declarations further down.
 (setq-default apropos-do-all t
               auto-revert-verbose nil
               auto-save-default t
