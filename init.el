@@ -335,6 +335,10 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (when (locate-library "mu4e")
   (load-config-file "mu4e-config.el"))
 
+;; Load tree sitter if applicable.
+(when (treesit-available-p)
+  (load-config-file "treesit-config.el"))
+
 
 
 ;; Reset garbage collection.
