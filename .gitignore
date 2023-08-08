@@ -20,3 +20,5 @@ flycheck_feeds.el
 /eww-bookmarks
 /auto-save/
 /.org-id-locations
+/multisession/
+/tree-sitter/
