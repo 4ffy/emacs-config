@@ -57,7 +57,7 @@
                 (,(kbd "C-x C-s") . ,(kbd "C-s"))
                 ))
 
-(when (equal "Renda" (system-name)) (display-battery-mode 1))
+(when (cn/my-laptop-p) (display-battery-mode 1))
 (menu-bar-mode 1)
 (exwm-systemtray-enable)
 (exwm-enable)

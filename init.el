@@ -2,7 +2,7 @@
 (setq gc-cons-threshold most-positive-fixnum)
 
 ;; This function has to be at the top.
-(defun my-laptop-p ()
+(defun cn/my-laptop-p ()
   "Determine if the current system is my laptop."
   (string-equal "Renda" (system-name)))
 
@@ -21,7 +21,7 @@
 
 ;; Font selection - use a larger font on laptop
 (let* ((font-family "Liberation Mono")
-       (font-size (if (my-laptop-p) 13 12))
+       (font-size (if (cn/my-laptop-p) 13 12))
        (font-string (format "%s %d" font-family font-size)))
   (add-to-list 'initial-frame-alist `(font . ,font-string))
   (add-to-list 'default-frame-alist `(font . ,font-string))
@@ -116,26 +116,26 @@ frame as a parameter."
 ;; FUNCTION DECLARATIONS ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun load-config-file (file-name)
+(defun cn/load-config-file (file-name)
   "Load the file FILE-NAME relative to the Emacs config directory."
   (load (file-name-concat user-emacs-directory file-name)))
 
-(defun compiler-available-p ()
+(defun cn/compiler-available-p ()
   "Determine whether the variable `exec-path' has a compiler.
 gcc and cmake are valid compilers."
   (or (not (null (executable-find "gcc")))
       (not (null (executable-find "clang")))))
 
-(defun make-build-available-p ()
+(defun cn/make-build-available-p ()
   "Determine whether the variable `exec-path' has a compiler and make."
-  (and (compiler-available-p)
+  (and (cn/compiler-available-p)
        (not (null (executable-find "make")))))
 
-(defun cmake-build-available-p ()
+(defun cn/cmake-build-available-p ()
   "Determine whether the variable `exec-path' has a compiler, make, and cmake."
-  (and (make-build-available-p) (not (null (executable-find "cmake")))))
+  (and (cn/make-build-available-p) (not (null (executable-find "cmake")))))
 
-(defun kill-current-buffer ()
+(defun cn/kill-current-buffer ()
   "Prompt to kill the current buffer.
 If there are multiple windows open, also delete the window
 formerly containing the killed buffer."
@@ -145,7 +145,7 @@ formerly containing the killed buffer."
     (when (not (one-window-p))
       (delete-window))))
 
-(defun kill-all-buffers ()
+(defun cn/kill-all-buffers ()
   "Prompt to kill all buffers, leaving an empty *scratch* buffer."
   (interactive)
   (when (yes-or-no-p "Kill all buffers?")
@@ -153,7 +153,7 @@ formerly containing the killed buffer."
       (mapc 'kill-buffer (buffer-list))
       (delete-other-windows))))
 
-(defun kill-all-other-buffers ()
+(defun cn/kill-all-other-buffers ()
   "Prompt to kill all buffers except for the active buffer."
   (interactive)
   (when (yes-or-no-p "Kill all other buffers?")
@@ -161,13 +161,13 @@ formerly containing the killed buffer."
       (unless (equal buffer (current-buffer))
         (kill-buffer buffer)))))
 
-(defun ansi-colorize-buffer ()
+(defun cn/ansi-colorize-buffer ()
   "Apply ANSI escape code colors to a buffer."
   (interactive)
   (let ((inhibit-read-only t))
     (ansi-color-apply-on-region (point-min) (point-max))))
 
-(defun window-dedication-toggle ()
+(defun cn/toggle-window-dedication ()
   "Toggle window dedication for the current window."
   (interactive)
   (progn
@@ -179,7 +179,7 @@ formerly containing the killed buffer."
                  "enabled"
                "disabled")))))
 
-(defun unfill-paragraph (&optional region)
+(defun cn/unfill-paragraph (&optional region)
   "Take a multi-line paragraph and turn it into a single line of text.
 This function is the opposite of `fill-paragraph'.
 
@@ -203,8 +203,8 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (global-set-key (kbd "M-u") 'upcase-dwim)
 
 ;; Custom kill buffer commands
-(global-set-key (kbd "C-c k") 'kill-current-buffer)
-(global-set-key (kbd "C-c K") 'kill-all-buffers)
+(global-set-key (kbd "C-c k") 'cn/kill-current-buffer)
+(global-set-key (kbd "C-c K") 'cn/kill-all-buffers)
 
 ;; Use ibuffer for buffer list
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -214,10 +214,10 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 
 ;; Window dedication toggle
-(global-set-key (kbd "C-c d") 'window-dedication-toggle)
+(global-set-key (kbd "C-c d") 'cn/toggle-window-dedication)
 
 ;; Unfill paragraph
-(global-set-key (kbd "M-Q") 'unfill-paragraph)
+(global-set-key (kbd "M-Q") 'cn/unfill-paragraph)
 
 ;; Toggle menu bar
 (global-set-key (kbd "<f12>") (lambda () (interactive) (menu-bar-mode 'toggle)))
@@ -331,22 +331,22 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (load custom-file)
 
 ;; Load packages
-(load-config-file "packages.el")
+(cn/load-config-file "packages.el")
 
 ;; Load eshell settings
-(load-config-file "eshell-config.el")
+(cn/load-config-file "eshell-config.el")
 
 ;; Load macros
-(load-config-file "macros.el")
+(cn/load-config-file "macros.el")
 
 ;; Load mu4e if present
 ;; mu also needs to be set up but that's harder to test for
 (when (locate-library "mu4e")
-  (load-config-file "mu4e-config.el"))
+  (cn/load-config-file "mu4e-config.el"))
 
 ;; Load tree sitter if applicable.
 (when (treesit-available-p)
-  (load-config-file "treesit-config.el"))
+  (cn/load-config-file "treesit-config.el"))
 
 
 

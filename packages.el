@@ -31,7 +31,7 @@
   (reftex-plug-into-AUCTeX t)
   :config
   ;; Use a different image size on laptop.
-  (when (my-laptop-p)
+  (when (cn/my-laptop-p)
     (setq-default preview-scale-function 0.8))
   ;; Add prog-mode hooks to LaTeX-mode.
   (dolist (hook prog-mode-hook)
@@ -126,7 +126,7 @@
   (elfeed-search-filter "@1-week-ago !\[$\] ")
   (elfeed-db-directory (file-name-concat user-emacs-directory "elfeed"))
   :config
-  (load-config-file "feeds.el"))  ; feed list to its own file
+  (cn/load-config-file "feeds.el"))  ; feed list to its own file
 
 ;; Elisp auto formatting
 (use-package elisp-autofmt
@@ -266,7 +266,7 @@
 (use-package org-roam
   :ensure t
   :pin melpa
-  :when (make-build-available-p)
+  :when (cn/make-build-available-p)
   :custom
   (org-roam-directory (file-name-concat (getenv "HOME") "Roam"))
   (org-roam-dailies-directory "daily/")
@@ -334,10 +334,10 @@
 (use-package vterm
   :ensure t
   :pin melpa
-  :when (cmake-build-available-p)
+  :when (cn/cmake-build-available-p)
   :unless (equal system-type 'windows-nt)
   :init
-  (defun vterm-other-window ()
+  (defun cn/vterm-other-window ()
     "Create or switch to a vterm buffer in another window."
     (interactive)
     (with-current-buffer (get-buffer-create "*vterm*")
@@ -345,7 +345,7 @@
         (vterm-mode)))
     (switch-to-buffer-other-window "*vterm*"))
 
-  (defun vterm-create-new-buffer ()
+  (defun cn/vterm-create-new-buffer ()
     "Create and switch to a new vterm buffer."
     (interactive)
     (let ((new-buffer (generate-new-buffer "*vterm*")))
@@ -359,7 +359,7 @@
      (when (and (equal major-mode 'vterm-mode) (one-window-p))
        (delete-frame (selected-frame) t))))
 
-  :bind ("C-x 4 v" . 'vterm-other-window))
+  :bind ("C-x 4 v" . 'cn/vterm-other-window))
 
 (use-package eshell-vterm
   :ensure t
