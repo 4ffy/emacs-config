@@ -120,20 +120,16 @@ frame as a parameter."
   "Load the file FILE-NAME relative to the Emacs config directory."
   (load (file-name-concat user-emacs-directory file-name)))
 
-(defun cn/compiler-available-p ()
-  "Determine whether the variable `exec-path' has a compiler.
-gcc and cmake are valid compilers."
-  (or (not (null (executable-find "gcc")))
-      (not (null (executable-find "clang")))))
-
-(defun cn/make-build-available-p ()
-  "Determine whether the variable `exec-path' has a compiler and make."
-  (and (cn/compiler-available-p)
+(defun cn/build-available-p ()
+  "Determine whether the variable `exec-path' has a compiler and make.
+gcc and clang are valid compilers."
+  (and (or (not (null (executable-find "gcc")))
+           (not (null (executable-find "clang"))))
        (not (null (executable-find "make")))))
 
 (defun cn/cmake-build-available-p ()
   "Determine whether the variable `exec-path' has a compiler, make, and cmake."
-  (and (cn/make-build-available-p) (not (null (executable-find "cmake")))))
+  (and (cn/build-available-p) (not (null (executable-find "cmake")))))
 
 (defun cn/kill-current-buffer ()
   "Prompt to kill the current buffer.

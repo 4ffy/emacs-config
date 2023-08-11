@@ -266,7 +266,7 @@
 (use-package org-roam
   :ensure t
   :pin melpa
-  :when (cn/make-build-available-p)
+  :when (cn/build-available-p)
   :custom
   (org-roam-directory (file-name-concat (getenv "HOME") "Roam"))
   (org-roam-dailies-directory "daily/")

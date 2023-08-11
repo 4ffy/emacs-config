@@ -62,7 +62,7 @@ grammar as given in `treesit-language-source-alist'.")
                `(,(car language) . ,(cdddr language))))
 
 ;;; Compile tree sitter grammars if possible.
-(when (cn/compiler-available-p)
+(when (cn/build-available-p)
   (dolist (grammar treesit-language-source-alist)
     (unless (treesit-language-available-p (car grammar))
       (treesit-install-language-grammar (car grammar)))))
