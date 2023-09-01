@@ -291,15 +291,19 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (use-package gud
   :custom (gdb-show-main t))
 
+;; Hexl hex editor
+(use-package hexl
+  :custom (hexl-bits 8))
+
 ;; Org mode settings
 (use-package org
- :custom
- (org-babel-load-languages '((emacs-lisp . t) (python . t) (R . t)))
- (org-confirm-babel-evaluate nil)
- (org-enforce-todo-dependencies t)
- (org-export-with-smart-quotes t)
- (org-latex-compiler "xelatex")
- (org-return-follows-link t))
+  :custom
+  (org-babel-load-languages '((emacs-lisp . t) (python . t) (R . t)))
+  (org-confirm-babel-evaluate nil)
+  (org-enforce-todo-dependencies t)
+  (org-export-with-smart-quotes t)
+  (org-latex-compiler "xelatex")
+  (org-return-follows-link t))
 
 ;; HTML renderer settings
 (use-package shr
