@@ -43,4 +43,5 @@
   ;; Open mu4e in same window.
   (add-to-list 'display-buffer-alist
                `(,(regexp-quote mu4e-main-buffer-name)
-                 (display-buffer-same-window))))
+                 (display-buffer-same-window)))
+  (keymap-set mu4e-main-mode-map (kbd "u") #'mu4e-update-index))
