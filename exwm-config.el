@@ -62,13 +62,13 @@
 (exwm-systemtray-enable)
 (exwm-enable)
 
-(when (equal
-       "enabled\n"
+(when (string-match
+       "enabled"
        (shell-command-to-string "systemctl --user is-enabled emacs.service"))
   (shell-command "systemctl --user stop emacs.service"))
 
-(when (equal
-       "enabled\n"
+(when (string-match
+       "enabled"
        (shell-command-to-string "systemctl --user is-enabled xremap.service"))
   (shell-command "systemctl --user stop xremap.service"))
 
