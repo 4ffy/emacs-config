@@ -337,21 +337,11 @@
   :when (cn/cmake-build-available-p)
   :unless (equal system-type 'windows-nt)
   :init
-  (defun cn/vterm-other-window ()
-    "Create or switch to a vterm buffer in another window."
-    (interactive)
-    (with-current-buffer (get-buffer-create "*vterm*")
-      (unless (equal major-mode 'vterm-mode)
-        (vterm-mode)))
-    (switch-to-buffer-other-window "*vterm*"))
-
   (defun cn/vterm-create-new-buffer ()
     "Create and switch to a new vterm buffer."
     (interactive)
-    (let ((new-buffer (generate-new-buffer "*vterm*")))
-      (with-current-buffer new-buffer
-        (vterm-mode))
-      (switch-to-buffer new-buffer)))
+    (let ((current-prefix-arg '(4)))
+      (call-interactively #'vterm)))
 
   (add-hook
    'vterm-exit-functions
@@ -359,7 +349,9 @@
      (when (and (equal major-mode 'vterm-mode) (one-window-p))
        (delete-frame (selected-frame) t))))
 
-  :bind ("C-x 4 v" . 'cn/vterm-other-window))
+  :bind
+  (("C-c v" . vterm)
+   ("C-x 4 v" . vterm-other-window)))
 
 (use-package eshell-vterm
   :ensure t
