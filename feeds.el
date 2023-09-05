@@ -39,6 +39,7 @@
    ("https://www.kernel.org/feeds/all.atom.xml" linux)
    ("https://blog.rust-lang.org/feed.xml" programming)
    ("https://go.dev/blog/feed.atom" programming)
+   ("https://technomancy.us/atom.xml" programming)
    ("https://international.dsausa.org/statements/feed" misc)
    ("https://www.reddit.com/r/HobbyDrama/.rss" misc)
    ("https://www.accursedfarms.com/rss/3-accursed-farms.xml/" misc)
