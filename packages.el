@@ -51,18 +51,6 @@
   (("C-c j" . avy-goto-word-1)
    ("C-c J" . avy-goto-char-2)))
 
-;; CIDER (Clojure)
-(use-package cider
-  :ensure t
-  :pin nongnu
-  :hook clojure-mode)
-
-;; Clojure mode
-(use-package clojure-mode
-  :ensure t
-  :pin nongnu
-  :mode "\\.\\(clj\\|cljd\\|dtm\\|edn\\)\\'")
-
 ;; Company (popup autocompletion)
 (use-package company
   :ensure t
