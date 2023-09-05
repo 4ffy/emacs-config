@@ -312,6 +312,12 @@
   :hook lisp-mode
   :init (setq-default inferior-lisp-program "sbcl"))
 
+;; Automatic title case commands.
+(use-package titlecase
+  :ensure t
+  :pin melpa
+  :defer t)
+
 ;; Vertico (icomplete-vertical but better)
 (use-package vertico
   :ensure t
