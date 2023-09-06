@@ -47,6 +47,7 @@
 (use-package avy
   :ensure t
   :pin gnu
+  :demand t
   :bind
   (("C-c j" . avy-goto-word-1)
    ("C-c J" . avy-goto-char-2)))
@@ -62,6 +63,7 @@
 (use-package consult
   :ensure t
   :pin gnu
+  :demand t
   :bind
   (("C-x b" . consult-buffer)
    ("C-x 4 b" . consult-buffer-other-window)
@@ -254,6 +256,7 @@
 (use-package org-roam
   :ensure t
   :pin melpa
+  :demand t
   :when (cn/build-available-p)
   :custom
   (org-roam-directory (file-name-concat (getenv "HOME") "Roam"))
@@ -328,6 +331,7 @@
 (use-package vterm
   :ensure t
   :pin melpa
+  :demand t
   :when (cn/cmake-build-available-p)
   :unless (equal system-type 'windows-nt)
   :init
