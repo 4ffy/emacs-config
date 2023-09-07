@@ -33,7 +33,6 @@
 ;; so I have to wrap this in a function and call it when a frame is created.
 (defun cn/cjk-font-setup (&optional frame)
   "Set CJK fonts for the default fontset.
-
 FRAME is unused and is present only to satisfy
 `after-make-frame-functions', which calls its hooks with the new
 frame as a parameter."
@@ -41,6 +40,7 @@ frame as a parameter."
   (dolist (script '(han kana cjk-misc))
     (set-fontset-font t script "Noto Sans CJK JP"))
   (set-fontset-font t 'hangul "Noto Sans CJK KR"))
+
 (add-hook 'after-make-frame-functions 'cn/cjk-font-setup)
 
 ;; Basic settings. These should all be "Emacs settings." That is, customizations
