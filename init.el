@@ -194,38 +194,38 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 ;;;;;;;;;;;;;;;;;;
 
 ;; Improved DWIM commands.
-(global-set-key (kbd "M-c") 'capitalize-dwim)
-(global-set-key (kbd "M-l") 'downcase-dwim)
-(global-set-key (kbd "M-u") 'upcase-dwim)
+(keymap-global-set "M-c" 'capitalize-dwim)
+(keymap-global-set "M-l" 'downcase-dwim)
+(keymap-global-set "M-u" 'upcase-dwim)
 
 ;; Custom kill buffer commands
-(global-set-key (kbd "C-c k") 'cn/kill-current-buffer)
-(global-set-key (kbd "C-c K") 'cn/kill-all-buffers)
+(keymap-global-set "C-c k" 'cn/kill-current-buffer)
+(keymap-global-set "C-c K" 'cn/kill-all-buffers)
 
 ;; Use ibuffer for buffer list
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+(keymap-global-set "C-x C-b" 'ibuffer)
 
 ;; Regex search by default
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(keymap-global-set "C-s" 'isearch-forward-regexp)
+(keymap-global-set "C-r" 'isearch-backward-regexp)
 
 ;; Window dedication toggle
-(global-set-key (kbd "C-c d") 'cn/toggle-window-dedication)
+(keymap-global-set "C-c d" 'cn/toggle-window-dedication)
 
 ;; Unfill paragraph
-(global-set-key (kbd "M-Q") 'cn/unfill-paragraph)
+(keymap-global-set "M-Q" 'cn/unfill-paragraph)
 
 ;; Toggle menu bar
-(global-set-key (kbd "<f12>") (lambda () (interactive) (menu-bar-mode 'toggle)))
+(keymap-global-set "<f12>" (lambda () (interactive) (menu-bar-mode 'toggle)))
 
 ;; Make window resizing more coarse
 ;; There is no shrink window vertically command bound by default
-(global-set-key (kbd "C-x ^") (lambda () (interactive)
-                                (enlarge-window 10)))
-(global-set-key (kbd "C-x {") (lambda () (interactive)
-                                (shrink-window-horizontally 10)))
-(global-set-key (kbd "C-x }") (lambda () (interactive)
-                                (enlarge-window-horizontally 10)))
+(keymap-global-set "C-x ^" (lambda () (interactive)
+                             (enlarge-window 10)))
+(keymap-global-set "C-x {" (lambda () (interactive)
+                             (shrink-window-horizontally 10)))
+(keymap-global-set "C-x }" (lambda () (interactive)
+                             (enlarge-window-horizontally 10)))
 
 
 

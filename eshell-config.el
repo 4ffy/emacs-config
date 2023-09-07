@@ -42,7 +42,8 @@
       (eshell-mode)))
   (switch-to-buffer-other-window "*eshell*"))
 
-(global-set-key (kbd "C-x 4 s") 'cn/eshell-other-window)
+(keymap-global-set "C-c s" 'eshell)
+(keymap-global-set "C-x 4 s" 'cn/eshell-other-window)
 
 (defun cn/eshell-create-new-buffer ()
   "Create and switch to a new eshell buffer."
