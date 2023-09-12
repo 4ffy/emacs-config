@@ -287,7 +287,7 @@
   :ensure t
   :pin nongnu
   :hook
-  (clojure-mode fennel-mode hy-mode lisp-data-mode racket-mode scheme-mode))
+  (fennel-mode hy-mode lisp-data-mode racket-mode scheme-mode))
 
 ;; Racket mode
 (use-package racket-mode
