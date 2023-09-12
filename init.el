@@ -227,6 +227,9 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (keymap-global-set "C-x }" (lambda () (interactive)
                              (enlarge-window-horizontally 10)))
 
+;; Toggle proportional fonts
+(keymap-global-set "C-c p" 'variable-pitch-mode)
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
