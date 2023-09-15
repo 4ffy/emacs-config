@@ -247,7 +247,9 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 
 ;; Compilation settings
 (use-package compile
-  :custom (compile-command "make -k -j$(nproc)")
+  :custom
+  (compile-command "make -k -j$(nproc)")
+  (compilation-scroll-output t)
   :hook (compilation-filter . ansi-color-compilation-filter))
 
 ;; Extra Dired goodies.
