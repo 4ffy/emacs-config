@@ -245,6 +245,10 @@ If REGION is non-nil, unfill all paragraphs in the active region."
   (c-doc-comment-style '((java-mode . javadoc)
                          (other . doxygen))))
 
+;; C tree-sitter settings
+(use-package c-ts-mode
+  :custom (c-ts-mode-indent-offset c-basic-offset))
+
 ;; Compilation settings
 (use-package compile
   :custom
@@ -291,6 +295,10 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 
 ;; Extra generic modes
 (use-package generic-x)
+
+;; Go tree-sitter settings
+(use-package go-ts-mode
+  :custom (go-ts-mode-indent-offset tab-width))
 
 ;; Debugger settings
 (use-package gud
