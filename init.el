@@ -268,8 +268,8 @@ If REGION is non-nil, unfill all paragraphs in the active region."
   (dired-listing-switches (if (string-match
                                "GNU coreutils"
                                (shell-command-to-string "ls --version"))
-                              "-Dahl --color=auto --group-directories-first"
-                            "-ahl --group-directories-first"))
+                              "-ADXghl --group-directories-first"
+                            "-AXghl --group-directories-first"))
   :bind (:map dired-mode-map ("N" . dired-create-empty-file)))
 
 ;; Doc view Settings
