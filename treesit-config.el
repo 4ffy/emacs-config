@@ -12,6 +12,10 @@
      c-mode
      c-ts-mode
      "https://github.com/tree-sitter/tree-sitter-c")
+    (cmake
+     cmake-mode
+     cmake-ts-mode
+     "https://github.com/uyha/tree-sitter-cmake")
     (cpp
      c++-mode
      c++-ts-mode
