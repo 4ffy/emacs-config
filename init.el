@@ -239,7 +239,7 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 ;; C-style language settings
 (use-package cc-mode
   :custom
-  (c-basic-offset 4)
+  (c-basic-offset tab-width)
   (c-default-style '((java-mode . "java")
                      (other . "linux")))
   (c-doc-comment-style '((java-mode . javadoc)
