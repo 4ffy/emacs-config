@@ -269,13 +269,48 @@
    ("C-c n i" . org-roam-node-insert)
    ("C-c n l" . org-roam-buffer-toggle)
    ("C-c n r" . org-roam-refile)
+   ("C-c n t" . org-roam-tag-add)
    :map org-mode-map
    ("C-M-i" . completion-at-point))
   :bind-keymap
   ("C-c n d" . org-roam-dailies-map)
   :config
   (require 'org-roam-dailies)
-  (org-roam-db-autosync-mode))
+  (org-roam-db-autosync-mode)
+
+  (defun cn/org-roam-node-find-by-tag ()
+    "Open an org-roam node by tag and name.  First, prompt for a tag,
+then display a filtered list of nodes with that tag to select from."
+    (interactive)
+    (let ((tag (completing-read "Tag: " (org-roam-tag-completions))))
+      (org-roam-node-find
+       nil nil
+       #'(lambda (node) (member tag (org-roam-node-tags node))))))
+
+  (defun cn/org-roam-insert-nodes-with-tag ()
+    "Insert a list of links to org-roam nodes that have the selected tag.
+This is useful for quickly collecting nodes on a given topic."
+    (interactive)
+    (let* ((tag (completing-read "Tag: " (org-roam-tag-completions)))
+           (nodes-with-tag
+            (sort
+             (seq-filter
+              (lambda (node)
+                (member tag (org-roam-node-tags node)))
+              (org-roam-node-list))
+             (lambda (node-1 node-2)
+               (string<
+                (downcase (org-roam-node-title node-1))
+                (downcase (org-roam-node-title node-2)))))))
+      (save-excursion
+        (dolist (node nodes-with-tag)
+          (insert
+           (format "\n - %s"
+                   (org-link-make-string
+                    (concat
+                     "id:" (org-roam-node-id node))
+                    (org-roam-node-title node))))))
+      (delete-char 1))))
 
 ;; ox-extra (local package)
 (use-package ox-extra
