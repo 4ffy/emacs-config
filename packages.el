@@ -101,7 +101,9 @@
   :ensure t
   :pin gnu
   :defer t
-  :custom (eglot-autoshutdown t))
+  :custom
+  (eglot-autoshutdown t)
+  (eglot-ignored-server-capabilities '(:inlayHintProvider)))
 
 ;; Local eglot-auto package.
 (use-package eglot-auto
