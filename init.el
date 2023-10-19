@@ -253,9 +253,11 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (use-package compile
   :custom
   (compile-command "make -k -j$(nproc)")
-  (compilation-scroll-output 'first-error)
+  (compilation-scroll-output t)
   (compilation-skip-threshold 2)
-  :hook (compilation-filter . ansi-color-compilation-filter))
+  :hook (compilation-filter . ansi-color-compilation-filter)
+  :init (add-to-list 'compilation-finish-functions
+                     (lambda (_ _) (first-error))))
 
 ;; Extra Dired goodies.
 (use-package dired-x)
