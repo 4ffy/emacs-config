@@ -92,8 +92,6 @@
   :init
   (diminish 'abbrev-mode)
   (diminish 'auto-fill-function)
-  (diminish 'auto-revert-mode)
-  (diminish 'eldoc-mode)
   (diminish 'visual-line-mode))
 
 ;; Editorconfig support

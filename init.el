@@ -236,6 +236,13 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 ;; SETTINGS FOR MAJOR BUILTIN PACKAGES ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Auto revert settings
+(use-package autorevert
+  :custom
+  (global-auto-revert-mode-text "")
+  (auto-revert-mode-text "")
+  (auto-revert-tail-mode-text ""))
+
 ;; C-style language settings
 (use-package cc-mode
   :custom
@@ -284,6 +291,10 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 ;; Ediff
 (use-package ediff
   :custom (ediff-window-setup-function 'ediff-setup-windows-plain))
+
+;; Eldoc
+(use-package eldoc
+  :custom (eldoc-minor-mode-string ""))
 
 ;; ERC
 (use-package erc
