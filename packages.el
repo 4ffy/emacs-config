@@ -96,6 +96,13 @@
   (diminish 'eldoc-mode)
   (diminish 'visual-line-mode))
 
+;; Editorconfig support
+(use-package editorconfig
+  :ensure t
+  :pin nongnu
+  :custom (editorconfig-mode-lighter "")
+  :init (editorconfig-mode))
+
 ;; Eglot (LSP)
 (use-package eglot
   :ensure t
