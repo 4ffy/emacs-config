@@ -24,6 +24,10 @@
      go-mode
      go-ts-mode
      "https://github.com/tree-sitter/tree-sitter-go")
+    (gomod
+     go-dot-mod-mode
+     go-mod-ts-mode
+     "https://github.com/camdencheek/tree-sitter-go-mod")
     (java
      java-mode
      java-ts-mode
