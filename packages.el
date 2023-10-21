@@ -312,11 +312,6 @@ This is useful for quickly collecting nodes on a given topic."
                     (org-roam-node-title node))))))
       (delete-char 1))))
 
-;; ox-extra (local package)
-(use-package ox-extra
-  :after org
-  :config (ox-extras-activate '(ignore-headlines)))
-
 ;; Paredit
 (use-package paredit
   :ensure t
