@@ -131,13 +131,6 @@
   :pin melpa
   :defer t)
 
-;; Elpy (Python)
-(use-package elpy
-  :ensure t
-  :pin melpa
-  :defer t
-  :init (advice-add 'python-mode :before 'elpy-enable))
-
 ;; Emacs Everywhere
 ;; Note that xclip, xdotool, xprop, and xwininfo must be installed.
 (use-package emacs-everywhere
@@ -330,6 +323,12 @@ This is useful for quickly collecting nodes on a given topic."
   :pin nongnu
   :hook
   (fennel-mode hy-mode lisp-data-mode racket-mode scheme-mode))
+
+;; Switch Python virtual environment
+(use-package pyvenv
+  :ensure t
+  :pin melpa
+  :defer t)
 
 ;; Racket mode
 (use-package racket-mode
