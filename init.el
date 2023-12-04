@@ -264,7 +264,10 @@ If REGION is non-nil, unfill all paragraphs in the active region."
   (compilation-skip-threshold 2)
   :hook (compilation-filter . ansi-color-compilation-filter)
   :init (add-to-list 'compilation-finish-functions
-                     (lambda (_ _) (first-error))))
+                     (lambda (_ _)
+                       (condition-case nil
+                           (first-error)
+                         (error nil)))))
 
 ;; Extra Dired goodies.
 (use-package dired-x)
