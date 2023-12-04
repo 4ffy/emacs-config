@@ -112,7 +112,7 @@
 
 ;; Local eglot-auto package.
 (use-package eglot-auto
-  :hook (prog-mode . eglot-auto-start-eglot-maybe))
+  :bind ("C-c e" . eglot-auto-start-eglot-maybe))
 
 ;; Elfeed (RSS)
 (use-package elfeed
