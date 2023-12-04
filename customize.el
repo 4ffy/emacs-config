@@ -86,7 +86,7 @@
  '(custom-safe-themes
    '("864646646f61d732efdde358b070b58ff6d541291d04fefdc5af6c9581eaa4aa" "738c4838957c1884dfacbb6f4f783c54e87c4a6b31c336d6279fc1c2b2ee56c5" "a53f00556ab4c81a0618ab6589053d9e351312d37d9c9cf544e0c8edac2b63ab" "88deeaaab5a631834e6f83e8359b571cfcbf5a18b04990288c8569cc16ee0798" default))
  '(package-selected-packages
-   '(auctex avy company consult devil diminish dmenu editorconfig eglot elfeed elisp-autofmt emacs-everywhere engrave-faces erc-hl-nicks eshell-vterm ess exec-path-from-shell exwm fennel-mode flycheck flycheck-eglot go-mode hy-mode json-mode keepass-mode link-hint lua-mode magit marginalia markdown-mode orderless org-roam paredit pyvenv racket-mode rust-mode simple-modeline slime titlecase vertico vterm wgrep yaml-mode yasnippet yasnippet-snippets))
+   '(auctex avy company consult devil diminish dmenu editorconfig eglot elfeed elisp-autofmt emacs-everywhere engrave-faces erc-hl-nicks eshell-vterm ess exec-path-from-shell exwm fennel-mode flycheck flycheck-eglot go-mode json-mode keepass-mode link-hint lua-mode magit marginalia markdown-mode orderless org-roam paredit pyvenv racket-mode rust-mode simple-modeline slime titlecase vertico vterm wgrep yaml-mode yasnippet yasnippet-snippets))
  '(safe-local-variable-values
    '((eval add-hook 'before-save-hook 'time-stamp)
      (vc-prepare-patches-separately)

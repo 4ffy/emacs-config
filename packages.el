@@ -190,13 +190,6 @@
   :pin nongnu
   :mode "\\.go\\'")
 
-;; Hy mode
-(use-package hy-mode
-  :ensure t
-  :pin melpa
-  :mode "\\.hy\\'"
-  :interpreter "hy")
-
 ;; JSON Mode
 (use-package json-mode
   :ensure t
@@ -317,7 +310,7 @@ This is useful for quickly collecting nodes on a given topic."
   :ensure t
   :pin nongnu
   :hook
-  (fennel-mode hy-mode lisp-data-mode racket-mode scheme-mode))
+  (fennel-mode lisp-data-mode racket-mode scheme-mode))
 
 ;; Switch Python virtual environment
 (use-package pyvenv
