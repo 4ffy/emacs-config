@@ -3,7 +3,7 @@
 ;;;=============================================================================
 
 ;;; List of tree sitter languages.
-(defvar my-treesit-language-list
+(defvar cn/treesit-language-list
   '((bash
      sh-mode
      bash-ts-mode
@@ -55,7 +55,7 @@ Each element in the list should have the form
     (LANG LANG-MODE LANG-TS-MODE . (URL REVISION SOURCE-DIR CC C++)
 
 LANG is the tree-sitter language symbol as used by
-`treesit-language-source-alist' and `treesit-available-p'.
+`treesit-language-source-alist' and `treesit-language-available-p'.
 
 LANG-MODE and LANG-TS-MODE are the original and tree-sitter
 replacement modes to be entered into `major-mode-remap-alist'.
@@ -65,7 +65,7 @@ grammar as given in `treesit-language-source-alist'.")
 
 ;;; Set tree sitter grammar sources by adding the 1st and >=4th entries to
 ;;; `treesit-language-source-alist'
-(dolist (language my-treesit-language-list)
+(dolist (language cn/treesit-language-list)
   (add-to-list 'treesit-language-source-alist
                `(,(car language) . ,(cdddr language))))
 
@@ -77,7 +77,7 @@ grammar as given in `treesit-language-source-alist'.")
 
 ;;; Map major modes to their tree sitter equivalents if their grammar is
 ;;; available.
-(dolist (language my-treesit-language-list)
+(dolist (language cn/treesit-language-list)
   (let ((language-symbol (car language))
         (mode-name (cadr language))
         (ts-mode-name (caddr language)))
