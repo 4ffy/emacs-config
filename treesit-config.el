@@ -83,3 +83,9 @@ grammar as given in `treesit-language-source-alist'.")
         (ts-mode-name (caddr language)))
     (when (treesit-ready-p language-symbol t)
       (add-to-list 'major-mode-remap-alist `(,mode-name . ,ts-mode-name)))))
+
+(defun cn/tree-sitter-update-grammars ()
+  "Recompile grammars from `treesit-language-sort-alist' with a fresh clone."
+  (interactive)
+  (dolist (grammar treesit-language-source-alist)
+    (treesit-install-language-grammar (car grammar))))
