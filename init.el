@@ -92,6 +92,7 @@ frame as a parameter."
               user-full-name "Cameron Norton"
               user-mail-address "cameron.norton@gmail.com"
               view-read-only t
+              visual-line-fringe-indicators '(nil right-curly-arrow)
               window-resize-pixelwise t)
 
 ;; Various interface modes

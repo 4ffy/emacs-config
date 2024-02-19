@@ -235,7 +235,9 @@
   :ensure t
   :pin nongnu
   :mode "\\.\\(?:md\\|markdown\\|mkd\\|mdown\\|mkdn\\|mdwn\\)\\'"
-  :config (add-hook 'markdown-mode-hook 'flyspell-mode))
+  :config
+  (add-hook 'markdown-mode-hook 'flyspell-mode)
+  (add-hook 'markdown-view-mode-hook 'visual-line-mode))
 
 ;; Orderless
 (use-package orderless
@@ -349,6 +351,16 @@ This is useful for quickly collecting nodes on a given topic."
   :ensure t
   :pin melpa
   :defer t)
+
+;; Soft wrap lines at fill column
+(use-package visual-fill-column
+  :ensure t
+  :pin nongnu
+  :defer t
+  :custom (visual-fill-column-enable-sensible-window-split t)
+  :init (add-hook 'visual-line-mode-hook
+                  (lambda () (visual-fill-column-mode
+                              (if visual-line-mode 1 -1)))))
 
 ;; Vertico (icomplete-vertical but better)
 (use-package vertico
