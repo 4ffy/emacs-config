@@ -337,7 +337,8 @@ If REGION is non-nil, unfill all paragraphs in the active region."
   (org-enforce-todo-dependencies t)
   (org-export-with-smart-quotes t)
   (org-latex-compiler "xelatex")
-  (org-return-follows-link t))
+  (org-return-follows-link t)
+  (org-src-preserve-indentation t))
 
 ;; HTML renderer settings
 (use-package shr
