@@ -254,7 +254,9 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 
 ;; C tree-sitter settings
 (use-package c-ts-mode
-  :custom (c-ts-mode-indent-offset c-basic-offset))
+  :custom
+  (c-ts-mode-indent-style 'linux)
+  (c-ts-mode-indent-offset c-basic-offset))
 
 ;; Compilation settings
 (use-package compile
