@@ -350,8 +350,7 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (use-package url
   :custom
   (browse-url-browser-function 'browse-web)
-  (url-cookie-confirmation nil)
-  (url-cookie-file null-device "no cookies"))
+  (url-cookie-confirmation nil))
 
 
 
