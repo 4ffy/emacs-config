@@ -85,6 +85,7 @@ frame as a parameter."
               repeat-exit-timeout 1
               require-final-newline t
               save-interprogram-paste-before-kill t
+              sentence-end-double-space nil
               switch-to-buffer-obey-display-actions t
               tab-width 4
               use-short-answers t
