@@ -1,8 +1,8 @@
-(fset 'unfill-and-copy-buffer
-   (kmacro-lambda-form [?\C-x ?h ?\M-x ?u ?n ?f ?i ?l ?l ?- ?p ?a ?r ?a ?g ?r ?a ?p ?h return ?\C-x ?h ?\M-w ?\C-x ?h ?\M-q] 0 "%d"))
+(defalias 'cn/format-LaTeX-problems
+  (kmacro "C-a \\ p r o b l e m { <right> <backspace> C-e } <return> <return> \\ - <return> C-n"))
 
-(fset 'format-LaTeX-problems
-      (kmacro-lambda-form [?\C-a ?\\ ?p ?r ?o ?b ?l ?e ?m ?\{ right backspace ?\C-e ?\} return return ?\\ ?- return ?\C-n] 0 "%d"))
+(defalias 'cn/insert-javadoc-comment
+  (kmacro "/ * * * / C-b C-b <return> <return> C-p * C-p <tab> C-n <tab> C-n <tab> C-p SPC"))
 
-(fset 'insert-javadoc-comment
-   (kmacro-lambda-form [?/ ?* ?* ?* ?/ ?\C-b ?\C-b return return ?\C-p ?* ?\C-p tab ?\C-n tab ?\C-n tab ?\C-p ? ] 0 "%d"))
+(defalias 'cn/unfill-and-copy-buffer
+  (kmacro "C-x h M-x u n f i l l - p a r a g r a p h <return> C-x h M-w C-x h M-q"))
