@@ -154,13 +154,13 @@
 ;; ESS
 (use-package ess
   :ensure t
-  :pin melpa
+  :pin gnu
   :defer t)
 
 ;; Exec path from shell (For eshell $PATH)
 (use-package exec-path-from-shell
   :ensure t
-  :pin melpa
+  :pin nongnu
   :unless (equal system-type 'windows-nt)
   :init (exec-path-from-shell-initialize))
 
@@ -174,7 +174,7 @@
 ;; Flycheck (Improved syntax checking)
 (use-package flycheck
   :ensure t
-  :pin melpa
+  :pin nongnu
   :hook prog-mode)
 
 ;; Make Flycheck work with Eglot.
@@ -342,7 +342,7 @@ This is useful for quickly collecting nodes on a given topic."
 ;; SLIME
 (use-package slime
   :ensure t
-  :pin melpa
+  :pin nongnu
   :hook lisp-mode
   :init (setq-default inferior-lisp-program "sbcl"))
 
