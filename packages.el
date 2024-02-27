@@ -4,7 +4,11 @@
 
 ;; Prepare package archives.
 (use-package package
-  :custom (package-native-compile t)
+  :custom
+  (package-archive-priorities '(("gnu" . 3)
+                                ("nongnu" . 2)
+                                ("melpa" . 1)))
+  (package-native-compile t)
   :init
   (add-to-list 'load-path (file-name-concat user-emacs-directory "lisp"))
   (add-to-list 'package-archives
