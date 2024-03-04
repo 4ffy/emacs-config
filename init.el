@@ -279,16 +279,38 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 
 ;; Dired settings
 (use-package dired
-  :custom
-  (dired-auto-revert-buffer 'dired-directory-changed-p)
-  (dired-do-revert-buffer t)
-  (dired-dwim-target t)
-  (dired-listing-switches (if (string-match
-                               "GNU coreutils"
-                               (shell-command-to-string "ls --version"))
-                              "-ADXghl --group-directories-first"
-                            "-AXghl --group-directories-first"))
-  :bind (:map dired-mode-map ("N" . dired-create-empty-file)))
+ :custom
+ (dired-auto-revert-buffer 'dired-directory-changed-p)
+ (dired-do-revert-buffer t)
+ (dired-dwim-target t)
+ (dired-guess-shell-alist-user
+  (when (equal system-type 'gnu/linux)
+    '(("\\.7z\\'" "unar" "7z x")
+      ("\\.avi\\'" #1= "xdg-open")
+      ("\\.com\\'" "dosbox")
+      ("\\.exe\\'" "wine" "WINEPREFIX=$HOME/.wine64 wine" "dosbox")
+      ("\\.gif\\'" #1#)
+      ("\\.i?pk[37]\\'" "gzdoom -file * > /dev/null")
+      ("\\.jpe?g\\'" #1#)
+      ("\\.mid\\'" "fluidsynth -i" "aplaymidi -p 28:0")
+      ("\\.mkv\\'" #1#)
+      ("\\.mp[34]\\'" #1#)
+      ("\\.mpe?g\\'" #1#)
+      ("\\.og[gv]\\'" #1#)
+      ("\\.png\\'" #1#)
+      ("\\.pke\\'" "eternity -file")
+      ("\\.py\\'" "python")
+      ("\\.wad\\'" "woof -file" "gzdoom -file * > /dev/null")
+      ("\\.wav\\'" #1#)
+      ("\\.webm\\'" #1#)
+      ("\\.wmv\\'" #1#)
+      ("\\.zip\\'" "unar")
+      ("\\`PKGBUILD\\'" "makepkg"))))
+ (dired-listing-switches
+  (if (string-match "GNU coreutils" (shell-command-to-string "ls --version"))
+      "-ADXghl --group-directories-first"
+    "-AXghl --group-directories-first"))
+ :bind (:map dired-mode-map ("N" . dired-create-empty-file)))
 
 ;; Doc view Settings
 (use-package doc-view
