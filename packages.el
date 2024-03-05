@@ -135,14 +135,6 @@
   :pin melpa
   :defer t)
 
-;; Emacs Everywhere
-;; Note that xclip, xdotool, xprop, and xwininfo must be installed.
-(use-package emacs-everywhere
-  :ensure t
-  :pin melpa
-  :when (equal system-type 'gnu/linux)
-  :defer t)
-
 ;; Engrave faces (for org latex export)
 (use-package engrave-faces
   :ensure t
