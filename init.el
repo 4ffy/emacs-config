@@ -166,6 +166,17 @@ formerly containing the killed buffer."
   "Load the file FILE-NAME relative to the Emacs config directory."
   (load (file-name-concat user-emacs-directory file-name)))
 
+(defun cn/switch-theme (theme)
+  "Disable all currently active themes and enable THEME."
+  (interactive (list
+                (intern
+                 (completing-read
+                  "Load custom theme: "
+                  (mapcar #'symbol-name (custom-available-themes))))))
+  ;; Loading the theme first allows `load-theme' to do error checking for me.
+  (load-theme theme)
+  (mapc #'disable-theme (cdr custom-enabled-themes)))
+
 (defun cn/toggle-window-dedication ()
   "Toggle window dedication for the current window."
   (interactive)
