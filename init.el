@@ -119,9 +119,11 @@ frame as a parameter."
 ;; FUNCTION DECLARATIONS ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun cn/load-config-file (file-name)
-  "Load the file FILE-NAME relative to the Emacs config directory."
-  (load (file-name-concat user-emacs-directory file-name)))
+(defun cn/ansi-colorize-buffer ()
+  "Apply ANSI escape code colors to a buffer."
+  (interactive)
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
 
 (defun cn/build-available-p ()
   "Determine whether the variable `exec-path' has a compiler and make.
@@ -133,16 +135,6 @@ gcc and clang are valid compilers."
 (defun cn/cmake-build-available-p ()
   "Determine whether the variable `exec-path' has a compiler, make, and cmake."
   (and (cn/build-available-p) (not (null (executable-find "cmake")))))
-
-(defun cn/kill-current-buffer ()
-  "Prompt to kill the current buffer.
-If there are multiple windows open, also delete the window
-formerly containing the killed buffer."
-  (interactive)
-  (when (yes-or-no-p "Kill current buffer?")
-    (kill-buffer (current-buffer))
-    (when (not (one-window-p))
-      (delete-window))))
 
 (defun cn/kill-all-buffers ()
   "Prompt to kill all buffers, leaving an empty *scratch* buffer."
@@ -160,11 +152,19 @@ formerly containing the killed buffer."
       (unless (equal buffer (current-buffer))
         (kill-buffer buffer)))))
 
-(defun cn/ansi-colorize-buffer ()
-  "Apply ANSI escape code colors to a buffer."
+(defun cn/kill-current-buffer ()
+  "Prompt to kill the current buffer.
+If there are multiple windows open, also delete the window
+formerly containing the killed buffer."
   (interactive)
-  (let ((inhibit-read-only t))
-    (ansi-color-apply-on-region (point-min) (point-max))))
+  (when (yes-or-no-p "Kill current buffer?")
+    (kill-buffer (current-buffer))
+    (when (not (one-window-p))
+      (delete-window))))
+
+(defun cn/load-config-file (file-name)
+  "Load the file FILE-NAME relative to the Emacs config directory."
+  (load (file-name-concat user-emacs-directory file-name)))
 
 (defun cn/toggle-window-dedication ()
   "Toggle window dedication for the current window."
