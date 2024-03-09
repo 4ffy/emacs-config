@@ -89,6 +89,7 @@ frame as a parameter."
               sentence-end-double-space nil
               switch-to-buffer-obey-display-actions t
               tab-width 4
+              tooltip-resize-echo-area t
               use-short-answers t
               user-full-name "Cameron Norton"
               user-mail-address "cameron.norton@gmail.com"
