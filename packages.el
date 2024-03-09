@@ -77,7 +77,10 @@
    ("M-y" . consult-yank-pop)
    ("M-g g" . consult-goto-line)
    ("C-c r" . consult-grep)             ; C-c r because C-c g is for magit
-   ("C-c o" . consult-outline)))
+   ("C-c o" . consult-outline))
+  :config
+  (dolist (regexp '("\\.gpg\\'" "\\.kdbx?\\'"))
+    (add-to-list 'consult-preview-excluded-files regexp)))
 
 ;; Devil (prefix-less editing)
 (use-package devil
