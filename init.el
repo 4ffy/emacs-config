@@ -59,9 +59,9 @@ frame as a parameter."
               completions-detailed t
               cursor-type 'bar
               custom-file (file-name-concat user-emacs-directory "customize.el")
+              describe-bindings-outline t
               display-time-24hr-format t
               display-time-default-load-average nil
-              describe-bindings-outline t
               fill-column 80
               frame-inhibit-implied-resize t
               frame-resize-pixelwise t
