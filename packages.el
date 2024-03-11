@@ -432,7 +432,7 @@ This is useful for quickly collecting nodes on a given topic."
          ("<tab>" . nil)
          ("TAB" . nil)
          ("C-c y" . yas-expand))
-  :init (yas-global-mode))
+  :hook (LaTeX-mode . yas-minor-mode))
 
 (use-package yasnippet-snippets
   :ensure t
