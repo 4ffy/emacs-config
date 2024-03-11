@@ -238,6 +238,12 @@
   (add-hook 'markdown-mode-hook 'flyspell-mode)
   (add-hook 'markdown-view-mode-hook 'visual-line-mode))
 
+;; Meson mode
+(use-package meson-mode
+  :ensure t
+  :pin melpa
+  :mode "/meson\\(\\.build\\|_options\\.txt\\)\\'")
+
 ;; Orderless
 (use-package orderless
   :ensure t
