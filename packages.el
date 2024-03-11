@@ -56,6 +56,11 @@
   (("C-c j" . avy-goto-word-1)
    ("C-c J" . avy-goto-char-2)))
 
+;; Cmake mode (provided by system cmake package)
+(use-package cmake-mode
+  :when (locate-library "cmake-mode")
+  :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
+
 ;; Company (popup autocompletion)
 (use-package company
   :ensure t
