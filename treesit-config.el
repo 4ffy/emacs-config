@@ -89,3 +89,15 @@ grammar as given in `treesit-language-source-alist'.")
   (interactive)
   (dolist (grammar treesit-language-source-alist)
     (treesit-install-language-grammar (car grammar))))
+
+;;; Mode-specific customizations.
+
+(use-package c-ts-mode
+  :when (treesit-ready-p 'c t)
+  :custom
+  (c-ts-mode-indent-style 'linux)
+  (c-ts-mode-indent-offset c-basic-offset))
+
+(use-package go-ts-mode
+  :when (treesit-ready-p 'go t)
+  :custom (go-ts-mode-indent-offset tab-width))
