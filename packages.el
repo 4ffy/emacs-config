@@ -326,20 +326,13 @@ This is useful for quickly collecting nodes on a given topic."
   :ensure t
   :pin nongnu
   :hook
-  (fennel-mode lisp-data-mode racket-mode scheme-mode))
+  (fennel-mode lisp-data-mode scheme-mode))
 
 ;; Switch Python virtual environment
 (use-package pyvenv
   :ensure t
   :pin melpa
   :defer t)
-
-;; Racket mode
-(use-package racket-mode
-  :ensure t
-  :pin nongnu
-  :mode "\\.rkt[dl]?\\'"
-  :interpreter "racket")
 
 ;; Rust mode
 (use-package rust-mode
