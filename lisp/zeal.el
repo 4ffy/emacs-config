@@ -20,7 +20,20 @@
 
 ;;; Commentary:
 
-;;
+;; I use Zeal for offline documentation.  However, it is frustrating to have to
+;; leave Emacs when I want to look something up.  I tried solving this by adding
+;; extra Info manuals, but there aren't many of them out there, and using Pandoc
+;; or whatever just isn't good enough.
+
+;; Instead, I want to tap into my existing Zeal documentation.  It is possible
+;; to just browse the offline html files, but then I miss out on features such
+;; as symbol lookup.
+
+;; So, I wrote this Zeal package.  Currently, it has `zeal-lookup-symbol' and
+;; `zeal-display-docset' functions, which are analogous to `info-lookup-symbol'
+;; and `info-display-manual', respectively.  It's a bit jank - I haven't really
+;; done that much testing and some docsets are in weird formats.  However, it is
+;; a decent start.
 
 ;;; Code:
 
