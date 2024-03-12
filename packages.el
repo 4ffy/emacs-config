@@ -5,14 +5,11 @@
 ;; Prepare package archives.
 (use-package package
   :custom
-  (package-archive-priorities '(("gnu" . 3)
-                                ("nongnu" . 2)
-                                ("melpa" . 1)))
+  (package-archive-priorities '(("gnu" . 3) ("nongnu" . 2) ("melpa" . 1)))
   (package-native-compile t)
   :init
   (add-to-list 'load-path (file-name-concat user-emacs-directory "lisp"))
-  (add-to-list 'package-archives
-               '("melpa" . "https://melpa.org/packages/") t)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
   (package-initialize)
   (unless package-archive-contents
     (package-refresh-contents)))
