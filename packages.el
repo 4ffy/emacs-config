@@ -53,6 +53,13 @@
   (("C-c j" . avy-goto-word-1)
    ("C-c J" . avy-goto-char-2)))
 
+;; Clang Format (provided by system clang package)
+(use-package clang-format
+  :when (and (equal system-type 'gnu/linux) (executable-find "clang"))
+  :load-path "/usr/share/clang"
+  :defer t
+  :commands (clang-format clang-format-buffer clang-format-region))
+
 ;; Cmake mode (provided by system cmake package)
 (use-package cmake-mode
   :when (locate-library "cmake-mode")
