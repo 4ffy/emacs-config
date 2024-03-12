@@ -334,9 +334,12 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 ;; ERC
 (use-package erc
   :custom
+  (erc-autojoin-channels-alist '(("libera\\.chat" "#emacs")))
   (erc-fill-function 'erc-fill-static)
-  (erc-fill-static-center 15)
-  (erc-hide-list '("JOIN" "PART" "QUIT")))
+  (erc-fill-static-center 14)
+  (erc-hide-list '("JOIN" "PART" "QUIT"))
+  :init
+  (defalias #'erc #'erc-tls))
 
 ;;; EWW web browser settings
 (use-package eww
