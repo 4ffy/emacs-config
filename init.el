@@ -46,56 +46,58 @@ frame as a parameter."
 ;; Basic settings. These should all be "Emacs settings." That is, customizations
 ;; for builtin packages and standalone components should go in separate
 ;; use-package declarations further down.
-(setq-default apropos-do-all t
-              auto-revert-verbose nil
-              auto-save-default t
-              auto-save-file-name-transforms
-              `((".*" ,(file-name-concat user-emacs-directory "auto-save/") t))
-              auto-save-no-message t
-              backup-directory-alist `((".*" . ,temporary-file-directory))
-              bookmark-save-flag 1
-              column-number-mode t
-              completion-ignore-case t
-              completions-detailed t
-              cursor-type 'bar
-              custom-file (file-name-concat user-emacs-directory "customize.el")
-              describe-bindings-outline t
-              display-time-24hr-format t
-              display-time-default-load-average nil
-              fill-column 80
-              frame-inhibit-implied-resize t
-              frame-resize-pixelwise t
-              header-line-format t
-              indent-tabs-mode nil
-              inhibit-startup-screen t
-              initial-major-mode 'org-mode
-              initial-scratch-message nil
-              isearch-lazy-count t
-              lazy-count-prefix-format "(%s/%s) "
-              lazy-count-suffix-format nil
-              major-mode (lambda ()
-                           (unless buffer-file-name
-                             (let ((buffer-file-name (buffer-name)))
-                               (set-auto-mode))))
-              make-backup-files nil
-              minibuffer-beginning-of-buffer-movement t
-              mode-line-compact 'long
-              next-line-add-newlines t
-              read-buffer-completion-ignore-case t
-              read-file-name-completion-ignore-case t
-              repeat-exit-timeout 1
-              require-final-newline t
-              save-interprogram-paste-before-kill t
-              sentence-end-double-space nil
-              switch-to-buffer-obey-display-actions t
-              tab-width 4
-              tooltip-resize-echo-area t
-              use-short-answers t
-              user-full-name "Cameron Norton"
-              user-mail-address "cameron.norton@gmail.com"
-              view-read-only t
-              visual-line-fringe-indicators '(nil right-curly-arrow)
-              window-resize-pixelwise t)
+(use-package emacs
+  :custom
+  (apropos-do-all t)
+  (auto-revert-verbose nil)
+  (auto-save-default t)
+  (auto-save-file-name-transforms
+   `((".*" ,(file-name-concat user-emacs-directory "auto-save/") t)))
+  (auto-save-no-message t)
+  (backup-directory-alist `((".*" . ,temporary-file-directory)))
+  (bookmark-save-flag 1)
+  (column-number-mode t)
+  (completion-ignore-case t)
+  (completions-detailed t)
+  (cursor-type 'bar)
+  (custom-file (file-name-concat user-emacs-directory "customize.el"))
+  (describe-bindings-outline t)
+  (display-time-24hr-format t)
+  (display-time-default-load-average nil)
+  (fill-column 80)
+  (frame-inhibit-implied-resize t)
+  (frame-resize-pixelwise t)
+  (header-line-format t)
+  (indent-tabs-mode nil)
+  (inhibit-startup-screen t)
+  (initial-major-mode 'org-mode)
+  (initial-scratch-message nil)
+  (isearch-lazy-count t)
+  (lazy-count-prefix-format "(%s/%s) ")
+  (lazy-count-suffix-format nil)
+  (major-mode (lambda ()
+                (unless buffer-file-name
+                  (let ((buffer-file-name (buffer-name)))
+                    (set-auto-mode)))))
+  (make-backup-files nil)
+  (minibuffer-beginning-of-buffer-movement t)
+  (mode-line-compact 'long)
+  (next-line-add-newlines t)
+  (read-buffer-completion-ignore-case t)
+  (read-file-name-completion-ignore-case t)
+  (repeat-exit-timeout 1)
+  (require-final-newline t)
+  (save-interprogram-paste-before-kill t)
+  (sentence-end-double-space nil)
+  (switch-to-buffer-obey-display-actions t)
+  (tab-width 4)
+  (tooltip-resize-echo-area t)
+  (use-short-answers t)
+  (user-full-name "Cameron Norton")
+  (user-mail-address "cameron.norton@gmail.com")
+  (view-read-only t)
+  (visual-line-fringe-indicators '(nil right-curly-arrow))
+  (window-resize-pixelwise t))
 
 ;; Various interface modes
 (display-time-mode t)
