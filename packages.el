@@ -435,3 +435,9 @@ This is useful for quickly collecting nodes on a given topic."
   :ensure t
   :pin nongnu
   :after yasnippet)
+
+;; Local Zeal docs package.
+(use-package zeal
+  :bind
+  (("C-h z" . zeal-display-docset)
+   ("C-h Z" . zeal-lookup-symbol)))
