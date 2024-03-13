@@ -41,6 +41,10 @@
 (require 'sqlite)
 (require 'xml)
 
+
+
+;;; Customize entries
+
 (defgroup zeal nil
   "Browse Zeal docsets."
   :group 'external)
@@ -53,39 +57,68 @@
   :type '(directory)
   :group 'zeal)
 
+
+
+;;; Internal functions
+
+(defun zeal--url-from-file (filename)
+  "Prepend `file://' to FILENAME."
+  (format "file://%s" filename))
+
+(defun zeal--remove-path-metadata (path)
+  "Remove Dash metadata from fetched PATH.
+Paths retrieved from docsets may have extra metadata enclosed in
+angle brackets before the actual path name.  This does a simple
+replacement to strip these tags."
+  (with-temp-buffer
+    (insert path)
+    (goto-char (point-min))
+    (when (re-search-forward "\\`<.*>" nil t)
+      (replace-match ""))
+    (buffer-string)))
+
+(defun zeal--index-from-info-plist (info-plist)
+  "Parse the XML file INFO-PLIST to retrieve its `dashIndexFilePath' entry.
+Error if the entry is not present."
+  (unless (file-exists-p info-plist)
+    (error "File %s does not exist" info-plist))
+  (let ((xml-dom
+         (with-temp-buffer
+           (insert-file-contents info-plist)
+           (libxml-parse-xml-region))))
+    ;; The plist in the DOM has a flat mapping like
+    ;; (dict nil (key nil "a") (string nil "1") (key nil "b") (string nil "2")).
+    ;; I want to take dict's children and extract the values, resulting in
+    ;; ("a" "1" "b" "2").  Then, I can pair off the values to form a proper
+    ;; alist and retrieve the entry associated with dashIndexFilePath.
+    (zeal--remove-path-metadata
+     (or (cadr
+          (assoc
+           "dashIndexFilePath"
+           (seq-partition
+            (mapcar #'caddr (dom-children (dom-by-tag xml-dom 'dict))) 2)))
+         (error "Index file path not found in %s" info-plist)))))
+
 (defun zeal--get-index-file (docset)
   "Find the index html file for DOCSET.
-This parses the docset's \"Info.plist\" XML file to find the
+This examines the docset's `Info.plist' XML file to find the
 docset's index page.  Some docsets are weird and don't give a
 path, so exit with an error if that happens."
   (unless (file-directory-p (file-name-concat zeal-docset-dir docset))
     (error "Docset %s does not exist" docset))
-  (let* ((info-plist
-          (file-name-concat zeal-docset-dir docset "Contents/Info.plist"))
-         (xml-dom
-          (with-temp-buffer
-            (insert-file-contents info-plist)
-            (libxml-parse-xml-region)))
-         (index-filename
-          (zeal--remove-path-metadata
-           (or
-            (cadr
-             (assoc
-              "dashIndexFilePath"
-              (seq-partition
-               (mapcar #'caddr (dom-children (dom-by-tag xml-dom 'dict))) 2)))
-            (error "Index file not found")))))
+  (let ((info-plist
+         (file-name-concat zeal-docset-dir docset "Contents/Info.plist")))
     (file-name-concat zeal-docset-dir
                       docset
                       "Contents/Resources/Documents"
-                      index-filename)))
+                      (zeal--index-from-info-plist info-plist))))
 
 (defun zeal--get-symbol-path-alist (db)
   "Create an alist of (symbol . path) from the Zeal database DB.
-The docset database should have a searchIndex table with name and
-path columns that can be used for symbol lookup.  However, some
-docsets are weird and don't follow the schema.  These cases are
-not handled."
+The docset database should have a `searchIndex' table with `name'
+and `path' columns that can be used for symbol lookup.  However,
+some docsets are weird and don't follow the schema.  These cases
+are not handled."
   (let ((result '())
         (query
          (sqlite-select db "select name, path from searchIndex" nil 'set)))
@@ -94,21 +127,9 @@ not handled."
         (push `(,(car row) . ,(cadr row)) result)))
     result))
 
-(defun zeal--remove-path-metadata (path)
-  "Remove Dash metadata from fetched PATH.
-Paths retrieved from the docset DB may have extra metadata
-enclosed in angle brackets before the actual path name.  This
-does a simple replacement to strip these tags."
-  (with-temp-buffer
-    (insert path)
-    (goto-char (point-min))
-    (when (re-search-forward "\\`<.*>" nil t)
-      (replace-match ""))
-    (buffer-string)))
+
 
-(defun zeal--url-from-file (filename)
-  "Prepend \"file://\" to FILENAME."
-  (format "file://%s" filename))
+;;; Public functions
 
 ;;;###autoload
 (defun zeal-lookup-symbol ()
