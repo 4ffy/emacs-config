@@ -83,6 +83,7 @@ frame as a parameter."
   (minibuffer-beginning-of-buffer-movement t)
   (mode-line-compact 'long)
   (next-line-add-newlines t)
+  (display-raw-bytes-as-hex t)
   (read-buffer-completion-ignore-case t)
   (read-file-name-completion-ignore-case t)
   (repeat-exit-timeout 1)
