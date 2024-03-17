@@ -31,9 +31,6 @@
   (TeX-parse-self t)
   (reftex-plug-into-AUCTeX t)
   :config
-  ;; Use a different image size on laptop.
-  (when (cn/my-laptop-p)
-    (setopt preview-scale-function 0.8))
   ;; Add prog-mode hooks to LaTeX-mode.
   (dolist (hook prog-mode-hook)
     (add-hook 'LaTeX-mode-hook hook))
@@ -350,8 +347,8 @@ This is useful for quickly collecting nodes on a given topic."
 (use-package slime
   :ensure t
   :pin nongnu
-  :hook lisp-mode
-  :init (setopt inferior-lisp-program "sbcl"))
+  :custom (inferior-lisp-program "sbcl")
+  :hook lisp-mode)
 
 ;; Automatic title case commands.
 (use-package titlecase
