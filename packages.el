@@ -33,7 +33,7 @@
   :config
   ;; Use a different image size on laptop.
   (when (cn/my-laptop-p)
-    (setq-default preview-scale-function 0.8))
+    (setopt preview-scale-function 0.8))
   ;; Add prog-mode hooks to LaTeX-mode.
   (dolist (hook prog-mode-hook)
     (add-hook 'LaTeX-mode-hook hook))
@@ -351,7 +351,7 @@ This is useful for quickly collecting nodes on a given topic."
   :ensure t
   :pin nongnu
   :hook lisp-mode
-  :init (setq-default inferior-lisp-program "sbcl"))
+  :init (setopt inferior-lisp-program "sbcl"))
 
 ;; Automatic title case commands.
 (use-package titlecase

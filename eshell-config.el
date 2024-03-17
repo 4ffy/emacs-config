@@ -31,8 +31,8 @@
     'ansi-color-yellow)
    (cn/with-foreground " " 'ansi-color-white)))
 
-(setq-default eshell-prompt-function 'cn/eshell-prompt)
-(setq-default eshell-prompt-regexp "└ [#λ] ")
+(setopt eshell-prompt-function 'cn/eshell-prompt)
+(setopt eshell-prompt-regexp "└ [#λ] ")
 
 (defun cn/eshell-other-window ()
   "Create or switch to an eshell buffer in another window."

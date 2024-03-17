@@ -2,7 +2,7 @@
 ;;; ELFEED FEEDS
 ;;;=============================================================================
 
-(setq-default
+(setopt
  elfeed-feeds
  '(("https://www.precociouscomic.com/rss.php" comic)
    ("https://www.qwantz.com/rssfeed.php" comic)
