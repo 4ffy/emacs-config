@@ -313,7 +313,9 @@ If REGION is non-nil, unfill all paragraphs in the active region."
       ("\\.zip\\'" "unar")
       ("\\`PKGBUILD\\'" "makepkg"))))
  (dired-listing-switches
-  (if (string-match "GNU coreutils" (shell-command-to-string "ls --version"))
+  (if (and (executable-find "ls")
+           (string-match
+            "GNU coreutils" (shell-command-to-string "ls --version")))
       "-ADXghl --group-directories-first"
     "-AXghl --group-directories-first"))
  :bind (:map dired-mode-map ("N" . dired-create-empty-file)))
