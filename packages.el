@@ -107,6 +107,28 @@
   (diminish 'auto-fill-function)
   (diminish 'visual-line-mode))
 
+;; Eat
+(use-package eat
+  :ensure t
+  :pin nongnu
+  :demand t
+  :unless (equal system-type 'windows-nt)
+  :custom
+  (eat-enable-shell-prompt-annotation nil)
+  :init
+  (defalias 'cn/eat-create-new-buffer
+    (kmacro "C-u M-x e a t <return>")
+    "Create and switch to a new eat buffer.")
+  (add-hook
+   'eat-exit-hook
+   #'(lambda (_)
+       (kill-buffer (current-buffer))
+       (when (one-window-p)
+         (delete-frame))))
+  :bind
+  (("C-c v" . eat)
+   ("C-x 4 v" . eat-other-window)))
+
 ;; Editorconfig support
 (use-package editorconfig
   :ensure t
@@ -371,40 +393,6 @@ This is useful for quickly collecting nodes on a given topic."
   :ensure t
   :pin gnu
   :init (vertico-mode))
-
-;; Vterm (improved terminal, not available on Windows)
-(use-package vterm
-  :ensure t
-  :pin melpa
-  :demand t
-  :when (cn/cmake-build-available-p)
-  :unless (equal system-type 'windows-nt)
-  :init
-  (defun cn/vterm-create-new-buffer ()
-    "Create and switch to a new vterm buffer."
-    (interactive)
-    (let ((current-prefix-arg '(4)))
-      (call-interactively #'vterm)))
-
-  (add-hook
-   'vterm-exit-functions
-   (lambda (_ _)
-     (when (and (equal major-mode 'vterm-mode) (one-window-p))
-       (delete-frame (selected-frame) t))))
-
-  :bind
-  (("C-c v" . vterm)
-   ("C-x 4 v" . vterm-other-window)))
-
-(use-package eshell-vterm
-  :ensure t
-  :pin melpa
-  :unless (equal system-type 'windows-nt)
-  :requires vterm
-  :hook eshell-mode
-  :config
-  (dolist (command '("emacs" "emacsclient" "nvim" "vim"))
-    (add-to-list 'eshell-visual-commands command)))
 
 ;; Writeable grep buffer
 (use-package wgrep
