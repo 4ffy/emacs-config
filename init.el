@@ -132,13 +132,14 @@ frame as a parameter."
 (defun cn/build-available-p ()
   "Determine whether the variable `exec-path' has a compiler and make.
 gcc and clang are valid compilers."
-  (and (or (not (null (executable-find "gcc")))
-           (not (null (executable-find "clang"))))
-       (not (null (executable-find "make")))))
+  (when (and (or (executable-find "gcc") (executable-find "clang"))
+             (executable-find "make"))
+    t))
 
 (defun cn/cmake-build-available-p ()
   "Determine whether the variable `exec-path' has a compiler, make, and cmake."
-  (and (cn/build-available-p) (not (null (executable-find "cmake")))))
+  (when (and (cn/build-available-p) (executable-find "cmake"))
+    t))
 
 (defun cn/kill-all-buffers ()
   "Prompt to kill all buffers, leaving an empty *scratch* buffer."
