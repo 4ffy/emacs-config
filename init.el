@@ -371,6 +371,7 @@ If REGION is non-nil, unfill all paragraphs in the active region."
       ("Terminals" (used-mode . eat-mode))
       ("Special" (starred-name)))))
   (ibuffer-save-with-custom nil)
+  (ibuffer-show-empty-filter-groups nil)
   :init
   (add-hook
    'ibuffer-mode-hook
