@@ -359,6 +359,22 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (use-package hexl
   :custom (hexl-bits 8))
 
+;; Ibuffer settings
+(use-package ibuffer
+  :custom
+  (ibuffer-saved-filter-groups
+   '(("Default"
+      ("Files" (visiting-file))
+      ("Directories" (used-mode . dired-mode))
+      ("Magit" (name . "magit"))
+      ("Terminals" (used-mode . eat-mode))
+      ("Special" (starred-name)))))
+  (ibuffer-save-with-custom nil)
+  :init
+  (add-hook
+   'ibuffer-mode-hook
+   (lambda () (ibuffer-switch-to-saved-filter-groups "Default"))))
+
 ;; Org mode settings
 (use-package org
   :custom
