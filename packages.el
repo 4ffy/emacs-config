@@ -115,6 +115,10 @@
   :unless (equal system-type 'windows-nt)
   :custom
   (eat-enable-shell-prompt-annotation nil)
+  (eat-message-handler-alist
+   '(("dired" . dired)
+     ("magit" . magit-status-setup-buffer)
+     ("man" . (lambda (&rest args) (man (string-join args " "))))))
   :init
   (defalias 'cn/eat-create-new-buffer
     (kmacro "C-u M-x e a t <return>")
