@@ -117,6 +117,7 @@
   (eat-enable-shell-prompt-annotation nil)
   (eat-message-handler-alist
    '(("dired" . dired)
+     ("eww" . (lambda (&rest args) (eww (string-join args " "))))
      ("magit" . magit-status-setup-buffer)
      ("man" . (lambda (&rest args) (man (string-join args " "))))))
   :init
