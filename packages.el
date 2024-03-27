@@ -117,9 +117,9 @@
   (eat-enable-shell-prompt-annotation nil)
   (eat-message-handler-alist
    '(("dired" . dired)
-     ("eww" . (lambda (&rest args) (eww (string-join args " "))))
+     ("eww" . eww)
      ("magit" . magit-status-setup-buffer)
-     ("man" . (lambda (&rest args) (man (string-join args " "))))))
+     ("man" . man)))
   :init
   (defalias 'cn/eat-create-new-buffer
     (kmacro "C-u M-x e a t <return>")
