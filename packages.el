@@ -116,7 +116,8 @@
   :custom
   (eat-enable-shell-prompt-annotation nil)
   (eat-message-handler-alist
-   '(("dired" . dired)
+   '(("compile" . compile)
+     ("dired" . dired)
      ("eww" . eww)
      ("magit" . magit-status-setup-buffer)
      ("man" . man)))
