@@ -149,7 +149,8 @@
   :defer t
   :custom
   (eglot-autoshutdown t)
-  (eglot-ignored-server-capabilities '(:inlayHintProvider)))
+  (eglot-ignored-server-capabilities '(:inlayHintProvider))
+  :config (add-to-list 'eglot-server-programs '(fennel-mode "fennel-ls")))
 
 ;; Local eglot-auto package.
 (use-package eglot-auto
