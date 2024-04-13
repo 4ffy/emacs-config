@@ -21,6 +21,7 @@
    ("https://blog.minetest.net/feed.rss" games)
    ("https://crpgaddict.blogspot.com/feeds/posts/default" games)
    ("https://datadrivengamer.blogspot.com/feeds/posts/default" games)
+   ("https://www.filfre.net/feed/rss/" games)
    ("https://onemandoom.blogspot.com/feeds/posts/default" games)
    ("https://osu.ppy.sh/home/news?format=atom" games)
    ("https://theforceengine.github.io/atom.xml" games)
