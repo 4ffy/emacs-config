@@ -16,7 +16,7 @@
    ("https://protesilaos.com/codelog.xml" emacs)
    ("https://sachachua.com/blog/feed" emacs)
    ("https://www.masteringemacs.org/feed" emacs)
-   ("https://www.hardcoregaming101.net/feed" games)
+   ("http://www.hardcoregaming101.net/feed" games)
    ("https://bay12games.com/dwarves/dev_now.rss" games)
    ("https://blog.minetest.net/feed.rss" games)
    ("https://crpgaddict.blogspot.com/feeds/posts/default" games)
