@@ -248,6 +248,9 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 ;; Toggle proportional fonts
 (keymap-global-set "C-c p" 'variable-pitch-mode)
 
+;; Swap windows faster
+(keymap-global-set "M-o" 'other-window)
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
