@@ -21,7 +21,7 @@
 
 ;; Font selection - use a larger font on laptop
 (let* ((font-family "Liberation Mono")
-       (font-size (if (cn/my-laptop-p) 13 12))
+       (font-size (if (cn/my-laptop-p) 11 12))
        (font-string (format "%s %d" font-family font-size)))
   (add-to-list 'initial-frame-alist `(font . ,font-string))
   (add-to-list 'default-frame-alist `(font . ,font-string))
