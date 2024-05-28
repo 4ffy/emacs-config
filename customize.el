@@ -87,9 +87,10 @@
    '("864646646f61d732efdde358b070b58ff6d541291d04fefdc5af6c9581eaa4aa" "738c4838957c1884dfacbb6f4f783c54e87c4a6b31c336d6279fc1c2b2ee56c5" "a53f00556ab4c81a0618ab6589053d9e351312d37d9c9cf544e0c8edac2b63ab" "88deeaaab5a631834e6f83e8359b571cfcbf5a18b04990288c8569cc16ee0798" default))
  '(message-signature user-full-name nil nil "Customized with use-package mu4e")
  '(package-selected-packages
-   '(auctex avy company consult devil diminish dmenu editorconfig eglot elfeed elisp-autofmt engrave-faces erc-hl-nicks eshell-vterm ess exec-path-from-shell exwm fennel-mode flycheck flycheck-eglot go-mode json-mode keepass-mode link-hint lua-mode magit marginalia markdown-mode meson-mode orderless org-roam paredit pyvenv racket-mode rust-mode simple-modeline slime titlecase vertico visual-fill-column vterm wgrep yaml-mode yasnippet yasnippet-snippets))
+   '(auctex avy company consult devil diminish dmenu eat editorconfig eglot elfeed elisp-autofmt engrave-faces erc-hl-nicks eshell-vterm ess exec-path-from-shell exwm fennel-mode flycheck flycheck-eglot go-mode json-mode keepass-mode link-hint lua-mode magit marginalia markdown-mode meson-mode orderless org-roam paredit pyvenv racket-mode rust-mode simple-modeline slime titlecase vertico visual-fill-column vterm wgrep yaml-mode yasnippet yasnippet-snippets))
  '(safe-local-variable-values
-   '((etags-regen-ignores "test/manual/etags/")
+   '((vc-default-patch-addressee . "bug-gnu-emacs@gnu.org")
+     (etags-regen-ignores "test/manual/etags/")
      (etags-regen-regexp-alist
       (("c" "objc")
        "/[ \11]*DEFVAR_[A-Z_ \11(]+\"\\([^\"]+\\)\"/\\1/" "/[ \11]*DEFVAR_[A-Z_ \11(]+\"[^\"]+\",[ \11]\\([A-Za-z0-9_]+\\)/\\1/"))
