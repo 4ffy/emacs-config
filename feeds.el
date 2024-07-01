@@ -19,6 +19,7 @@
    ("http://www.hardcoregaming101.net/feed" games)
    ("https://bay12games.com/dwarves/dev_now.rss" games)
    ("https://blog.minetest.net/feed.rss" games)
+   ("https://cohost.org/boghog/rss/public.atom" games)
    ("https://crpgaddict.blogspot.com/feeds/posts/default" games)
    ("https://datadrivengamer.blogspot.com/feeds/posts/default" games)
    ("https://www.filfre.net/feed/rss/" games)
@@ -46,6 +47,7 @@
    ("https://www.accursedfarms.com/rss/3-accursed-farms.xml/" misc)
    ("https://www.dsausa.org/statements/feed" misc)
    ("https://medium.com/feed/@butchanarchy" misc)
+   ("https://www.wheresyoured.at/rss/" misc)
    ("https://mars.nasa.gov/rss/api/?feed=blogs&category=mars2020&feedtype=rss"
     space perseverance)
    ("https://mars.nasa.gov/rss/api/?feed=blogs&category=msl&feedtype=rss"
