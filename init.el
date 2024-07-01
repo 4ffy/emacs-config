@@ -388,6 +388,15 @@ If REGION is non-nil, unfill all paragraphs in the active region."
   (org-return-follows-link t)
   (org-src-preserve-indentation t))
 
+;; Proced settings
+(use-package proced
+  :custom
+  (proced-auto-update-flag t)
+  (proced-format 'custom)
+  (proced-sort 'rss)
+  :config
+  (add-to-list 'proced-format-alist '(custom user pid pcpu rss (args comm))))
+
 ;; HTML renderer settings
 (use-package shr
   :custom
