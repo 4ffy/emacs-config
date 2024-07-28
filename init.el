@@ -295,7 +295,7 @@ If REGION is non-nil, unfill all paragraphs in the active region."
     '(("\\.7z\\'" "unar" "7z x")
       ("\\.avi\\'" #1= "xdg-open")
       ("\\.com\\'" "dosbox")
-      ("\\.exe\\'" "wine" "WINEPREFIX=$HOME/.wine64 wine" "dosbox")
+      ("\\.exe\\'" "wine" "dosbox")
       ("\\.gif\\'" #1#)
       ("\\.i?pk[37]\\'" "gzdoom -file * > /dev/null")
       ("\\.jpe?g\\'" #1#)
