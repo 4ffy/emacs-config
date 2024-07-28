@@ -54,7 +54,7 @@
 (use-package casual-calc
   :ensure t
   :pin melpa
-  :bind (:map calc-mode-map ("C-o" . 'casual-main-menu)))
+  :bind (:map calc-mode-map ("C-o" . 'casual-calc-tmenu)))
 
 ;; Clang Format (provided by system clang package)
 (use-package clang-format
