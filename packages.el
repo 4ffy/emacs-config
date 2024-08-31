@@ -230,6 +230,25 @@
   :pin nongnu
   :mode "\\.go\\'")
 
+;; Google translate
+(use-package google-translate-default-ui
+  :ensure google-translate
+  :custom
+  (google-translate-output-destination 'echo-area)
+  (google-translate-show-phonetic t)
+  (google-translate-translation-to-kill-ring t)
+  :bind
+  (("C-c t t" . google-translate-at-point)
+   ("C-c t q" . google-translate-query-translate)
+   ("C-c t b" . google-translate-buffer))
+  :config
+  (advice-add
+   #'google-translate-buffer
+   :around
+   (lambda (fn &rest args)
+     (let ((google-translate-output-destination nil))
+       (apply fn args)))))
+
 ;; JSON Mode
 (use-package json-mode
   :ensure t
