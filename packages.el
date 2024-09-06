@@ -63,11 +63,6 @@
   :defer t
   :commands (clang-format clang-format-buffer clang-format-region))
 
-;; Cmake mode (provided by system cmake package)
-(use-package cmake-mode
-  :when (locate-library "cmake-mode")
-  :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
-
 ;; Company (popup autocompletion)
 (use-package company
   :ensure t
@@ -224,12 +219,6 @@
   :after (flycheck eglot)
   :config (global-flycheck-eglot-mode 1))
 
-;; Go mode
-(use-package go-mode
-  :ensure t
-  :pin nongnu
-  :mode "\\.go\\'")
-
 ;; Google translate
 (use-package google-translate-default-ui
   :ensure google-translate
@@ -248,12 +237,6 @@
    (lambda (fn &rest args)
      (let ((google-translate-output-destination nil))
        (apply fn args)))))
-
-;; JSON Mode
-(use-package json-mode
-  :ensure t
-  :pin gnu
-  :mode "\\.json\\'")
 
 ;; Keepass mode
 (use-package keepass-mode
@@ -385,12 +368,6 @@ This is useful for quickly collecting nodes on a given topic."
   :pin melpa
   :defer t)
 
-;; Rust mode
-(use-package rust-mode
-  :ensure t
-  :pin nongnu
-  :mode "\\.rs\\'")
-
 ;; Simple modeline
 (use-package simple-modeline
   :ensure t
@@ -430,12 +407,6 @@ This is useful for quickly collecting nodes on a given topic."
 (use-package wgrep
   :ensure t
   :pin nongnu)
-
-;; YAML mode
-(use-package yaml-mode
-  :ensure t
-  :pin nongnu
-  :mode "\\.\\(e?ya?\\|ra\\)ml\\'")
 
 ;; Yasnippet
 (use-package yasnippet

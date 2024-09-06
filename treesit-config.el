@@ -90,14 +90,29 @@ grammar as given in `treesit-language-source-alist'.")
   (dolist (grammar treesit-language-source-alist)
     (treesit-install-language-grammar (car grammar))))
 
-;;; Mode-specific customizations.
+;;; Mode-specific customizations. Also set up `auto-mode-alist' entries for
+;;; modes that are not being remapped.
 
 (use-package c-ts-mode
-  :when (treesit-ready-p 'c t)
   :custom
   (c-ts-mode-indent-style 'linux)
   (c-ts-mode-indent-offset c-basic-offset))
 
+(use-package cmake-ts-mode
+  :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
+
+(use-package go-mod-ts-mode
+  :mode "go\\.mod\\'")
+
 (use-package go-ts-mode
-  :when (treesit-ready-p 'go t)
+  :mode "\\.go\\'"
   :custom (go-ts-mode-indent-offset tab-width))
+
+(use-package json-ts-mode
+  :mode "\\.json\\'")
+
+(use-package rust-ts-mode
+  :mode "\\.rs\\'")
+
+(use-package yaml-ts-mode
+  :mode "\\.\\(e?ya?\\|ra\\)ml\\'")
