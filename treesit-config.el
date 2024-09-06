@@ -44,6 +44,10 @@
      rust-mode
      rust-ts-mode
      "https://github.com/tree-sitter/tree-sitter-rust")
+    (toml
+     toml-mode
+     toml-ts-mode
+     "https://github.com/ikatyang/tree-sitter-toml")
     (yaml
      yaml-mode
      yaml-ts-mode
@@ -113,6 +117,9 @@ grammar as given in `treesit-language-source-alist'.")
 
 (use-package rust-ts-mode
   :mode "\\.rs\\'")
+
+(use-package toml-ts-mode
+  :mode "\\.toml\\'")
 
 (use-package yaml-ts-mode
   :mode "\\.\\(e?ya?\\|ra\\)ml\\'")
