@@ -424,9 +424,6 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 ;; Load packages
 (cn/load-config-file "packages.el")
 
-;; Load eshell settings
-(cn/load-config-file "eshell-config.el")
-
 ;; Load macros
 (cn/load-config-file "macros.el")
 
