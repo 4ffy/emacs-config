@@ -427,5 +427,5 @@ This is useful for quickly collecting nodes on a given topic."
 ;; Local Zeal docs package.
 (use-package zeal
   :bind
-  (("C-h z" . zeal-display-docset)
-   ("C-h Z" . zeal-lookup-symbol)))
+  (("C-h z" . zeal-lookup-symbol)
+   ("C-h Z" . zeal-display-docset)))
