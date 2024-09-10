@@ -2,124 +2,93 @@
 ;;; TREE SITTER CONFIG
 ;;;=============================================================================
 
-;;; List of tree sitter languages.
-(defvar cn/treesit-language-list
-  '((bash
-     sh-mode
-     bash-ts-mode
-     "https://github.com/tree-sitter/tree-sitter-bash")
-    (c
-     c-mode
-     c-ts-mode
-     "https://github.com/tree-sitter/tree-sitter-c")
-    (cmake
-     cmake-mode
-     cmake-ts-mode
-     "https://github.com/uyha/tree-sitter-cmake")
-    (cpp
-     c++-mode
-     c++-ts-mode
-     "https://github.com/tree-sitter/tree-sitter-cpp")
-    (go
-     go-mode
-     go-ts-mode
-     "https://github.com/tree-sitter/tree-sitter-go")
-    (gomod
-     go-dot-mod-mode
-     go-mod-ts-mode
-     "https://github.com/camdencheek/tree-sitter-go-mod")
-    (java
-     java-mode
-     java-ts-mode
-     "https://github.com/tree-sitter/tree-sitter-java")
-    (json
-     json-mode
-     json-ts-mode
-     "https://github.com/tree-sitter/tree-sitter-json")
-    (python
-     python-mode
-     python-ts-mode
-     "https://github.com/tree-sitter/tree-sitter-python")
-    (rust
-     rust-mode
-     rust-ts-mode
-     "https://github.com/tree-sitter/tree-sitter-rust")
-    (toml
-     toml-mode
-     toml-ts-mode
-     "https://github.com/ikatyang/tree-sitter-toml")
-    (yaml
-     yaml-mode
-     yaml-ts-mode
-     "https://github.com/ikatyang/tree-sitter-yaml"))
-  "List of languages that I wish to use treesit modes for.
+(require 'treesit)
 
-Each element in the list should have the form
+(defun cn/treesit-recompile-all-grammars ()
+  "Recompile all Tree-sitter grammars with a fresh git clone."
+  (interactive)
+  (dolist (grammar treesit-language-source-alist)
+    (treesit-install-language-grammar (car grammar))))
 
-    (LANG LANG-MODE LANG-TS-MODE . (URL REVISION SOURCE-DIR CC C++)
+;;; List of Tree-sitter languages.
+(setopt
+ treesit-language-source-alist
+ '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+   (c "https://github.com/tree-sitter/tree-sitter-c")
+   (cmake "https://github.com/uyha/tree-sitter-cmake")
+   (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
+   (go "https://github.com/tree-sitter/tree-sitter-go")
+   (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
+   (java "https://github.com/tree-sitter/tree-sitter-java")
+   (json "https://github.com/tree-sitter/tree-sitter-json")
+   (python "https://github.com/tree-sitter/tree-sitter-python")
+   (rust "https://github.com/tree-sitter/tree-sitter-rust")
+   (toml "https://github.com/ikatyang/tree-sitter-toml")
+   (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
-LANG is the tree-sitter language symbol as used by
-`treesit-language-source-alist' and `treesit-language-available-p'.
-
-LANG-MODE and LANG-TS-MODE are the original and tree-sitter
-replacement modes to be entered into `major-mode-remap-alist'.
-
-The remainder is information about how to download and compile a
-grammar as given in `treesit-language-source-alist'.")
-
-;;; Set tree sitter grammar sources by adding the 1st and >=4th entries to
-;;; `treesit-language-source-alist'
-(dolist (language cn/treesit-language-list)
-  (add-to-list 'treesit-language-source-alist
-               `(,(car language) . ,(cdddr language))))
-
-;;; Compile tree sitter grammars if possible.
+;;; Compile missing tree sitter grammars if possible.
 (when (cn/build-available-p)
   (dolist (grammar treesit-language-source-alist)
     (unless (treesit-language-available-p (car grammar))
       (treesit-install-language-grammar (car grammar)))))
 
-;;; Map major modes to their tree sitter equivalents if their grammar is
-;;; available.
-(dolist (language cn/treesit-language-list)
-  (let ((language-symbol (car language))
-        (mode-name (cadr language))
-        (ts-mode-name (caddr language)))
-    (when (treesit-ready-p language-symbol t)
-      (add-to-list 'major-mode-remap-alist `(,mode-name . ,ts-mode-name)))))
+;;; Set up grammars for use.  Some Tree-sitter modes are replacements for older
+;;; modes, while others are standalone.  Replacements can be added to
+;;; `major-mode-remap-alist' to take advantage of existing `auto-mode-alist'
+;;; entries and such.
 
-(defun cn/treesit-update-grammars ()
-  "Recompile grammars from `treesit-language-sort-alist' with a fresh clone."
-  (interactive)
-  (dolist (grammar treesit-language-source-alist)
-    (treesit-install-language-grammar (car grammar))))
+;;; Remappable:
 
-;;; Mode-specific customizations. Also set up `auto-mode-alist' entries for
-;;; modes that are not being remapped.
+(use-package sh-script
+  :when (treesit-ready-p 'bash t)
+  :init (add-to-list 'major-mode-remap-alist '(sh-mode . bash-ts-mode)))
 
 (use-package c-ts-mode
+  :when (treesit-ready-p 'c t)
   :custom
+  (c-ts-mode-indent-offset tab-width)
   (c-ts-mode-indent-style 'linux)
-  (c-ts-mode-indent-offset c-basic-offset))
+  :init (add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode)))
+
+(use-package c-ts-mode
+  :when (treesit-ready-p 'cpp t)
+  :init (add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode)))
+
+(use-package java-ts-mode
+  :when (treesit-ready-p 'java t)
+  :init (add-to-list 'major-mode-remap-alist '(java-mode . java-ts-mode)))
+
+(use-package python
+  :when (treesit-ready-p 'python t)
+  :init (add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode)))
+
+;;; Manual:
 
 (use-package cmake-ts-mode
+  :when (treesit-ready-p 'cmake t)
   :mode ("CMakeLists\\.txt\\'" "\\.cmake\\'"))
 
+(use-package go-ts-mode
+  :when (treesit-ready-p 'go t)
+  :custom (go-ts-mode-indent-offset tab-width)
+  :mode "\\.go\\'")
+
 (use-package go-mod-ts-mode
+  :when (treesit-ready-p 'gomod t)
   :mode "go\\.mod\\'")
 
-(use-package go-ts-mode
-  :mode "\\.go\\'"
-  :custom (go-ts-mode-indent-offset tab-width))
-
 (use-package json-ts-mode
+  :when (treesit-ready-p 'json t)
   :mode "\\.json\\'")
 
 (use-package rust-ts-mode
+  :when (treesit-ready-p 'rust t)
   :mode "\\.rs\\'")
 
 (use-package toml-ts-mode
+  :when (treesit-ready-p 'toml t)
   :mode "\\.toml\\'")
 
 (use-package yaml-ts-mode
+  :when (treesit-ready-p 'yaml t)
   :mode "\\.\\(e?ya?\\|ra\\)ml\\'")
