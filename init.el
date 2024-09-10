@@ -395,7 +395,8 @@ If REGION is non-nil, unfill all paragraphs in the active region."
   (proced-format 'custom)
   (proced-sort 'rss)
   :config
-  (add-to-list 'proced-format-alist '(custom user pid pcpu rss (args comm))))
+  (add-to-list
+   'proced-format-alist '(custom user pid tree pcpu rss (args comm))))
 
 ;; HTML renderer settings
 (use-package shr
