@@ -23,8 +23,8 @@
    (json "https://github.com/tree-sitter/tree-sitter-json")
    (python "https://github.com/tree-sitter/tree-sitter-python")
    (rust "https://github.com/tree-sitter/tree-sitter-rust")
-   (toml "https://github.com/ikatyang/tree-sitter-toml")
-   (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+   (toml "https://github.com/tree-sitter-grammars/tree-sitter-toml")
+   (yaml "https://github.com/tree-sitter-grammars/tree-sitter-yaml")))
 
 ;;; Compile missing tree sitter grammars if possible.
 (when (cn/build-available-p)
