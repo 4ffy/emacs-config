@@ -206,19 +206,6 @@
   :mode "\\.fnl\\'"
   :interpreter "fennel")
 
-;; Flycheck (Improved syntax checking)
-(use-package flycheck
-  :ensure t
-  :pin nongnu
-  :hook prog-mode)
-
-;; Make Flycheck work with Eglot.
-(use-package flycheck-eglot
-  :ensure t
-  :pin melpa
-  :after (flycheck eglot)
-  :config (global-flycheck-eglot-mode 1))
-
 ;; Google translate
 (use-package google-translate-default-ui
   :ensure google-translate

@@ -349,6 +349,10 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (use-package eww
   :custom (eww-search-prefix "https://searx.be/search?q="))
 
+(use-package flymake
+  :custom (flymake-mode-line-lighter "")
+  :hook prog-mode)
+
 ;; Extra generic modes
 (use-package generic-x)
 
