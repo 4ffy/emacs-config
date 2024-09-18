@@ -192,13 +192,6 @@
   :pin gnu
   :defer t)
 
-;; Exec path from shell (For eshell $PATH)
-(use-package exec-path-from-shell
-  :ensure t
-  :pin nongnu
-  :unless (equal system-type 'windows-nt)
-  :init (exec-path-from-shell-initialize))
-
 ;; Fennel mode
 (use-package fennel-mode
   :ensure t

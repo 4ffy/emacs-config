@@ -116,6 +116,10 @@ frame as a parameter."
 (add-hook 'before-save-hook 'whitespace-cleanup)
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
+;; Add local script directory to `exec-path'.
+(when (equal system-type 'gnu/linux)
+  (add-to-list 'exec-path (file-name-concat (getenv "HOME") ".local/bin")))
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
