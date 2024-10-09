@@ -143,20 +143,6 @@
   :custom (editorconfig-mode-lighter "")
   :init (editorconfig-mode))
 
-;; Eglot (LSP)
-(use-package eglot
-  :ensure t
-  :pin gnu
-  :defer t
-  :custom
-  (eglot-autoshutdown t)
-  (eglot-ignored-server-capabilities '(:inlayHintProvider))
-  :config (add-to-list 'eglot-server-programs '(fennel-mode "fennel-ls")))
-
-;; Local eglot-auto package.
-(use-package eglot-auto
-  :bind ("C-c e" . eglot-auto-start-eglot-maybe))
-
 ;; Elfeed (RSS)
 (use-package elfeed
   :ensure t

@@ -335,6 +335,16 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (use-package ediff
   :custom (ediff-window-setup-function 'ediff-setup-windows-plain))
 
+;; Eglot (LSP)
+(use-package eglot
+  :defer t
+  :custom
+  (eglot-autoshutdown t)
+  (eglot-ignored-server-capabilities '(:inlayHintProvider))
+  :bind ("C-c e" . (lambda () (interactive) (eglot-ensure)))
+  :config
+  (add-to-list 'eglot-server-programs '(fennel-mode "fennel-ls")))
+
 ;; Eldoc
 (use-package eldoc
   :custom (eldoc-minor-mode-string ""))
