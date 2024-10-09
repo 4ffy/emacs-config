@@ -341,7 +341,14 @@ If REGION is non-nil, unfill all paragraphs in the active region."
   :custom
   (eglot-autoshutdown t)
   (eglot-ignored-server-capabilities '(:inlayHintProvider))
-  :bind ("C-c e" . (lambda () (interactive) (eglot-ensure)))
+  :bind
+  (("C-c e c" . eglot-code-actions)
+   ("C-c e e" . (lambda () (interactive) (eglot-ensure)))
+   ("C-c e f" . eglot-code-action-quickfix)
+   ("C-c e g" . eglot-reconnect)
+   ("C-c e k" . eglot-shutdown)
+   ("C-c e K" . eglot-shutdown-all)
+   ("C-c e r" . eglot-rename))
   :config
   (add-to-list 'eglot-server-programs '(fennel-mode "fennel-ls")))
 
