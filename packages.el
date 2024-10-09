@@ -83,9 +83,13 @@
    ("C-x r b" . consult-bookmark)
    ("M-y" . consult-yank-pop)
    ("M-g g" . consult-goto-line)
-   ("C-c r" . consult-grep)             ; C-c r because C-c g is for magit
    ("C-c o" . consult-outline))
   :config
+  (keymap-global-set
+   "C-c r" ; C-c r because C-c g is for magit
+   (if (executable-find "rg")
+       'consult-ripgrep
+     'consult-grep))
   (dolist (regexp '("\\.gpg\\'" "\\.kdbx?\\'"))
     (add-to-list 'consult-preview-excluded-files regexp)))
 
