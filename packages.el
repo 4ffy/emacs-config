@@ -50,12 +50,6 @@
   (("C-c j" . avy-goto-word-1)
    ("C-c J" . avy-goto-char-2)))
 
-;; Casual (Calc transient)
-(use-package casual-calc
-  :ensure t
-  :pin melpa
-  :bind (:map calc-mode-map ("C-o" . 'casual-calc-tmenu)))
-
 ;; Clang Format (provided by system clang package)
 (use-package clang-format
   :when (and (equal system-type 'gnu/linux) (executable-find "clang"))
