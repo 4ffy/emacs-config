@@ -99,7 +99,9 @@
      (diff-add-log-use-relative-names . t)
      (vc-git-annotate-switches . "-w")))
  '(url-cookie-confirmation nil)
- '(warning-suppress-types '((comp))))
+ '(warning-suppress-types
+   '((python python-shell-completion-native-turn-on-maybe)
+     (comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
