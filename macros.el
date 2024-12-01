@@ -1,6 +1,9 @@
 (defalias 'cn/format-LaTeX-problems
   (kmacro "C-a \\ p r o b l e m { <right> <backspace> C-e } <return> <return> \\ - <return> C-n"))
 
+(defalias 'cn/insert-doxygen-comment
+   (kmacro "/ * ! * / C-b C-b <return> <return> C-p * S-SPC <tab>"))
+
 (defalias 'cn/insert-javadoc-comment
   (kmacro "/ * * * / C-b C-b <return> <return> C-p * C-p <tab> C-n <tab> C-n <tab> C-p SPC"))
 
