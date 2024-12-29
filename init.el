@@ -135,14 +135,12 @@ frame as a parameter."
 (defun cn/build-available-p ()
   "Determine whether the variable `exec-path' has a compiler and make.
 gcc and clang are valid compilers."
-  (when (and (or (executable-find "gcc") (executable-find "clang"))
-             (executable-find "make"))
-    t))
+  (and (or (executable-find "gcc") (executable-find "clang"))
+       (executable-find "make")))
 
 (defun cn/cmake-build-available-p ()
   "Determine whether the variable `exec-path' has a compiler, make, and cmake."
-  (when (and (cn/build-available-p) (executable-find "cmake"))
-    t))
+  (and (cn/build-available-p) (executable-find "cmake")))
 
 (defun cn/kill-all-buffers ()
   "Prompt to kill all buffers, leaving an empty *scratch* buffer."
@@ -150,7 +148,8 @@ gcc and clang are valid compilers."
   (when (yes-or-no-p "Kill all buffers?")
     (progn
       (mapc 'kill-buffer (buffer-list))
-      (delete-other-windows))))
+      (delete-other-windows)
+      (scratch-buffer))))
 
 (defun cn/kill-all-other-buffers ()
   "Prompt to kill all buffers except for the active buffer."
@@ -158,17 +157,9 @@ gcc and clang are valid compilers."
   (when (yes-or-no-p "Kill all other buffers?")
     (dolist (buffer (buffer-list))
       (unless (equal buffer (current-buffer))
-        (kill-buffer buffer)))))
-
-(defun cn/kill-current-buffer ()
-  "Prompt to kill the current buffer.
-If there are multiple windows open, also delete the window
-formerly containing the killed buffer."
-  (interactive)
-  (when (yes-or-no-p "Kill current buffer?")
-    (kill-buffer (current-buffer))
-    (when (not (one-window-p))
-      (delete-window))))
+        (kill-buffer buffer)))
+    (delete-other-windows)
+    (get-scratch-buffer-create)))
 
 (defun cn/load-config-file (file-name)
   "Load the file FILE-NAME relative to the Emacs config directory."
