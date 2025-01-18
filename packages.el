@@ -130,6 +130,9 @@
        (kill-buffer (current-buffer))
        (when (one-window-p)
          (delete-frame))))
+  (add-hook
+   `eat-mode-hook
+   #'(lambda () (setq-local scroll-conservatively most-positive-fixnum)))
   :bind
   (("C-c v" . eat)
    ("C-x 4 v" . eat-other-window)))
