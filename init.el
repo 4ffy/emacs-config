@@ -100,7 +100,7 @@ frame as a parameter."
   (window-resize-pixelwise t))
 
 ;; Various interface modes
-(display-time-mode t)
+(display-time-mode 1)
 (repeat-mode 1)
 (tooltip-mode -1)
 (add-to-list 'default-frame-alist '(menu-bar-lines . nil))
