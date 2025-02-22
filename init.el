@@ -458,5 +458,6 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 
 
 ;; Reset garbage collection.
-(setq-default gc-cons-threshold 3200000)
+(setopt gc-cons-threshold (* 16 1024 1024))
+(setopt gc-cons-percentage 0.2)
 (garbage-collect)
