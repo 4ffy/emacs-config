@@ -380,11 +380,12 @@ This is useful for quickly collecting nodes on a given topic."
   :ensure t
   :pin gnu
   :diminish yas-minor-mode
+  :custom (yas-use-menu nil)
   :bind (:map yas-minor-mode-map
-         ("<tab>" . nil)
-         ("TAB" . nil)
-         ("C-c y" . yas-expand))
-  :hook (LaTeX-mode . yas-minor-mode))
+              ("<tab>" . nil)
+              ("TAB" . nil)
+              ("C-c y" . yas-expand))
+  :hook (prog-mode . yas-minor-mode))
 
 (use-package yasnippet-snippets
   :ensure t
