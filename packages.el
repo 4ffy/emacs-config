@@ -161,6 +161,15 @@
   :pin melpa
   :defer t)
 
+(use-package embark
+  :ensure t
+  :pin gnu
+  :bind ("C-c a" . embark-act))
+
+(use-package embark-consult
+  :ensure t
+  :pin gnu)
+
 ;; Engrave faces (for org latex export)
 (use-package engrave-faces
   :ensure t
