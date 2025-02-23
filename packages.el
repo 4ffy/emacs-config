@@ -137,13 +137,6 @@
   (("C-c v" . eat)
    ("C-x 4 v" . eat-other-window)))
 
-;; Editorconfig support
-(use-package editorconfig
-  :ensure t
-  :pin nongnu
-  :custom (editorconfig-mode-lighter "")
-  :init (editorconfig-mode))
-
 ;; Elfeed (RSS)
 (use-package elfeed
   :ensure t

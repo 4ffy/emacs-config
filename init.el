@@ -326,6 +326,10 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (use-package ediff
   :custom (ediff-window-setup-function 'ediff-setup-windows-plain))
 
+;; Editorconfig
+(use-package editorconfig
+  :init (editorconfig-mode))
+
 ;; Eglot (LSP)
 (use-package eglot
   :defer t
