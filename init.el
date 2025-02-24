@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;; Inhibit garbage collection during startup.
 (setq gc-cons-threshold most-positive-fixnum)
 

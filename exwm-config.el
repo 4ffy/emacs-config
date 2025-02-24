@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (require 'exwm)
 (require 'exwm-systemtray)
 

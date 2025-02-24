@@ -1,3 +1,4 @@
+;;; -*- lexical-binding: t; -*-
 (defalias 'cn/format-LaTeX-problems
   (kmacro "C-a \\ p r o b l e m { <right> <backspace> C-e } <return> <return> \\ - <return> C-n"))
 
