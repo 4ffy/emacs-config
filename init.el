@@ -61,6 +61,7 @@ frame as a parameter."
   (completions-detailed t)
   (cursor-type 'bar)
   (custom-file (file-name-concat user-emacs-directory "customize.el"))
+  (delete-by-moving-to-trash t)
   (describe-bindings-outline t)
   (display-time-24hr-format t)
   (display-time-default-load-average nil)
