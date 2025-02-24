@@ -32,11 +32,8 @@
 ;; covers all CJK characters, but I still have to set kana for this to work in
 ;; Emacs 29. Also, `set-fontset-font' does not reliably work at Emacs startup,
 ;; so I have to wrap this in a function and call it when a frame is created.
-(defun cn/cjk-font-setup (&optional frame)
-  "Set CJK fonts for the default fontset.
-FRAME is unused and is present only to satisfy
-`after-make-frame-functions', which calls its hooks with the new
-frame as a parameter."
+(defun cn/cjk-font-setup (_)
+  "Set CJK fonts for the default fontset."
   (interactive)
   (dolist (script '(han kana cjk-misc))
     (set-fontset-font t script "Noto Sans CJK JP"))
