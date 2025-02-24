@@ -364,7 +364,9 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 
 ;; Debugger settings
 (use-package gud
-  :custom (gdb-show-main t))
+  :custom
+  (gud-highlight-current-line t)
+  (gdb-show-main t))
 
 ;; Hexl hex editor
 (use-package hexl
