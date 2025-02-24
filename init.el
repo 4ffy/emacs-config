@@ -13,12 +13,12 @@
 ;; BASIC SETTINGS ;;
 ;;;;;;;;;;;;;;;;;;;;
 
-;; Load theme, then darken the background and lighten the cursor. For some
-;; reason, `set-face-background' does not work on the cursor face at startup,
-;; but we can use the function `custom-set-faces' instead.
+;; Load theme, then darken the background and lighten the cursor.
 (load-theme 'wombat t)
-(set-face-background 'default "#181818")
-(custom-set-faces `(cursor ((t (:background "#f6f3e8")))))
+(custom-theme-set-faces
+ 'wombat
+ '(cursor ((t (:background "#f6f3e8"))))
+ '(default ((t (:foreground "#f6f3e8" :background "#181818")))))
 
 ;; Font selection - use a larger font on laptop
 (let* ((font-family "Liberation Mono")
