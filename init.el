@@ -176,18 +176,6 @@ gcc and clang are valid compilers."
   (load-theme theme)
   (mapc #'disable-theme (cdr custom-enabled-themes)))
 
-(defun cn/toggle-window-dedication ()
-  "Toggle window dedication for the current window."
-  (interactive)
-  (progn
-    (set-window-dedicated-p
-     (selected-window) (not (window-dedicated-p (selected-window))))
-    (message
-     (format "Window dedication %s."
-             (if (window-dedicated-p)
-                 "enabled"
-               "disabled")))))
-
 (defun cn/unfill-paragraph (&optional region)
   "Take a multi-line paragraph and turn it into a single line of text.
 This function is the opposite of `fill-paragraph'.
@@ -223,7 +211,7 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 (keymap-global-set "C-r" 'isearch-backward-regexp)
 
 ;; Window dedication toggle
-(keymap-global-set "C-c d" 'cn/toggle-window-dedication)
+(keymap-global-set "C-c d" 'toggle-window-dedicated)
 
 ;; Unfill paragraph
 (keymap-global-set "M-Q" 'cn/unfill-paragraph)
