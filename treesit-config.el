@@ -21,6 +21,7 @@
    (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
    (java "https://github.com/tree-sitter/tree-sitter-java")
    (json "https://github.com/tree-sitter/tree-sitter-json")
+   (lua "https://github.com/tree-sitter-grammars/tree-sitter-lua")
    (python "https://github.com/tree-sitter/tree-sitter-python")
    (rust "https://github.com/tree-sitter/tree-sitter-rust")
    (toml "https://github.com/tree-sitter-grammars/tree-sitter-toml")
@@ -85,6 +86,11 @@
 (use-package json-ts-mode
   :when (treesit-ready-p 'json t)
   :mode "\\.json\\'")
+
+(use-package lua-ts-mode
+  :when (treesit-ready-p 'lua t)
+  :mode "\\.lua\\'"
+  :interpreter "lua")
 
 (use-package rust-ts-mode
   :when (treesit-ready-p 'rust t)

@@ -221,13 +221,6 @@
   (("C-c l f" . link-hint-open-link)
    ("C-c l c" . link-hint-copy-link)))
 
-;; Lua mode
-(use-package lua-mode
-  :ensure t
-  :pin nongnu
-  :mode "\\.lua\\'"
-  :interpreter "lua")
-
 ;; Magit (git)
 (use-package magit
   :ensure t
