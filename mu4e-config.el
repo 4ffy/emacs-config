@@ -21,7 +21,6 @@
 
 ;;; Set up mu4e itself.
 (use-package mu4e
-  :defer t
   :commands mu4e
   :custom
   ;; Set up mail folders.

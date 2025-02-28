@@ -55,7 +55,6 @@
 (use-package clang-format
   :when (and (equal system-type 'gnu/linux) (executable-find "clang"))
   :load-path "/usr/share/clang"
-  :defer t
   :commands (clang-format clang-format-buffer clang-format-region))
 
 ;; Company (popup autocompletion)
@@ -142,7 +141,6 @@
 (use-package elfeed
   :ensure t
   :pin melpa
-  :defer t
   :custom
   (elfeed-search-filter "@1-week-ago !\[$\] +unread ")
   (elfeed-db-directory (file-name-concat user-emacs-directory "elfeed"))
@@ -152,8 +150,7 @@
 ;; Elisp auto formatting
 (use-package elisp-autofmt
   :ensure t
-  :pin melpa
-  :defer t)
+  :pin melpa)
 
 (use-package embark
   :ensure t
@@ -167,8 +164,7 @@
 ;; Engrave faces (for org latex export)
 (use-package engrave-faces
   :ensure t
-  :pin gnu
-  :defer t)
+  :pin gnu)
 
 ;; ERC nick highlighing
 (use-package erc-hl-nicks
@@ -179,8 +175,7 @@
 ;; ESS
 (use-package ess
   :ensure t
-  :pin gnu
-  :defer t)
+  :pin gnu)
 
 ;; Fennel mode
 (use-package fennel-mode
@@ -328,8 +323,7 @@ This is useful for quickly collecting nodes on a given topic."
 ;; Switch Python virtual environment
 (use-package pyvenv
   :ensure t
-  :pin melpa
-  :defer t)
+  :pin melpa)
 
 ;; Simple modeline
 (use-package simple-modeline
@@ -347,14 +341,12 @@ This is useful for quickly collecting nodes on a given topic."
 ;; Automatic title case commands.
 (use-package titlecase
   :ensure t
-  :pin melpa
-  :defer t)
+  :pin melpa)
 
 ;; Soft wrap lines at fill column
 (use-package visual-fill-column
   :ensure t
   :pin nongnu
-  :defer t
   :custom (visual-fill-column-enable-sensible-window-split t)
   :init (add-hook 'visual-line-mode-hook
                   (lambda () (visual-fill-column-mode

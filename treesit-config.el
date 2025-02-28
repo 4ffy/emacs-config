@@ -43,12 +43,10 @@
 
 (use-package sh-script
   :when (treesit-ready-p 'bash t)
-  :defer t
   :init (add-to-list 'major-mode-remap-alist '(sh-mode . bash-ts-mode)))
 
 (use-package c-ts-mode
   :when (and (treesit-ready-p 'c t) (treesit-ready-p 'cpp t))
-  :defer t
   :custom
   (c-ts-mode-indent-offset tab-width)
   (c-ts-mode-indent-style 'linux)
@@ -61,12 +59,10 @@
 
 (use-package java-ts-mode
   :when (treesit-ready-p 'java t)
-  :defer t
   :init (add-to-list 'major-mode-remap-alist '(java-mode . java-ts-mode)))
 
 (use-package python
   :when (treesit-ready-p 'python t)
-  :defer t
   :init (add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode)))
 
 ;;; Manual:

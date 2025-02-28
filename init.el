@@ -1,4 +1,5 @@
 ;; -*- lexical-binding: t; -*-
+
 ;; Inhibit garbage collection during startup.
 (setq gc-cons-threshold most-positive-fixnum)
 
@@ -6,6 +7,10 @@
 (defun cn/my-laptop-p ()
   "Determine if the current system is my laptop."
   (string-equal "Renda" (system-name)))
+
+;; Get this in early.
+(require 'use-package)
+(setopt use-package-always-defer t)
 
 
 
@@ -319,7 +324,6 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 
 ;; Eglot (LSP)
 (use-package eglot
-  :defer t
   :custom
   (eglot-autoshutdown t)
   (eglot-ignored-server-capabilities '(:inlayHintProvider))
