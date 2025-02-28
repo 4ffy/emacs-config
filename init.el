@@ -422,6 +422,11 @@ If REGION is non-nil, unfill all paragraphs in the active region."
   (shr-use-fonts nil)
   (shr-width 80))
 
+;; Tramp (remote editing)
+(use-package tramp
+  :commands tramp-revert-buffer-with-sudo
+  :init (defalias 'sudoedit #'tramp-revert-buffer-with-sudo))
+
 ;; URL settings
 (use-package url
   :custom
