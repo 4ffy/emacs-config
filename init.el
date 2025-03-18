@@ -348,9 +348,10 @@ If REGION is non-nil, unfill all paragraphs in the active region."
   (erc-autojoin-channels-alist '(("libera\\.chat" "#emacs")))
   (erc-fill-function 'erc-fill-static)
   (erc-fill-static-center 14)
-  (erc-hide-list '("JOIN" "PART" "QUIT"))
+  (erc-hide-list '("JOIN" "NICK" "PART" "QUIT"))
   :hook
-  ((erc-mode . erc-scrolltobottom-enable)
+  ((erc-mode . erc-notifications-mode)
+   (erc-mode . erc-scrolltobottom-enable)
    (erc-mode
     . (lambda () (setq-local scroll-conservatively most-positive-fixnum)))))
 
