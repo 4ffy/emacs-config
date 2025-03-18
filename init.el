@@ -385,6 +385,7 @@ If REGION is non-nil, unfill all paragraphs in the active region."
       ("Directories" (used-mode . dired-mode))
       ("Magit" (name . "magit"))
       ("Terminals" (used-mode . eat-mode))
+      ("IRC" (used-mode . erc-mode))
       ("Special" (starred-name)))))
   (ibuffer-save-with-custom nil)
   (ibuffer-show-empty-filter-groups nil)
