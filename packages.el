@@ -184,6 +184,13 @@
   :mode "\\.fnl\\'"
   :interpreter "fennel")
 
+;; Fish mode.
+(use-package fish-mode
+  :ensure t
+  :pin melpa
+  :mode "\\.fish\\'"
+  :interpreter "fish")
+
 ;; Google translate
 (use-package google-translate-default-ui
   :ensure google-translate

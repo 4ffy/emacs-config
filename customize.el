@@ -66,8 +66,8 @@
  '(package-selected-packages
    '(auctex avy company consult devil diminish dmenu eat eglot elfeed elisp-autofmt
             embark embark-consult engrave-faces erc-hl-nicks eshell-vterm ess
-            exwm fennel-mode google-translate keepass-mode link-hint magit
-            marginalia markdown-mode meson-mode orderless org-roam paredit
+            exwm fennel-mode fish-mode google-translate keepass-mode link-hint
+            magit marginalia markdown-mode meson-mode orderless org-roam paredit
             pyvenv racket-mode simple-modeline slime titlecase vertico
             visual-fill-column vterm wgrep yasnippet yasnippet-snippets))
  '(safe-local-variable-values
