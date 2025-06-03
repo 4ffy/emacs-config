@@ -190,6 +190,18 @@ If REGION is non-nil, unfill all paragraphs in the active region."
         (emacs-lisp-docstring-fill-column t))
     (fill-paragraph nil region)))
 
+(defun cn/unescape-url (start end)
+  "Unescape percent-encoded characters between START and END.
+Interactively, unescape characters in the active region."
+  (interactive "*r")
+  (when (or (not (called-interactively-p 'any)) (use-region-p))
+    (save-excursion
+      (goto-char start)
+      (while (re-search-forward "%\\([[:xdigit:]]\\{2\\}\\)" end t)
+        (let ((unescaped
+               (char-to-string (cl-parse-integer (match-string 1) :radix 16))))
+          (replace-match unescaped t t))))))
+
 
 
 ;;;;;;;;;;;;;;;;;;
