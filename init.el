@@ -185,9 +185,7 @@ gcc and clang are valid compilers."
 This function is the opposite of `fill-paragraph'.
 
 If REGION is non-nil, unfill all paragraphs in the active region."
-  (interactive (progn
-                 (barf-if-buffer-read-only)
-                 '(t)))
+  (interactive "*p")
   (let ((fill-column (point-max))
         (emacs-lisp-docstring-fill-column t))
     (fill-paragraph nil region)))
