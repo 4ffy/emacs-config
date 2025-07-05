@@ -442,6 +442,11 @@ Interactively, unescape characters in the active region."
 ;; Tramp (remote editing)
 (use-package tramp
   :commands tramp-revert-buffer-with-sudo
+  :custom
+  ((remote-file-name-inhibit-locks t)
+   (remote-file-name-inhibit-auto-save-visited t)
+   (tramp-use-scp-direct-remote-copying t)
+   (tramp-copy-size-limit (* 1024 1024)))
   :init (defalias 'sudoedit #'tramp-revert-buffer-with-sudo))
 
 ;; URL settings
