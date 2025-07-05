@@ -202,6 +202,11 @@ Interactively, unescape characters in the active region."
                (char-to-string (cl-parse-integer (match-string 1) :radix 16))))
           (replace-match unescaped t t))))))
 
+(defun cn/temp-project (name)
+  "Create a new folder in /tmp and find NAME in that folder."
+  (interactive "MFile name? ")
+  (find-file (expand-file-name name (make-temp-file name t))))
+
 
 
 ;;;;;;;;;;;;;;;;;;
