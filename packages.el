@@ -342,8 +342,7 @@ This is useful for quickly collecting nodes on a given topic."
 (use-package slime
   :ensure t
   :pin nongnu
-  :custom (inferior-lisp-program "sbcl")
-  :hook lisp-mode)
+  :custom ((slime-lisp-implementations '((sbcl ("sbcl")) (ecl ("ecl"))))))
 
 ;; Automatic title case commands.
 (use-package titlecase
