@@ -99,4 +99,4 @@
 
 (use-package yaml-ts-mode
   :when (treesit-ready-p 'yaml t)
-  :mode "\\.\\(e?ya?\\|ra\\)ml\\'")
+  :mode ("\\.\\(e?ya?\\|ra\\)ml\\'" "\\.clang-format\\'"))
