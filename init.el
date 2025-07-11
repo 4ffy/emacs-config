@@ -351,6 +351,7 @@ Interactively, unescape characters in the active region."
    ("C-c e K" . eglot-shutdown-all)
    ("C-c e r" . eglot-rename))
   :config
+  (add-to-list 'eglot-server-programs '(elvish-mode "elvish" "-lsp"))
   (add-to-list 'eglot-server-programs '(fennel-mode "fennel-ls")))
 
 ;; Eldoc
