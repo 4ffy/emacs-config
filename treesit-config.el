@@ -18,6 +18,7 @@
    (c "https://github.com/tree-sitter/tree-sitter-c")
    (cmake "https://github.com/uyha/tree-sitter-cmake")
    (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
+   (c-sharp "https://github.com/tree-sitter/tree-sitter-c-sharp")
    (go "https://github.com/tree-sitter/tree-sitter-go")
    (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
    (java "https://github.com/tree-sitter/tree-sitter-java")
@@ -56,6 +57,10 @@
              (c++-mode . c++-ts-mode)
              (c-or-c++-mode . c-or-c++-ts-mode)))
     (add-to-list 'major-mode-remap-alist pair)))
+
+(use-package csharp-mode
+  :when (treesit-ready-p 'c-sharp t)
+  :init (add-to-list 'major-mode-remap-alist '(csharp-mode . csharp-ts-mode)))
 
 (use-package java-ts-mode
   :when (treesit-ready-p 'java t)
