@@ -5,6 +5,7 @@
 
 ;; Prepare package archives.
 (use-package package
+  :demand t
   :custom
   (package-archive-priorities '(("gnu" . 3) ("nongnu" . 2) ("melpa" . 1)))
   (package-native-compile t)
