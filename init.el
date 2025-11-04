@@ -107,6 +107,7 @@
 (display-time-mode 1)
 (repeat-mode 1)
 (tooltip-mode -1)
+(winner-mode 1)
 (add-to-list 'default-frame-alist '(menu-bar-lines . nil))
 (add-to-list 'default-frame-alist '(tool-bar-lines . nil))
 (add-to-list 'default-frame-alist '(vertical-scroll-bars . nil))
