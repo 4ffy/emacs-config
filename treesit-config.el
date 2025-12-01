@@ -16,9 +16,9 @@
  treesit-language-source-alist
  '((bash "https://github.com/tree-sitter/tree-sitter-bash")
    (c "https://github.com/tree-sitter/tree-sitter-c")
+   (c-sharp "https://github.com/tree-sitter/tree-sitter-c-sharp")
    (cmake "https://github.com/uyha/tree-sitter-cmake")
    (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
-   (c-sharp "https://github.com/tree-sitter/tree-sitter-c-sharp")
    (go "https://github.com/tree-sitter/tree-sitter-go")
    (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
    (java "https://github.com/tree-sitter/tree-sitter-java")
