@@ -254,6 +254,8 @@ Interactively, unescape characters in the active region."
 ;; Swap windows faster
 (keymap-global-set "M-o" 'other-window)
 
+;; Sort lines
+(keymap-global-set "C-c s" 'sort-lines)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
