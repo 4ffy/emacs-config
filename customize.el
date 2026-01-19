@@ -64,12 +64,12 @@
      "88deeaaab5a631834e6f83e8359b571cfcbf5a18b04990288c8569cc16ee0798" default))
  '(message-signature user-full-name nil nil "Customized with use-package mu4e")
  '(package-selected-packages
-   '(auctex avy company consult devil diminish dmenu eat eglot elfeed elisp-autofmt
-            embark embark-consult engrave-faces erc-hl-nicks eshell-vterm ess
-            exwm fennel-mode fish-mode google-translate keepass-mode link-hint
-            magit marginalia markdown-mode meson-mode orderless org-roam paredit
-            pyvenv racket-mode simple-modeline slime titlecase vertico
-            visual-fill-column vterm wgrep yasnippet yasnippet-snippets))
+   '(apheleia auctex company devil diminish eat elfeed elisp-autofmt embark-consult
+              engrave-faces erc-hl-nicks ess fennel-mode fish-mode
+              google-translate keepass-mode link-hint magit marginalia
+              markdown-mode meson-mode orderless org-roam paredit pyvenv
+              simple-modeline slime titlecase vertico visual-fill-column wgrep
+              yasnippet-snippets))
  '(safe-local-variable-values
    '((vc-default-patch-addressee . "bug-gnu-emacs@gnu.org")
      (etags-regen-ignores "test/manual/etags/")

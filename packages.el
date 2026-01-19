@@ -43,6 +43,18 @@
    (LaTeX-mode . prettify-symbols-mode)
    (LaTeX-mode . turn-on-reftex)))
 
+;; Apheleia (code formatting)
+(use-package apheleia
+  :ensure t
+  :pin melpa
+  :diminish "Aph"
+  :custom (apheleia-formatters-respect-fill-column t)
+  :bind ("C-c f" . apheleia-global-mode)
+  :config
+  (dolist (pair '((go-ts-mode . gofumpt)
+                  (python-ts-mode . ruff)))
+    (setf (alist-get (car pair) apheleia-mode-alist) (cdr pair))))
+
 ;; Avy (fast navigation)
 (use-package avy
   :ensure t
