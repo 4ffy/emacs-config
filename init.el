@@ -181,16 +181,6 @@ gcc and clang are valid compilers."
   (load-theme theme)
   (mapc #'disable-theme (cdr custom-enabled-themes)))
 
-(defun cn/unfill-paragraph (&optional region)
-  "Take a multi-line paragraph and turn it into a single line of text.
-This function is the opposite of `fill-paragraph'.
-
-If REGION is non-nil, unfill all paragraphs in the active region."
-  (interactive "*p")
-  (let ((fill-column (point-max))
-        (emacs-lisp-docstring-fill-column t))
-    (fill-paragraph nil region)))
-
 (defun cn/unescape-url (start end)
   "Unescape percent-encoded characters between START and END.
 Interactively, unescape characters in the active region."
@@ -202,6 +192,28 @@ Interactively, unescape characters in the active region."
         (let ((unescaped
                (char-to-string (cl-parse-integer (match-string 1) :radix 16))))
           (replace-match unescaped t t))))))
+
+(defun cn/unfill-paragraph (&optional region)
+  "Take a multi-line paragraph and turn it into a single line of text.
+This function is the opposite of `fill-paragraph'.
+
+If REGION is non-nil, unfill all paragraphs in the active region."
+  (interactive "*p")
+  (let ((fill-column (point-max))
+        (emacs-lisp-docstring-fill-column t))
+    (fill-paragraph nil region)))
+
+(defun cn/unfill-and-copy-buffer ()
+  "Copy to the kill ring the current buffer with all paragraphs unfilled."
+  (interactive)
+  (let ((buf (current-buffer)))
+    (with-temp-buffer
+      (insert-buffer-substring buf)
+      (push-mark (point-min) t t)
+      (goto-char (point-max))
+      (cn/unfill-paragraph t)
+      (kill-region nil nil t)))
+  (message "Copied unfilled buffer."))
 
 (defun cn/temp-project (name)
   "Create a new folder in /tmp and find NAME in that folder."
