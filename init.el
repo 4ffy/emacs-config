@@ -121,9 +121,11 @@
 (add-hook 'before-save-hook 'whitespace-cleanup)
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
-;; Add local script directory to `exec-path'.
+;; Add local script directory to $PATH and `exec-path'.
 (when (equal system-type 'gnu/linux)
-  (add-to-list 'exec-path (file-name-concat (getenv "HOME") ".local/bin")))
+  (let ((script-dir (file-name-concat (getenv "HOME") ".local/bin")))
+    (setenv "PATH" (concat script-dir ":" (getenv "PATH")))
+    (add-to-list 'exec-path script-dir)))
 
 
 
