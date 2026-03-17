@@ -133,6 +133,7 @@
      ("eww" . eww)
      ("magit" . magit-status-setup-buffer)
      ("man" . man)))
+  (eat-term-scrollback-size (* 1024 1024))
   :init
   (defalias 'cn/eat-create-new-buffer
     (kmacro "C-u M-x e a t <return>")
