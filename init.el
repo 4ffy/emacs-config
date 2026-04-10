@@ -173,6 +173,19 @@ gcc and clang are valid compilers."
   "Load the file FILE-NAME relative to the Emacs config directory."
   (load (file-name-concat user-emacs-directory file-name)))
 
+(defun cn/rx-or-buffer (buf)
+  "Construct a Javascript compatible regex matching each line in the buffer BUF.
+Copy the result to the kill ring."
+  (interactive (list (current-buffer)))
+  (with-current-buffer buf
+    (let* ((words (string-split (buffer-string) "\n" t))
+           (regex (eval `(rx (or ,@words))))
+           ;; Stripping backslashes makes the regex pcre/javascript compatible,
+           ;; so long as there wasn't anything that needed to be escaped...
+           (regex-clean (string-replace "\\" "" regex)))
+      (message "%s" regex-clean)
+      (kill-new regex-clean))))
+
 (defun cn/switch-theme (theme)
   "Disable all currently active themes and enable THEME."
   (interactive (list
