@@ -91,6 +91,7 @@
 
 (use-package lua-ts-mode
   :when (treesit-ready-p 'lua t)
+  :custom (lua-ts-indent-offset 3)
   :mode "\\.lua\\'"
   :interpreter "lua")
 
