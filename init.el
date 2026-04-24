@@ -503,6 +503,9 @@ If REGION is non-nil, unfill all paragraphs in the active region."
 ;; Load macros
 (cn/load-config-file "macros.el")
 
+;; Load custom mode line
+(cn/load-config-file "mode-line.el")
+
 ;; Load mu4e if present
 ;; mu also needs to be set up but that's harder to test for
 (when (locate-library "mu4e")

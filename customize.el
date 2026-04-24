@@ -67,9 +67,8 @@
    '(apheleia auctex company devil diminish eat elfeed elisp-autofmt embark-consult
               engrave-faces erc-hl-nicks ess fennel-mode fish-mode
               google-translate keepass-mode link-hint magit marginalia
-              markdown-mode meson-mode orderless org-roam paredit pyvenv
-              simple-modeline slime titlecase vertico visual-fill-column wgrep
-              yasnippet-snippets))
+              markdown-mode meson-mode orderless org-roam paredit pyvenv slime
+              titlecase vertico visual-fill-column wgrep yasnippet-snippets))
  '(safe-local-variable-values
    '((vc-default-patch-addressee . "bug-gnu-emacs@gnu.org")
      (etags-regen-ignores "test/manual/etags/")

@@ -346,12 +346,6 @@ This is useful for quickly collecting nodes on a given topic."
   :ensure t
   :pin melpa)
 
-;; Simple modeline
-(use-package simple-modeline
-  :ensure t
-  :pin melpa
-  :init (simple-modeline-mode))
-
 ;; SLIME
 (use-package slime
   :ensure t
