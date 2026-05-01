@@ -63,15 +63,16 @@ Modified from simple-modeline package."
   :custom
   (mode-line-format
    '(" "
-     cn/mode-line-mule-info
      (:eval (cn/mode-line-modified))
      mode-line-window-dedicated
-     mode-line-frame-identification
+     " "
      (:propertize "%b" face mode-line-buffer-id)
-     "  "
+     " "
      mode-line-position
      mode-line-format-right-align
      cn/mode-line-input-method
+     " "
+     cn/mode-line-mule-info
      (vc-mode vc-mode)
      " "
      mode-line-modes
