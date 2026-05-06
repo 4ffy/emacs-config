@@ -21,8 +21,7 @@ Isolated from `mode-line-mule-info', without the multilingual environment.")
                    'mouse-face
                    'mode-line-highlight
                    'local-map
-                   mode-line-coding-system-map)
-      (:eval (mode-line-eol-desc)))
+                   mode-line-coding-system-map))
   "Mode line construct to report the multilingual environment.
 Isolated from `mode-line-mule-info', without the input method.")
 (put 'cn/mode-line-mule-info 'risky-local-variable t)
@@ -59,6 +58,45 @@ Modified from simple-modeline package."
                       map)
          'mouse-face 'mode-line-highlight))))
 
+(defun cn/mode-line-eol ()
+  "Displays the EOL style of the current buffer in the mode-line.
+Modified from simple-modeline package."
+  (let* ((eol (coding-system-eol-type buffer-file-coding-system))
+         (mnemonic
+          (pcase eol
+            ('0 "LF")
+            ('1 "CRLF")
+            ('2 "CR")
+            (_ "")))
+         (desc
+          (pcase eol
+            ('0 "Unix-style")
+            ('1 "DOS-style")
+            ('2 "Mac-style")
+            (_ "Undecided"))))
+    (propertize mnemonic
+                'help-echo (format "End-of-line style: %s\nmouse-1: Cycle" desc)
+                'local-map
+                (let ((map (make-sparse-keymap)))
+                  (define-key
+                   map (vector 'mode-line 'mouse-1)
+                   (lambda (event)
+                     (interactive "e")
+                     (with-selected-window (posn-window (event-start event))
+                       (let ((eol
+                              (coding-system-eol-type
+                               buffer-file-coding-system)))
+                         (set-buffer-file-coding-system
+                          (cond
+                           ((eq eol 0)
+                            'dos)
+                           ((eq eol 1)
+                            'mac)
+                           (t
+                            'unix)))))))
+                  map)
+                'mouse-face 'mode-line-highlight)))
+
 (use-package emacs
   :custom
   (mode-line-format
@@ -73,6 +111,8 @@ Modified from simple-modeline package."
      cn/mode-line-input-method
      " "
      cn/mode-line-mule-info
+     " "
+     (:eval (cn/mode-line-eol))
      (vc-mode vc-mode)
      " "
      mode-line-modes
