@@ -97,6 +97,7 @@
   (sentence-end-double-space nil)
   (switch-to-buffer-obey-display-actions t)
   (tab-width 4)
+  (trusted-content (list (abbreviate-file-name user-emacs-directory)))
   (use-short-answers t)
   (user-full-name "Cameron Norton")
   (user-mail-address "cameron.norton@gmail.com")
