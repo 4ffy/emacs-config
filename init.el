@@ -73,6 +73,7 @@
   (frame-inhibit-implied-resize t)
   (frame-resize-pixelwise t)
   (header-line-format t)
+  (help-window-select t)
   (indent-tabs-mode nil)
   (inhibit-startup-screen t)
   (initial-major-mode 'org-mode)
