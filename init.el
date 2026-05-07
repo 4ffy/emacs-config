@@ -79,6 +79,7 @@
   (initial-major-mode 'org-mode)
   (initial-scratch-message nil)
   (isearch-lazy-count t)
+  (kill-do-not-save-duplicates t)
   (lazy-count-prefix-format "(%s/%s) ")
   (lazy-count-suffix-format nil)
   (major-mode (lambda ()
