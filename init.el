@@ -97,6 +97,7 @@
   (require-final-newline t)
   (save-interprogram-paste-before-kill t)
   (sentence-end-double-space nil)
+  (shell-command-prompt-show-cwd t)
   (switch-to-buffer-obey-display-actions t)
   (tab-width 4)
   (trusted-content (list "/usr/" (abbreviate-file-name user-emacs-directory)))
